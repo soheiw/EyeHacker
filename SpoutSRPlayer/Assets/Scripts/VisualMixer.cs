@@ -79,6 +79,10 @@ public class VisualMixer : MonoBehaviour {
                     renderer.material.SetFloat("_BlendTexRatio3", (float)item.Value.packets[latestPacketIndex].Data[2]);
                     renderer.material.SetFloat("_BlendTexRatio4", (float)item.Value.packets[latestPacketIndex].Data[3]);
                     break;
+
+                default:
+                    Debug.Log("Address Error: " + address);
+                    break;
             }
         }
     }
