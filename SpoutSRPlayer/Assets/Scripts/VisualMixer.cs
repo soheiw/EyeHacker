@@ -11,7 +11,7 @@ public class VisualMixer : MonoBehaviour {
 	void Start ()
     {
         renderer = GetComponent<Renderer>();
-        OSCHandler.Instance.CreateServer("SRCamera", 9999);
+        OSCHandler.Instance.CreateServer("SRCamera", 9001);
 	}
 	
 	// Update is called once per frame
