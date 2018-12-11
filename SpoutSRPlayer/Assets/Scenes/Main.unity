@@ -285,7 +285,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 356951474}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26b5cfc441eb6734a9acc88ec0ad0f14, type: 3}
   m_Name: 
@@ -754,7 +754,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1053524422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -766,7 +766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f7dec0b00674947bc631624c21970a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameFilter: 
+  _nameFilter: VideoPlayer
   _targetTexture: {fileID: 8400000, guid: 1d7c0976306918a45b9148eb588209d1, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
@@ -887,7 +887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1183958338
 MonoBehaviour:
   m_ObjectHideFlags: 0
