@@ -10,7 +10,7 @@ public class HMDDirectionSender : MonoBehaviour {
 	void Start () {
         InputTracking.Recenter();
         OSCHandler.Instance.Init();
-        OSCHandler.Instance.CreateClient("Unity", IPAddress.Parse("127.0.0.1"), 5005);
+        OSCHandler.Instance.CreateClient("Unity", IPAddress.Parse("127.0.0.1"), 9000);
 	}
 	
 	// Update is called once per frame
