@@ -18,6 +18,8 @@ using UnityEditor;
 public class PupilGazeTracker:MonoBehaviour
 {
 	public PupilSettings Settings;
+    public GameObject leftController;
+    public GameObject rightController;
 
 	static PupilGazeTracker _Instance;
 	public static PupilGazeTracker Instance
@@ -95,8 +97,14 @@ public class PupilGazeTracker:MonoBehaviour
 
 		PupilTools.Connection.UpdateSubscriptionSockets ();
 
-		if (PupilTools.IsConnected && Input.GetKeyUp (KeyCode.C))
-		{
+        var leftStatus = SteamVR_Controller.Input((int)leftController.GetComponent<SteamVR_TrackedObject>().index);
+        var rightStatus = SteamVR_Controller.Input((int)rightController.GetComponent<SteamVR_TrackedObject>().index);
+
+        bool triggered = leftStatus.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) || rightStatus.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger);
+
+        //if (PupilTools.IsConnected && Input.GetKeyUp (KeyCode.C))
+        if (PupilTools.IsConnected && triggered)
+        {
 			if (PupilTools.IsCalibrating)
 			{
 				PupilTools.StopCalibration ();
