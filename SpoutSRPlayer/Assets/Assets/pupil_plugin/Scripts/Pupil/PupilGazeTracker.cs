@@ -100,10 +100,10 @@ public class PupilGazeTracker:MonoBehaviour
         var leftStatus = SteamVR_Controller.Input((int)leftController.GetComponent<SteamVR_TrackedObject>().index);
         var rightStatus = SteamVR_Controller.Input((int)rightController.GetComponent<SteamVR_TrackedObject>().index);
 
-        bool triggered = leftStatus.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) || rightStatus.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger);
+        bool triggered = leftStatus.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) || rightStatus.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad);
 
         //if (PupilTools.IsConnected && Input.GetKeyUp (KeyCode.C))
-        if (PupilTools.IsConnected && triggered)
+        if (PupilTools.IsConnected && (triggered || Input.GetKeyUp(KeyCode.C)))
         {
 			if (PupilTools.IsCalibrating)
 			{
