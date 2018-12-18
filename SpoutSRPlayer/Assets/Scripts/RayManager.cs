@@ -50,7 +50,7 @@ public class RayManager : MonoBehaviour {
         //if (Input.GetKeyUp(KeyCode.M))
         //    monoColorMode = !monoColorMode;
 
-        if (Input.GetKeyUp(KeyCode.G))
+        if (Input.GetKeyUp(KeyCode.P))
             calibrationDemo.enabled = !calibrationDemo.enabled;
 
         if (Input.GetKeyUp(KeyCode.L))
