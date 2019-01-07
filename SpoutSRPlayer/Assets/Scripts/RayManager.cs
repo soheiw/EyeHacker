@@ -61,12 +61,17 @@ public class RayManager : MonoBehaviour
         bool isLeftTriggered = getControllerState.leftControllerTriggerPressUp;
         bool isRightTriggered = getControllerState.rightControllerTriggerPressUp;
 
+        // if (Input.GetKeyUp (KeyCode.G))
         if (Input.GetKeyUp (KeyCode.G) || isLeftTriggered)
+        {
             calibrationDemo.enabled = !calibrationDemo.enabled;
+            heading.enabled = calibrationDemo.enabled ? true : false;
+        }
 
         // if (Input.GetKeyUp (KeyCode.L))
         if (Input.GetKeyUp (KeyCode.L) || isRightTriggered)
-            heading.enabled = !heading.enabled;
+            if(calibrationDemo.enabled)
+                heading.enabled = !heading.enabled;
 
         if (heading.enabled)
         {
