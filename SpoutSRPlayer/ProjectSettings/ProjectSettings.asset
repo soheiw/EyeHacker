@@ -702,7 +702,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 2d5b77a8-35bb-46a2-bbf7-7608cec66c91
-  projectName: 
+  projectName: SpoutSRPlayer
   organizationId: radi_bow
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
