@@ -10,6 +10,7 @@ public class RayManager : MonoBehaviour
 
     private Vector3 standardViewportPoint = new Vector3 (0.5f, 0.5f, 10); // default marker position
 
+    public Vector3 gazePosition;
     private Vector2 gazePointLeft;
     private Vector2 gazePointRight;
     private Vector2 gazePointCenter;
@@ -70,7 +71,7 @@ public class RayManager : MonoBehaviour
 
         // if (Input.GetKeyUp (KeyCode.L))
         if (Input.GetKeyUp (KeyCode.L) || isRightTriggered)
-            if(calibrationDemo.enabled)
+            if (calibrationDemo.enabled)
                 heading.enabled = !heading.enabled;
 
         if (heading.enabled)
@@ -79,14 +80,16 @@ public class RayManager : MonoBehaviour
 
             Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
             RaycastHit hit;
+
             if (Physics.Raycast (ray, out hit))
             {
-                heading.SetPosition (1, hit.point);
+                gazePosition = hit.point;
             }
             else
             {
-                heading.SetPosition (1, ray.origin + ray.direction * 50f);
+                gazePosition = ray.origin + ray.direction * 50f;
             }
+            heading.SetPosition (1, gazePosition);
         }
     }
 
@@ -113,4 +116,5 @@ public class RayManager : MonoBehaviour
             Graphics.Blit(source, destination);
 
     }*/
+
 }
