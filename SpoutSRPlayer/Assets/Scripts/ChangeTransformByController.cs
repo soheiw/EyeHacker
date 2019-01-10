@@ -32,12 +32,13 @@ public class ChangeTransformByController : MonoBehaviour
             leftTarget.transform.rotation = leftController.transform.rotation;
         }
 
-        if (getControllerState.rightControllerTriggerPressUp)
-        {
+        // for debug
+        // if (getControllerState.rightControllerTriggerPressUp)
+        // {
             if (!rightController) return;
             // FIXME: 結局controller自体を呼びに行くので冗長
             rightTarget.transform.position = rightController.transform.position;
             rightTarget.transform.rotation = rightController.transform.rotation;
-        }
+        // }
     }
 }
