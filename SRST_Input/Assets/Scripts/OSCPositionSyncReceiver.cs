@@ -29,21 +29,22 @@ public class OSCPositionSyncReceiver : MonoBehaviour
             position.y = (float) message.values[1];
             position.z = (float) message.values[2];
 
-            rotation.x = (float) message.values[3];
-            rotation.y = (float) message.values[4];
-            rotation.z = (float) message.values[5];
+            // Billboardしたいのでrotationは捨てる
+            // rotation.x = (float) message.values[3];
+            // rotation.y = (float) message.values[4];
+            // rotation.z = (float) message.values[5];
 
             if (!sync) return;
 
             if (isLocal)
             {
                 transform.localPosition = position;
-                transform.localRotation = Quaternion.Euler (rotation);
+                // transform.localRotation = Quaternion.Euler (rotation);
             }
             else
             {
                 transform.position = position;
-                transform.rotation = Quaternion.Euler (rotation);
+                // transform.rotation = Quaternion.Euler (rotation);
             }
         }
     }

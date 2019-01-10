@@ -13,6 +13,9 @@ public class GetControllerState : MonoBehaviour
     public bool leftControllerTriggerPressUp;
     public bool rightControllerTriggerPressUp;
 
+    public bool leftControllerGripped;
+    public bool rightControllerGripped;
+
     // Use this for initialization
     void Start ()
     {
@@ -27,11 +30,15 @@ public class GetControllerState : MonoBehaviour
 
         var touchpad = SteamVR_Controller.ButtonMask.Touchpad;
         var trigger = SteamVR_Controller.ButtonMask.Trigger;
+        var grip = SteamVR_Controller.ButtonMask.Grip;
 
         leftControllerTouchpadPressUp = leftStatus.GetPressUp (touchpad);
         rightControllerTouchpadPressUp = rightStatus.GetPressUp (touchpad);
 
         leftControllerTriggerPressUp = leftStatus.GetPressUp (trigger);
         rightControllerTriggerPressUp = rightStatus.GetPressUp (trigger);
+
+        leftControllerGripped = leftStatus.GetPressDown (grip);
+        rightControllerGripped = rightStatus.GetPressDown (grip);
     }
 }

@@ -61,18 +61,18 @@ public class RayManager : MonoBehaviour
         // if (Input.GetKeyUp(KeyCode.M))
         //     monoColorMode = !monoColorMode;
 
-        bool isLeftTriggered = getControllerState.leftControllerTriggerPressUp;
-        bool isRightTriggered = getControllerState.rightControllerTriggerPressUp;
+        bool isLeftGripped = getControllerState.leftControllerGripped;
+        bool isRightGripped = getControllerState.rightControllerGripped;
 
         // if (Input.GetKeyUp (KeyCode.G))
-        if (Input.GetKeyUp (KeyCode.G) || isLeftTriggered)
+        if (Input.GetKeyUp (KeyCode.G) || isLeftGripped)
         {
             calibrationDemo.enabled = !calibrationDemo.enabled;
             heading.enabled = calibrationDemo.enabled ? true : false;
         }
 
         // if (Input.GetKeyUp (KeyCode.L))
-        if (Input.GetKeyUp (KeyCode.L) || isRightTriggered)
+        if (Input.GetKeyUp (KeyCode.L) || isRightGripped)
             if (calibrationDemo.enabled)
                 heading.enabled = !heading.enabled;
 
