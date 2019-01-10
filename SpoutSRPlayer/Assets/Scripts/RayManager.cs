@@ -93,8 +93,8 @@ public class RayManager : MonoBehaviour
             }
             heading.SetPosition (1, gazePosition);
 
-            gazePos.transform.position = gazePosition;
-            gazePos.transform.rotation = Quaternion.Euler (hit.normal);
+            // gazePos.transform.position = gazePosition;
+            // gazePos.transform.rotation = Quaternion.Euler (hit.normal);
     }
 }
 
