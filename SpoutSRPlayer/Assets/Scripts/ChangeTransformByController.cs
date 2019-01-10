@@ -26,7 +26,7 @@ public class ChangeTransformByController : MonoBehaviour
     {
         if (getControllerState.leftControllerTriggerPressUp)
         {
-            if (!leftController) return;
+            if (!leftTarget) return;
             // FIXME: 結局controller自体を呼びに行くので冗長
             leftTarget.transform.position = leftController.transform.position;
             leftTarget.transform.rotation = leftController.transform.rotation;
@@ -34,7 +34,7 @@ public class ChangeTransformByController : MonoBehaviour
 
         if (getControllerState.rightControllerTriggerPressUp)
         {
-            if (!rightController) return;
+            if (!rightTarget) return;
             // FIXME: 結局controller自体を呼びに行くので冗長
             rightTarget.transform.position = rightController.transform.position;
             rightTarget.transform.rotation = rightController.transform.rotation;

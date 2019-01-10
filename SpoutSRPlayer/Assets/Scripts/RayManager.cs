@@ -95,31 +95,31 @@ public class RayManager : MonoBehaviour
 
             gazePos.transform.position = gazePosition;
             gazePos.transform.rotation = Quaternion.Euler (hit.normal);
-    }
-}
-
-/*void OnRenderImage(RenderTexture source, RenderTexture destination)
-{
-    if (monoColorMode)
-    {
-        shaderMaterial.SetFloat("_highlightThreshold", 0.05f);
-        switch (sceneCamera.stereoActiveEye)
-        {
-            case Camera.MonoOrStereoscopicEye.Left:
-                shaderMaterial.SetVector("_viewportGazePosition", gazePointLeft);
-                break;
-            case Camera.MonoOrStereoscopicEye.Right:
-                shaderMaterial.SetVector("_viewportGazePosition", gazePointRight);
-                break;
-            default:
-                shaderMaterial.SetVector("_viewportGazePosition", gazePointCenter);
-                break;
         }
-        Graphics.Blit(source, destination, shaderMaterial);
     }
-    else
-        Graphics.Blit(source, destination);
 
-}*/
+    /*void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (monoColorMode)
+        {
+            shaderMaterial.SetFloat("_highlightThreshold", 0.05f);
+            switch (sceneCamera.stereoActiveEye)
+            {
+                case Camera.MonoOrStereoscopicEye.Left:
+                    shaderMaterial.SetVector("_viewportGazePosition", gazePointLeft);
+                    break;
+                case Camera.MonoOrStereoscopicEye.Right:
+                    shaderMaterial.SetVector("_viewportGazePosition", gazePointRight);
+                    break;
+                default:
+                    shaderMaterial.SetVector("_viewportGazePosition", gazePointCenter);
+                    break;
+            }
+            Graphics.Blit(source, destination, shaderMaterial);
+        }
+        else
+            Graphics.Blit(source, destination);
+
+    }*/
 
 }
