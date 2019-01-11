@@ -10,11 +10,14 @@ public class RayManager : MonoBehaviour
 
     private Vector3 standardViewportPoint = new Vector3 (0.5f, 0.5f, 10); // default marker position
 
+    public Vector3 gazePosition;
     private Vector2 gazePointLeft;
     private Vector2 gazePointRight;
     private Vector2 gazePointCenter;
 
     [SerializeField] private GetControllerState getControllerState;
+
+    public GameObject gazePos;
 
     // public Material shaderMaterial;
 
@@ -58,19 +61,19 @@ public class RayManager : MonoBehaviour
         // if (Input.GetKeyUp(KeyCode.M))
         //     monoColorMode = !monoColorMode;
 
-        bool isLeftTriggered = getControllerState.leftControllerTriggerPressUp;
-        bool isRightTriggered = getControllerState.rightControllerTriggerPressUp;
+        bool isLeftGripped = getControllerState.leftControllerGripped;
+        bool isRightGripped = getControllerState.rightControllerGripped;
 
         // if (Input.GetKeyUp (KeyCode.G))
-        if (Input.GetKeyUp (KeyCode.G) || isLeftTriggered)
+        if (Input.GetKeyUp (KeyCode.G) || isLeftGripped)
         {
             calibrationDemo.enabled = !calibrationDemo.enabled;
             heading.enabled = calibrationDemo.enabled ? true : false;
         }
 
         // if (Input.GetKeyUp (KeyCode.L))
-        if (Input.GetKeyUp (KeyCode.L) || isRightTriggered)
-            if(calibrationDemo.enabled)
+        if (Input.GetKeyUp (KeyCode.L) || isRightGripped)
+            if (calibrationDemo.enabled)
                 heading.enabled = !heading.enabled;
 
         if (heading.enabled)
@@ -79,14 +82,19 @@ public class RayManager : MonoBehaviour
 
             Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
             RaycastHit hit;
+
             if (Physics.Raycast (ray, out hit))
             {
-                heading.SetPosition (1, hit.point);
+                gazePosition = hit.point;
             }
             else
             {
-                heading.SetPosition (1, ray.origin + ray.direction * 50f);
+                gazePosition = ray.origin + ray.direction * 50f;
             }
+            heading.SetPosition (1, gazePosition);
+
+            gazePos.transform.position = gazePosition;
+            gazePos.transform.rotation = Quaternion.Euler (hit.normal);
         }
     }
 
@@ -113,4 +121,5 @@ public class RayManager : MonoBehaviour
             Graphics.Blit(source, destination);
 
     }*/
+
 }
