@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftTarget: {fileID: 505927860}
-  rightTarget: {fileID: 887470764}
+  rightTarget: {fileID: 0}
   getControllerState: {fileID: 0}
   leftController: {fileID: 0}
   rightController: {fileID: 0}
@@ -335,6 +335,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b5cfc441eb6734a9acc88ec0ad0f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &356951477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356951474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb55a59ddfe88d74ea3e77d3f7c3179d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!64 &356951478
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356951474}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 72b9c7fe71dea7449b0d526966ce3f89, type: 3}
 --- !u!1 &374520770
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,7 +1005,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1535834667799276, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1535834667799276, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
       propertyPath: m_Name
@@ -1087,7 +1112,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1535834667799276, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
