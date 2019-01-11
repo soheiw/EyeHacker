@@ -23,7 +23,7 @@ public class OSCPositionSyncReceiver : MonoBehaviour
         if (message.address == address)
         {
             var position = new Vector3 (0, 0, 0);
-            var rotation = new Vector3 (0, 0, 0);
+            // var rotation = new Vector3 (0, 0, 0);
 
             position.x = (float) message.values[0];
             position.y = (float) message.values[1];
