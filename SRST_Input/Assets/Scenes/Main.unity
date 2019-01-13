@@ -113,6 +113,61 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &97493176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 97493178}
+  - component: {fileID: 97493177}
+  - component: {fileID: 97493179}
+  m_Layer: 0
+  m_Name: OSCTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &97493177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97493176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36dd9fcae25042bbb815255411ff524, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: 127.0.0.1
+  port: 3333
+--- !u!4 &97493178
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97493176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97493179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97493176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96eb24eda93936f4eafe28f132671008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  videoName: OSCTEST
 --- !u!1 &309438247
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +712,7 @@ MonoBehaviour:
   _frameRate: 30
   _allowSlowDown: 0
   _preset: 0
-  _shader: {fileID: 0}
+  _shader: {fileID: 4800000, guid: a4bd3b00ad1ed53458ec6ff07694985e, type: 3}
 --- !u!81 &814441902
 AudioListener:
   m_ObjectHideFlags: 0
@@ -747,14 +802,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -971,6 +1024,7 @@ GameObject:
   - component: {fileID: 1117871099}
   - component: {fileID: 1117871098}
   - component: {fileID: 1117871096}
+  - component: {fileID: 1117871097}
   m_Layer: 0
   m_Name: RecordingCamera
   m_TagString: Untagged
@@ -1008,7 +1062,21 @@ MonoBehaviour:
   _frameRate: 30
   _allowSlowDown: 0
   _preset: 0
-  _shader: {fileID: 0}
+  _shader: {fileID: 4800000, guid: a4bd3b00ad1ed53458ec6ff07694985e, type: 3}
+--- !u!114 &1117871097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117871094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e77b367f1633b419a870083b4d0063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recorderName: Recorder1
+  server: {fileID: 921975423}
+  maskCapture: {fileID: 814441901}
 --- !u!81 &1117871098
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1805,14 +1873,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1

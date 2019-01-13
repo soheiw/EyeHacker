@@ -137,7 +137,7 @@ namespace FFmpegOut
 
             // Open an output stream.
             var tmpName = (fileName != null) ? fileName : name;
-            _pipe = new FFmpegPipe (name, width, height, _frameRate, _preset);
+            _pipe = new FFmpegPipe (tmpName, width, height, _frameRate, _preset);
             _activePipeCount++;
 
             // Change the application frame rate on the first pipe.
