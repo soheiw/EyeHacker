@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class OSCTest : MonoBehaviour
 {
-    public string videoName;
+    public string recordVideoName;
+    public string playVideoName;
+    public float ratio;
+
     private uOscClient client;
 
     // Use this for initialization
@@ -19,12 +22,32 @@ public class OSCTest : MonoBehaviour
     {
         if (Input.GetKeyDown (KeyCode.R))
         {
-            client.Send ("/ndiserver/Recorder1/startrecording", videoName);
+            client.Send ("/ndiserver/Recorder1/startrecording", recordVideoName);
         }
 
         if (Input.GetKeyDown (KeyCode.T))
         {
             client.Send ("/ndiserver/Recorder1/stoprecording");
+        }
+
+        if (Input.GetKeyDown (KeyCode.Space))
+        {
+            client.Send ("/ndiserver/Player1/startplaying", playVideoName);
+        }
+
+        if (Input.GetKeyDown (KeyCode.P))
+        {
+            client.Send ("/ndiserver/Player1/startplaying", playVideoName, ratio);
+        }
+
+        if (Input.GetKeyDown (KeyCode.L))
+        {
+            client.Send ("/ndiserver/Player1/stopplaying");
+        }
+
+        if (Input.GetKeyDown (KeyCode.A))
+        {
+            client.Send ("/ndiserver/Player1/getvideonames", "127.0.0.1");
         }
     }
 }
