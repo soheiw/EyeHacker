@@ -40,7 +40,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BlendTexRatio1: 1
-    - _BlendTexRatio2: 0
+    - _BlendTexRatio2: 0.6
     - _BlendTexRatio3: 0
     - _BlendTexRatio4: 0
     - _Tint: 1

@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f7dec0b00674947bc631624c21970a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameFilter: VideoPlayer
+  _nameFilter: BlendPlayer
   _targetTexture: {fileID: 8400000, guid: 1d7c0976306918a45b9148eb588209d1, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cadade9d79e66642a6893ac902ddf32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameFilter: VideoPlayer
+  _nameFilter: BlendPlayer
   _targetTexture: {fileID: 8400000, guid: 1d7c0976306918a45b9148eb588209d1, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
