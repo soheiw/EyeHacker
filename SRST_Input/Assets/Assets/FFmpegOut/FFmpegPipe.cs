@@ -27,7 +27,7 @@ namespace FFmpegOut
 
         public FFmpegPipe(string name, int width, int height, int framerate, Preset preset)
         {
-            name += DateTime.Now.ToString(" yyyy MMdd HHmmss");
+            //name += DateTime.Now.ToString(" yyyy MMdd HHmmss");
             Filename = name.Replace(" ", "_") + GetSuffix(preset);
 
             var opt = "-y -f rawvideo -vcodec rawvideo -pixel_format rgba";
