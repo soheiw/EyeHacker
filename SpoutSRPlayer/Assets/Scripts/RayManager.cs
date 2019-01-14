@@ -37,7 +37,7 @@ public class RayManager : MonoBehaviour
         getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
 
         // TODO: tagで綺麗に取得
-        GameObject mainCamera = GameObject.Find ("MainCamera");
+        GameObject mainCamera = GameObject.Find ("Main Camera");
         GameObject leftEye = mainCamera.transform.Find ("LeftEye_2D").gameObject;
         GameObject leftEyePoint = leftEye.transform.Find ("MarkerEye").gameObject;
         GameObject rightEye = mainCamera.transform.Find ("RightEye_2D").gameObject;
@@ -105,25 +105,23 @@ public class RayManager : MonoBehaviour
                 }
             }
 
+        Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
+        RaycastHit hit;
+        if (Physics.Raycast (ray, out hit))
+        {
+            gazePosition = hit.point;
+        }
+        else
+        {
+            gazePosition = ray.origin + ray.direction * 50f;
+        }
+        gazePos.transform.position = gazePosition;
+        gazePos.transform.rotation = Quaternion.Euler (hit.normal);
+
         if (heading.enabled)
         {
             heading.SetPosition (0, sceneCamera.transform.position - sceneCamera.transform.up); // 下方向にちょっとずらす
-
-            Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
-            RaycastHit hit;
-
-            if (Physics.Raycast (ray, out hit))
-            {
-                gazePosition = hit.point;
-            }
-            else
-            {
-                gazePosition = ray.origin + ray.direction * 50f;
-            }
             heading.SetPosition (1, gazePosition);
-
-            gazePos.transform.position = gazePosition;
-            gazePos.transform.rotation = Quaternion.Euler (hit.normal);
         }
     }
 
