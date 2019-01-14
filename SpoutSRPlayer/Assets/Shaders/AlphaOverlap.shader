@@ -4,6 +4,8 @@
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_OverTex("MaskingTexture", 2D) = "white" {}
+        [Toggle(SET_ALPHA_ZERO)]
+        _SetAlphaZero("Set Alpha Zero", Float) = 0
 	}
 	SubShader
 	{
@@ -17,6 +19,8 @@
 			#pragma fragment frag
 			// make fog work
 			#pragma multi_compile_fog
+
+            #pragma shader_feature SET_ALPHA_ZERO
 			
 			#include "UnityCG.cginc"
 
@@ -54,7 +58,14 @@
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
+                
 				fixed4 over = tex2D(_OverTex, i.uv);
+                
+                #ifdef SET_ALPHA_ZERO
+                    over.a = 0.0;
+                #else
+                    // use original alpha
+                #endif
 
 				col.r = col.r * (1.0 - over.a) + over.r * over.a;
 				col.g = col.g * (1.0 - over.a) + over.g * over.a;
