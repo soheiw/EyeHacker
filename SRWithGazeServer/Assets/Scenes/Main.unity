@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96eb24eda93936f4eafe28f132671008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recordVideoName: OSCTEST
-  playVideoName: OSCTEST
+  recordVideoName: OSCTEST2
+  playVideoName: OSCTEST2
   ratio: 0.1
 --- !u!1 &309438247
 GameObject:
