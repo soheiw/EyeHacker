@@ -19,6 +19,13 @@ public class ChangeTransformByController : MonoBehaviour
         getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
         leftController = GameObject.Find ("Controller (left)");
         rightController = GameObject.Find ("Controller (right)");
+
+        PresetTransform presetTransform = GameObject.Find ("PresetTransform").GetComponent<PresetTransform> ();
+        if (presetTransform != null)
+        {
+            leftTarget.transform.position = presetTransform.presetPosition;
+            leftTarget.transform.rotation = presetTransform.presetRotation;
+        }
     }
 
     // Update is called once per frame

@@ -99,10 +99,10 @@ public class PupilGazeTracker : MonoBehaviour
 
         PupilTools.Connection.UpdateSubscriptionSockets ();
 
-        bool isPressUp = getControllerState.leftControllerTouchpadPressUp || getControllerState.rightControllerTouchpadPressUp;
+        bool isRightPressUp = getControllerState.rightControllerTouchpadPressUp;
 
         // if (PupilTools.IsConnected && Input.GetKeyUp (KeyCode.C))
-        if (PupilTools.IsConnected && (isPressUp || Input.GetKeyUp (KeyCode.C)))
+        if (PupilTools.IsConnected && (isRightPressUp || Input.GetKeyUp (KeyCode.C)))
         {
             if (PupilTools.IsCalibrating)
             {
