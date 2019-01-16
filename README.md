@@ -26,6 +26,7 @@
 
 #### Server
 * THETAを繋いでLiveモードで起動する．
+![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 * `Space`キーで録画映像の再生．`P`キーで指定した場所から録画映像の再生．`L`キーで再生を停止．
 * `R`キーで録画開始．`T`キーで録画終了．
 * `M`キーでSpout/NDI切り替え．
@@ -33,6 +34,8 @@
 #### Player
 * Calibration Sceneから起動する．
 * 視線位置とマスク位置を一致させるために，HMDを被ったユーザの場所でThetaの3軸とコントローラの3軸を合わせて左コントローラのトリガーを引く．
+![position01.jpeg](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/position01.jpeg)
+![position02.jpeg](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/position02.jpeg)
 * Pupil Serviceを立ち上げる．
 * 右コントローラのタッチパッドを押すと瞳孔キャリブレーション開始．
 * 右コントローラのグリップを押すとrayの表示/非表示を切り替え．
