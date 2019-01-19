@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using uOSC;
 using UnityEngine;
 
-public class SwitchMask : MonoBehaviour
+public class OSCMaskController : MonoBehaviour
 {
+    public GameObject mask;
+
     public Material recorded;
     public Material realtime;
     public string playerName;
 
     [SerializeField] private uOscServer server;
     private MeshRenderer meshRenderer;
+    private Vector3 originalScale;
 
     // Use this for initialization
     void Start ()
     {
         meshRenderer = GetComponent<MeshRenderer> ();
         server = FindObjectOfType<uOscServer> ();
-        if (!server) server.onDataReceived.AddListener (OnDataReceived);
+        if (!server) return;
+        server.onDataReceived.AddListener (OnDataReceived);
+        originalScale = mask.transform.localScale;
     }
 
     // Update is called once per frame
@@ -39,6 +44,12 @@ public class SwitchMask : MonoBehaviour
             {
                 meshRenderer.material = recorded;
             }
+        }
+
+        if (message.address == "/ndiserver/" + playerName + "/maskscale")
+        {
+            var ratio = (float) message.values[0];
+            mask.transform.localScale = originalScale * ratio;
         }
     }
 }

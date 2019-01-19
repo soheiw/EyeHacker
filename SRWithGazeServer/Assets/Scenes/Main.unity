@@ -169,7 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recordVideoName: OSCTEST2
   playVideoName: OSCTEST2
-  ratio: 0.1
+  ratio: 0.2
+  maskScale: 1.4
 --- !u!1 &309438247
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e9918fe63999ae458587191b9e95166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mask: {fileID: 524589813}
   recorded: {fileID: 2100000, guid: f6abafa9347cf4145ac1e388ba0015f7, type: 2}
   realtime: {fileID: 2100000, guid: 55742bd9c0828c64a8534a7966138066, type: 2}
   playerName: Player1
