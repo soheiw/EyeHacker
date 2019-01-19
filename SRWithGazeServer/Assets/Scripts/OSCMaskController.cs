@@ -33,7 +33,7 @@ public class OSCMaskController : MonoBehaviour
 
     void OnDataReceived (Message message)
     {
-        if (message.address == "/ndiserver/" + playerName + "/realtimemask")
+        if (message.address == "/server/" + playerName + "/realtimemask")
         {
             var state = (float) message.values[0];
             if (state != 0)
@@ -46,7 +46,7 @@ public class OSCMaskController : MonoBehaviour
             }
         }
 
-        if (message.address == "/ndiserver/" + playerName + "/maskscale")
+        if (message.address == "/server/" + playerName + "/maskscale")
         {
             var ratio = (float) message.values[0];
             mask.transform.localScale = originalScale * ratio;

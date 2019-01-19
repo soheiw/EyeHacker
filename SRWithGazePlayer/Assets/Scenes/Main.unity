@@ -1011,6 +1011,11 @@ Prefab:
       propertyPath: m_Name
       value: ControllerPos(ForDebug)
       objectReference: {fileID: 0}
+    - target: {fileID: 114988175035852978, guid: dcfe3518f66a6d944bfb8c19c81778f6,
+        type: 2}
+      propertyPath: address
+      value: /server/gazepos
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
   m_IsPrefabParent: 0
@@ -1113,6 +1118,11 @@ Prefab:
     - target: {fileID: 1535834667799276, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114988175035852978, guid: dcfe3518f66a6d944bfb8c19c81778f6,
+        type: 2}
+      propertyPath: address
+      value: /server/gazepos
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}

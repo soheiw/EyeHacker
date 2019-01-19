@@ -40,14 +40,14 @@ public class OSCVideoRecorder : MonoBehaviour
 
     void OnDataReceived (Message message)
     {
-        if (message.address == "/ndiserver/" + recorderName + "/startrecording")
+        if (message.address == "/server/" + recorderName + "/startrecording")
         {
             if (!isRecording)
             {
                 StartRecording ((string) message.values[0]);
             }
         }
-        if (message.address == "/ndiserver/" + recorderName + "/stoprecording")
+        if (message.address == "/server/" + recorderName + "/stoprecording")
         {
             if (isRecording)
             {

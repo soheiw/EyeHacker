@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce767dcb505ab4c4da93390e7732f997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  address: /ndiserver/gazepos
+  address: /server/gazepos
   sync: 1
   isLocal: 1
 --- !u!1 &554479432
