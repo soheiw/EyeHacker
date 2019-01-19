@@ -7,6 +7,8 @@ public class PresetTransform : MonoBehaviour
     public Vector3 presetPosition;
     public Quaternion presetRotation;
 
+    public GUIStyle textStyle;
+
     [SerializeField] private GetControllerState getControllerState;
 
     [SerializeField] private GameObject leftController;
@@ -46,5 +48,16 @@ public class PresetTransform : MonoBehaviour
         //     presetTransform.position = rightController.transform.position;
         //     presetTransform.rotation = rightController.transform.rotation;
         // }
+    }
+
+    void OnGUI ()
+    {
+        GUI.Label (new Rect (50, 50, 50, 50), "px: " + presetPosition.x, textStyle);
+        GUI.Label (new Rect (50, 100, 50, 50), "py: " + presetPosition.y, textStyle);
+        GUI.Label (new Rect (50, 150, 50, 50), "pz: " + presetPosition.z, textStyle);
+        Vector3 rot = presetRotation.eulerAngles;
+        GUI.Label (new Rect (50, 200, 50, 50), "rx: " + rot.x, textStyle);
+        GUI.Label (new Rect (50, 250, 50, 50), "ry: " + rot.y, textStyle);
+        GUI.Label (new Rect (50, 300, 50, 50), "rz: " + rot.z, textStyle);
     }
 }
