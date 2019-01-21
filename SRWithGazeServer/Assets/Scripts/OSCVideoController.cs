@@ -33,7 +33,7 @@ public class OSCVideoController : MonoBehaviour
 
     void OnDataReceived (Message message)
     {
-        if (message.address == "/ndiserver/" + playerName + "/startplaying")
+        if (message.address == "/server/" + playerName + "/startplaying")
         {
             if (message.values.Length > 1)
             {
@@ -45,17 +45,17 @@ public class OSCVideoController : MonoBehaviour
             }
         }
 
-        if (message.address == "/ndiserver/" + playerName + "/stopplaying")
+        if (message.address == "/server/" + playerName + "/stopplaying")
         {
             StopVideo ();
         }
 
-        if (message.address == "/ndiserver/" + playerName + "/setvideotime")
+        if (message.address == "/server/" + playerName + "/setvideotime")
         {
             SetVideoTime ((float) message.values[0]);
         }
 
-        if (message.address == "/ndiserver/" + playerName + "/getvideonames")
+        if (message.address == "/server/" + playerName + "/getvideonames")
         {
             client.Send ((string) message.values[0], GetVideoNames ());
         }
