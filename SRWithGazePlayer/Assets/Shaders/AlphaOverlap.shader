@@ -18,7 +18,7 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			// make fog work
-			#pragma multi_compile_fog
+			// #pragma multi_compile_fog
 
             #pragma shader_feature SET_ALPHA_ZERO
 			
@@ -33,7 +33,7 @@
 			struct v2f
 			{
 				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
+				// UNITY_FOG_COORDS(1)
 				float4 vertex : SV_POSITION;
 			};
 
@@ -50,7 +50,7 @@
 
 				// o.uv.x = 1.0 - o.uv.x;
 
-				UNITY_TRANSFER_FOG(o,o.vertex);
+				// UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
 			
