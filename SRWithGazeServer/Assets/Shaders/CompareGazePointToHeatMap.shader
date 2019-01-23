@@ -4,7 +4,6 @@
 	{
 		_MainTex("HeatMap", 2D) = "white" {}
 		_OverTex("GazePoint", 2D) = "white" {}
-        _overlapLevel("OverlapLevel", Float) = 0
 	}
 	SubShader
 	{
@@ -55,15 +54,12 @@
 
 				// apply fog
 				// UNITY_APPLY_FOG(i.fogCoord, col);
-
-                if(col.r > 0.1){
-                    col.r = (over.r > 0.1) ? 1.0 : col.r;
-                }
-                if(col.g > 0.1){
-                    col.g = (over.g > 0.1) ? 0 : col.g;
-                }
-                if(col.b > 0.1){
-                    col.b = (over.b > 0.1) ? 0 : col.b;
+                fixed heatMap = (col.r + col.g + col.b) / 3.0;
+                fixed gaze = (over.r + over.g + over.b) / 3.0;
+                if(heatMap > 0.1 && gaze > 0.1){
+                    col.r = 1.0;
+                    col.g = 0.0;
+                    col.b = 0.0;
                 }
 
 				return col;
