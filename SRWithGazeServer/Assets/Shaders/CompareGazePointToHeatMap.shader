@@ -61,6 +61,12 @@
                     col.g = 0.0;
                     col.b = 0.0;
                 }
+                else
+                {
+                    col.r = 0.0;
+                    col.g = 0.0;
+                    col.b = 0.0;
+                }
 
 				return col;
 			}
