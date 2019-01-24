@@ -10,7 +10,7 @@ public class DrawGazeCoord : MonoBehaviour
     private Texture2D drawTexture;
     private Color[] textureBuffer;
 
-    private int brushSize = 10;
+    private int brushSize = 3;
     // Use this for initialization
     void Start ()
     {
@@ -34,11 +34,15 @@ public class DrawGazeCoord : MonoBehaviour
         Vector2 hitPoint = gazeCoordReceiver.gazePoint;
 
         // brushSize分のピクセルを塗りつぶす
+        for (int i = 0; i < textureBuffer.Length; i++)
+        {
+            this.textureBuffer.SetValue (Color.black, i);
+        }
         for (int x = (int) (hitPoint.x - brushSize / 2); x < hitPoint.x + brushSize; x++)
         {
             for (int y = (int) (hitPoint.y - brushSize / 2); y < hitPoint.y + brushSize; y++)
             {
-                if (x >= 0 && y >= 0)
+                if (x >= 0 && y >= 0 && x <= 1280 && y <= 720)
                 {
                     this.textureBuffer.SetValue (Color.white, (int) x + drawTexture.width * (int) y);
                 }
