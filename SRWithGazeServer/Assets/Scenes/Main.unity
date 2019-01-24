@@ -1923,6 +1923,7 @@ GameObject:
   - component: {fileID: 1184409775}
   - component: {fileID: 1184409774}
   - component: {fileID: 1184409773}
+  - component: {fileID: 1184409777}
   m_Layer: 0
   m_Name: HeatMapPlayer
   m_TagString: Untagged
@@ -2000,6 +2001,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+--- !u!114 &1184409777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1184409772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba90691a4aefa94898aa37efebe1924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeCoordReceiver: {fileID: 921975425}
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0

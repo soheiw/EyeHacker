@@ -14,7 +14,6 @@ public class DrawGazeCoord : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-
         drawRenderer = this.GetComponent<Renderer> ();
         var bodyTexture = (Texture2D) drawRenderer.material.mainTexture;
         var bodyPixels = bodyTexture.GetPixels ();

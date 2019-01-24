@@ -28,7 +28,7 @@ public class OSCGazeCoordReceiver : MonoBehaviour
 
             gazePoint.x = (float) message.values[0];
             gazePoint.y = (float) message.values[1];
-            Debug.Log (gazePoint);
+            // Debug.Log (gazePoint);
 
             if (!sync) return;
 
