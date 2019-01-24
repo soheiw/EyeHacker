@@ -1448,6 +1448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 921975424}
   - component: {fileID: 921975423}
+  - component: {fileID: 921975425}
   m_Layer: 0
   m_Name: uOSCServer
   m_TagString: Untagged
@@ -1480,6 +1481,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &921975425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 921975422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10dec514f2bc6e4d974f04290246cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  address: /server/gazecoord
+  sync: 1
 --- !u!1 &983427743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,7 +2484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1750954667
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -19,6 +19,10 @@ public class RayManager : MonoBehaviour
     [SerializeField] private GetControllerState getControllerState;
 
     public GameObject gazePos;
+    public Vector2 gazeCoord;
+    public Vector2 textureSize = new Vector2(1280.0f ,720.0f);
+
+    private const float INF = 10000.0f;
 
     // public Material shaderMaterial;
 
@@ -110,11 +114,16 @@ public class RayManager : MonoBehaviour
         if (Physics.Raycast (ray, out hit))
         {
             gazePosition = hit.point;
+            gazeCoord = hit.textureCoord;
+            gazeCoord.x *= textureSize.x;
+            gazeCoord.y *= textureSize.y;
         }
         else
         {
             gazePosition = ray.origin + ray.direction * 50f;
+            gazeCoord = new Vector2 (INF, INF);
         }
+
         gazePos.transform.position = gazePosition;
         gazePos.transform.rotation = Quaternion.Euler (hit.normal);
 
