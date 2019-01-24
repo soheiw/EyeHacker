@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class OSCGazeCoordReceiver : MonoBehaviour
 {
+    public Vector2 gazePoint;
     uOscServer server;
     [SerializeField] string address;
     [SerializeField] bool sync = true;
@@ -12,6 +13,8 @@ public class OSCGazeCoordReceiver : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        gazePoint = new Vector2 (0, 0);
+        
         server = FindObjectOfType<uOscServer> ();
         if (!server) return;
         server.onDataReceived.AddListener (OnDataReceived);
@@ -21,7 +24,6 @@ public class OSCGazeCoordReceiver : MonoBehaviour
     {
         if (message.address == address)
         {
-            var gazePoint = new Vector2 (0, 0);
             // var rotation = new Vector3 (0, 0, 0);
 
             gazePoint.x = (float) message.values[0];
