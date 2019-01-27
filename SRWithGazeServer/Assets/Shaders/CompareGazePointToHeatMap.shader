@@ -1,18 +1,14 @@
-﻿Shader "Unlit/AlphaMask"
+﻿Shader "Unlit/CompareGazePointToHeatMap"
 {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
-		_MaskTex("MaskTexture", 2D) = "white" {}
-        _AdjustAlpha("Adjust Alpha", Range(0,1)) = 1
+		_MainTex("HeatMap", 2D) = "white" {}
+		_OverTex("GazePoint", 2D) = "white" {}
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+		Tags { "RenderType"="Opaque" }
 		LOD 100
-
-		Blend SrcAlpha OneMinusSrcAlpha
-
 
 		Pass
 		{
@@ -38,10 +34,8 @@
 			};
 
 			sampler2D _MainTex;
-			sampler2D _MaskTex;
+            sampler2D _OverTex;
 			float4 _MainTex_ST;
-
-            fixed _AdjustAlpha;
 			
 			v2f vert (appdata v)
 			{
@@ -56,10 +50,23 @@
 			{
 				// sample the texture
 				fixed4 col = tex2D(_MainTex, i.uv);
-				fixed4 maskTex = tex2D(_MaskTex, i.uv);
-				fixed mask = (maskTex.r + maskTex.g + maskTex.b) / 3.0;
+                fixed4 over = tex2D(_OverTex, i.uv);
 
-				col.a = mask * _AdjustAlpha;
+				// apply fog
+				// UNITY_APPLY_FOG(i.fogCoord, col);
+                fixed heatMap = (col.r + col.g + col.b) / 3.0;
+                fixed gaze = (over.r + over.g + over.b) / 3.0;
+                if(heatMap > 0.1 && gaze > 0.1){
+                    col.r = 1.0;
+                    col.g = 0.0;
+                    col.b = 0.0;
+                }
+                else
+                {
+                    col.r = 0.0;
+                    col.g = 0.0;
+                    col.b = 0.0;
+                }
 
 				return col;
 			}

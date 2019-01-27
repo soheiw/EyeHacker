@@ -13,7 +13,7 @@ public class OSCMaskController : MonoBehaviour
 
     [SerializeField] private uOscServer server;
     private MeshRenderer meshRenderer;
-    private Vector3 originalScale;
+    public Vector3 originalScale;
 
     // Use this for initialization
     void Start ()
@@ -50,6 +50,12 @@ public class OSCMaskController : MonoBehaviour
         {
             var ratio = (float) message.values[0];
             mask.transform.localScale = originalScale * ratio;
+        }
+
+        if (message.address == "/server/" + playerName + "/maskalpharatio")
+        {
+            var ratio = (float) message.values[0];
+            realtime.SetFloat ("_AdjustAlpha", ratio);
         }
     }
 }
