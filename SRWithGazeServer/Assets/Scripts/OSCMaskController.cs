@@ -13,7 +13,7 @@ public class OSCMaskController : MonoBehaviour
 
     [SerializeField] private uOscServer server;
     private MeshRenderer meshRenderer;
-    private Vector3 originalScale;
+    public Vector3 originalScale;
 
     // Use this for initialization
     void Start ()

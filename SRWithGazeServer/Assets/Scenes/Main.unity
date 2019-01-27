@@ -1053,6 +1053,7 @@ MonoBehaviour:
   realtime: {fileID: 2100000, guid: 55742bd9c0828c64a8534a7966138066, type: 2}
   playerName: Player1
   server: {fileID: 921975423}
+  originalScale: {x: 0, y: 0, z: 0}
 --- !u!64 &619061311
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2013,6 +2014,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazeCoordReceiver: {fileID: 921975425}
+  maskController: {fileID: 619061310}
+  mask: {fileID: 524589813}
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0
