@@ -51,5 +51,11 @@ public class OSCMaskController : MonoBehaviour
             var ratio = (float) message.values[0];
             mask.transform.localScale = originalScale * ratio;
         }
+
+        if (message.address == "/server/" + playerName + "/maskalpharatio")
+        {
+            var ratio = (float) message.values[0];
+            realtime.SetFloat ("_AdjustAlpha", ratio);
+        }
     }
 }

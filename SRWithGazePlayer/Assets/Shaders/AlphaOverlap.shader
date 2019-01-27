@@ -6,6 +6,7 @@
 		_OverTex("MaskingTexture", 2D) = "white" {}
         [Toggle(SET_ALPHA_ZERO)]
         _SetAlphaZero("Set Alpha Zero", Float) = 0
+        _AdjustAlpha("Adjust Alpha", Range(0,1)) = 1
 	}
 	SubShader
 	{
@@ -41,6 +42,7 @@
 			sampler2D _OverTex;
 
 			float4 _MainTex_ST;
+            fixed _AdjustAlpha;
 			
 			v2f vert (appdata v)
 			{
@@ -67,9 +69,10 @@
                     // use original alpha
                 #endif
 
-				col.r = col.r * (1.0 - over.a) + over.r * over.a;
-				col.g = col.g * (1.0 - over.a) + over.g * over.a;
-				col.b = col.b * (1.0 - over.a) + over.b * over.a;
+                fixed alphaRatio = over.a * _AdjustAlpha;
+				col.r = col.r * (1.0 - alphaRatio) + over.r * alphaRatio;
+				col.g = col.g * (1.0 - alphaRatio) + over.g * alphaRatio;
+				col.b = col.b * (1.0 - alphaRatio) + over.b * alphaRatio;
 				
 				return col;
 			}

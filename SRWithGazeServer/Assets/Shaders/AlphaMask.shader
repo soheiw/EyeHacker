@@ -4,6 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_MaskTex("MaskTexture", 2D) = "white" {}
+        _AdjustAlpha("Adjust Alpha", Range(0,1)) = 1
 	}
 	SubShader
 	{
@@ -39,6 +40,8 @@
 			sampler2D _MainTex;
 			sampler2D _MaskTex;
 			float4 _MainTex_ST;
+
+            fixed _AdjustAlpha;
 			
 			v2f vert (appdata v)
 			{
@@ -56,7 +59,7 @@
 				fixed4 maskTex = tex2D(_MaskTex, i.uv);
 				fixed mask = (maskTex.r + maskTex.g + maskTex.b) / 3.0;
 
-				col.a = mask;
+				col.a = mask * _AdjustAlpha;
 
 				return col;
 			}

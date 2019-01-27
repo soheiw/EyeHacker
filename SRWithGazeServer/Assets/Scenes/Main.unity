@@ -599,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &524589814
 Transform:
   m_ObjectHideFlags: 0
@@ -2016,6 +2016,8 @@ MonoBehaviour:
   gazeCoordReceiver: {fileID: 921975425}
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
+  maskBlender: {fileID: 619061309}
+  isControlByOSC: 0
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0

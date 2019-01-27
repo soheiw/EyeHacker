@@ -7,6 +7,9 @@ public class InspectHeatMap : MonoBehaviour
     public OSCGazeCoordReceiver gazeCoordReceiver;
     public OSCMaskController maskController;
     public GameObject mask;
+    public GameObject maskBlender;
+
+    public bool isControlByOSC = false;
 
     private Renderer drawRenderer;
     private Texture2D bodyTexture;
@@ -29,22 +32,39 @@ public class InspectHeatMap : MonoBehaviour
         }
 
         float degree = InspectHeatmapValueAtGazePoint (hitPoint);
-        
-        if (degree == 1.0f)
+        if (!isControlByOSC)
         {
-            mask.SetActive (true);
+            mask.SetActive (CompareHeatmapValueToThreshold (degree));
+            SetMaskSizeAlongWithHeatMapValue (degree);
+            SetMaskAlphaAlongWithHeatMapValue (degree);
         }
-        else
-        {
-            mask.SetActive (false);
-        }
-
-        mask.transform.localScale = maskController.originalScale * degree;
     }
 
     float InspectHeatmapValueAtGazePoint (Vector2 pos)
     {
         Color col = bodyTexture.GetPixel ((int) pos.x, (int) pos.y);
         return (col.r + col.g + col.b) / 3.0f;
+    }
+
+    bool CompareHeatmapValueToThreshold (float val)
+    {
+        if (val > 0.2f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void SetMaskSizeAlongWithHeatMapValue (float val)
+    {
+        mask.transform.localScale = maskController.originalScale * val;
+    }
+
+    void SetMaskAlphaAlongWithHeatMapValue (float val)
+    {
+        maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", val);
     }
 }
