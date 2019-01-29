@@ -82,9 +82,19 @@ public class InspectHeatMap : MonoBehaviour
         return (col.r + col.g + col.b) / 3.0f;
     }
 
+    float time_sec = 0.0f;
     bool CompareHeatmapValueToThreshold (float val)
     {
         if (val > 0.2f)
+        {
+            time_sec += Time.deltaTime;
+        }
+        else
+        {
+            time_sec = 0.0f;
+        }
+
+        if (time_sec > 3.0f)
         {
             return true;
         }
