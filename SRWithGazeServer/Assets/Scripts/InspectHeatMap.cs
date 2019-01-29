@@ -63,15 +63,15 @@ public class InspectHeatMap : MonoBehaviour
             if (CompareHeatmapValueToThreshold (degree))
             {
                 mask.SetActive (true);
-                if (isControlByOSC) return;
-                SetMaskSizeAlongWithHeatMapValue (degree);
-                SetMaskAlphaAlongWithHeatMapValue (degree);
+                // if (isControlByOSC) return;
+                // SetMaskSizeAlongWithHeatMapValue (degree);
+                // SetMaskAlphaAlongWithHeatMapValue (degree);
             }
             else
             {
                 mask.SetActive (false);
-                mask.transform.localScale = maskController.originalScale;
-                maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", 1.0f);
+                // mask.transform.localScale = maskController.originalScale;
+                // maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", 1.0f);
             }
         }
     }
