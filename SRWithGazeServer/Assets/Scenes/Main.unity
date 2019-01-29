@@ -149,7 +149,11 @@ MonoBehaviour:
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
   setMaskFixed: 1
-  fixedMask: {fileID: 1981136837}
+  switchMaskHere: 0
+  hereFixedMasks:
+  - {fileID: 1981136837}
+  aroundFixedMasks:
+  - {fileID: 1091300156}
 --- !u!64 &2815939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2166,7 +2170,11 @@ MonoBehaviour:
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
   setMaskFixed: 1
-  fixedMask: {fileID: 2110656838}
+  switchMaskHere: 0
+  hereFixedMasks:
+  - {fileID: 2110656838}
+  aroundFixedMasks:
+  - {fileID: 1981136837}
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2937,8 +2945,12 @@ MonoBehaviour:
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
-  setMaskFixed: 0
-  fixedMask: {fileID: 1091300156}
+  setMaskFixed: 1
+  switchMaskHere: 0
+  hereFixedMasks:
+  - {fileID: 1091300156}
+  aroundFixedMasks:
+  - {fileID: 2110656838}
 --- !u!64 &1745521379
 MeshCollider:
   m_ObjectHideFlags: 0

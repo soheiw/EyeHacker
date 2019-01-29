@@ -9,9 +9,12 @@ public class InspectHeatMap : MonoBehaviour
     public GameObject mask;
     public GameObject maskBlender;
 
+    [Header ("Mask")]
     public bool isControlByOSC = false;
     public bool setMaskFixed;
-    public GameObject fixedMask;
+    public bool switchMaskHere;
+    public GameObject[] hereFixedMasks;
+    public GameObject[] aroundFixedMasks;
 
     private Renderer drawRenderer;
     private Texture2D bodyTexture;
@@ -36,9 +39,26 @@ public class InspectHeatMap : MonoBehaviour
         float degree = InspectHeatmapValueAtGazePoint (hitPoint);
         if (setMaskFixed)
         {
-            fixedMask.SetActive (CompareHeatmapValueToThreshold (degree));
+            // 固定のmaskがrayの位置に発生
+            if (switchMaskHere)
+            {
+                for (int i = 0; i < hereFixedMasks.Length; i++)
+                {
+                    hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                }
+            }
+            // 固定のmaskがrayの位置でないところに発生
+            else
+            {
+                for (int i = 0; i < aroundFixedMasks.Length; i++)
+                {
+                    if (!CompareHeatmapValueToThreshold (degree)) return;
+                    aroundFixedMasks[i].SetActive (true);
+                }
+            }
         }
         else
+        // 視線の先にmaskがついて回る
         {
             if (CompareHeatmapValueToThreshold (degree))
             {
