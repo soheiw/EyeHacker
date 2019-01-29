@@ -5,10 +5,11 @@ using uOSC;
 using UnityEngine;
 using UnityEngine.Video;
 
-[RequireComponent(typeof(VideoPlayer))]
+[RequireComponent (typeof (VideoPlayer))]
 public class OSCVideoController : MonoBehaviour
 {
     public string playerName = "Player1";
+    public string imageName;
 
     [SerializeField] private uOscServer server;
     [SerializeField] private uOscClient client;
@@ -37,11 +38,13 @@ public class OSCVideoController : MonoBehaviour
         {
             if (message.values.Length > 1)
             {
-                PlayVideo (OSCVideo.directoryPath + (string) message.values[0], (float) message.values[1]);
+                //PlayVideo (OSCVideo.directoryPath + (string) message.values[0], (float) message.values[1]);
+                PlayVideo (OSCVideo.directoryPath + imageName, (float) message.values[1]);
             }
             else
             {
-                PlayVideo (OSCVideo.directoryPath + (string) message.values[0]);
+                // PlayVideo (OSCVideo.directoryPath + (string) message.values[0]);
+                PlayVideo (OSCVideo.directoryPath + imageName);
             }
         }
 

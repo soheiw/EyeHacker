@@ -24,7 +24,6 @@ public class InspectHeatMap : MonoBehaviour
     {
         drawRenderer = this.GetComponent<Renderer> ();
         bodyTexture = (Texture2D) drawRenderer.material.mainTexture;
-        var bodyPixels = bodyTexture.GetPixels ();
     }
 
     // Update is called once per frame

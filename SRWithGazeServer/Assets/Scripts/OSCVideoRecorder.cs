@@ -8,6 +8,7 @@ public class OSCVideoRecorder : MonoBehaviour
 {
 
     public string recorderName = "Recorder1";
+    public string imageName;
     [SerializeField] private uOscServer server;
 
     private FFmpegOut.ManualCameraCapture cameraCapture;
@@ -44,7 +45,8 @@ public class OSCVideoRecorder : MonoBehaviour
         {
             if (!isRecording)
             {
-                StartRecording ((string) message.values[0]);
+                // StartRecording ((string) message.values[0]);
+                StartRecording (imageName);
             }
         }
         if (message.address == "/server/" + recorderName + "/stoprecording")
