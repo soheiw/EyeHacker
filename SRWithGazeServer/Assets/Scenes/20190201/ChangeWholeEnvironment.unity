@@ -149,7 +149,7 @@ MonoBehaviour:
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
   setMaskFixed: 1
-  switchMaskHere: 1
+  switchMaskHere: 0
   hereFixedMasks:
   - {fileID: 1981136837}
   aroundFixedMasks:
@@ -1616,7 +1616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &918821844
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2171,7 +2171,7 @@ MonoBehaviour:
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
   setMaskFixed: 1
-  switchMaskHere: 1
+  switchMaskHere: 0
   hereFixedMasks:
   - {fileID: 2110656838}
   aroundFixedMasks:
@@ -2963,7 +2963,7 @@ MonoBehaviour:
   maskBlender: {fileID: 619061309}
   isControlByOSC: 0
   setMaskFixed: 1
-  switchMaskHere: 1
+  switchMaskHere: 0
   hereFixedMasks:
   - {fileID: 1091300156}
   aroundFixedMasks:
