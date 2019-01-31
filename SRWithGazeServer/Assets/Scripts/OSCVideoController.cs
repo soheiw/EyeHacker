@@ -10,6 +10,7 @@ public class OSCVideoController : MonoBehaviour
 {
     public string playerName = "Player1";
     public string imageName;
+    public float startTime = 0.0f;
 
     [SerializeField] private uOscServer server;
     [SerializeField] private uOscClient client;
@@ -39,7 +40,7 @@ public class OSCVideoController : MonoBehaviour
             if (message.values.Length > 1)
             {
                 //PlayVideo (OSCVideo.directoryPath + (string) message.values[0], (float) message.values[1]);
-                PlayVideo (OSCVideo.directoryPath + imageName, (float) message.values[1]);
+                PlayVideo (OSCVideo.directoryPath + imageName, startTime);
             }
             else
             {

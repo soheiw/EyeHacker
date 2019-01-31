@@ -15,6 +15,7 @@ public class InspectHeatMap : MonoBehaviour
     public bool switchMaskHere;
     public GameObject[] hereFixedMasks;
     public GameObject[] aroundFixedMasks;
+    public float timeThreshold = 3.0f;
 
     private Renderer drawRenderer;
     private Texture2D bodyTexture;
@@ -93,7 +94,7 @@ public class InspectHeatMap : MonoBehaviour
             time_sec = 0.0f;
         }
 
-        if (time_sec > 3.0f)
+        if (time_sec > timeThreshold)
         {
             return true;
         }
