@@ -15,6 +15,8 @@ public class OSCMaskController : MonoBehaviour
     private MeshRenderer meshRenderer;
     public Vector3 originalScale;
 
+    private GameObject[] heatMapPlayers;
+
     // Use this for initialization
     void Start ()
     {
@@ -23,6 +25,7 @@ public class OSCMaskController : MonoBehaviour
         if (!server) return;
         server.onDataReceived.AddListener (OnDataReceived);
         originalScale = mask.transform.localScale;
+        heatMapPlayers = GameObject.FindGameObjectsWithTag ("HeatMapPlayer");
     }
 
     // Update is called once per frame
@@ -56,6 +59,33 @@ public class OSCMaskController : MonoBehaviour
         {
             var ratio = (float) message.values[0];
             realtime.SetFloat ("_AdjustAlpha", ratio);
+        }
+
+        if (message.address == "/server/" + playerName + "/maskonoff")
+        {
+            var state = (float) message.values[0];
+            if (state != 0)
+            {
+                foreach (GameObject heatMapPlayer in heatMapPlayers)
+                {
+                    var inspectHeatMap = heatMapPlayer.GetComponent<InspectHeatMap> ();
+                    inspectHeatMap.enabled = true;
+                }
+            }
+            else
+            {
+                foreach (GameObject heatMapPlayer in heatMapPlayers)
+                {
+                    var inspectHeatMap = heatMapPlayer.GetComponent<InspectHeatMap> ();
+                    inspectHeatMap.enabled = false;
+                }
+
+                GameObject[] masks = GameObject.FindGameObjectsWithTag ("Mask");
+                foreach (GameObject mask in masks)
+                {
+                    mask.SetActive (false);
+                }
+            }
         }
     }
 }

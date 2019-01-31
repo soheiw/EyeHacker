@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class InspectHeatMap : MonoBehaviour
 {
@@ -9,12 +10,17 @@ public class InspectHeatMap : MonoBehaviour
     public GameObject mask;
     public GameObject maskBlender;
 
+    public bool withPlayingVideo;
+    [SerializeField] OSCVideoController videoController;
+    private bool alreadyPlayed;
+
     [Header ("Mask")]
     public bool isControlByOSC = false;
     public bool setMaskFixed;
     public bool switchMaskHere;
     public GameObject[] hereFixedMasks;
     public GameObject[] aroundFixedMasks;
+    public float timeThreshold = 3.0f;
 
     private Renderer drawRenderer;
     private Texture2D bodyTexture;
@@ -24,7 +30,32 @@ public class InspectHeatMap : MonoBehaviour
     {
         drawRenderer = this.GetComponent<Renderer> ();
         bodyTexture = (Texture2D) drawRenderer.material.mainTexture;
-        var bodyPixels = bodyTexture.GetPixels ();
+        if (withPlayingVideo)
+        {
+            alreadyPlayed = false;
+            videoController.PlayVideo (OSCVideo.directoryPath + videoController.imageName, videoController.startTime);
+
+            // TODO: 頭出しをWaitToPlay内で秒数を決め打ちしてやっているが，それをVideoPlayerのメソッドを駆使して書き換える
+            StartCoroutine (WaitToPlay ());
+        }
+    }
+
+    private void OnEnable ()
+    {
+        if (withPlayingVideo)
+        {
+            alreadyPlayed = false;
+            videoController.PlayVideo (OSCVideo.directoryPath + videoController.imageName, videoController.startTime);
+            StartCoroutine (WaitToPlay ());
+        }
+    }
+
+    private void OnDisable ()
+    {
+        if (withPlayingVideo)
+        {
+            videoController.StopVideo ();
+        }
     }
 
     // Update is called once per frame
@@ -42,9 +73,28 @@ public class InspectHeatMap : MonoBehaviour
             // 固定のmaskがrayの位置に発生
             if (switchMaskHere)
             {
-                for (int i = 0; i < hereFixedMasks.Length; i++)
+                if (withPlayingVideo)
                 {
-                    hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                    for (int i = 0; i < hereFixedMasks.Length; i++)
+                    {
+                        // hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                        if (!CompareHeatmapValueToThreshold (degree)) return;
+                        hereFixedMasks[i].SetActive (true);
+                    }
+                    if (!alreadyPlayed)
+                    {
+                        alreadyPlayed = true;
+                        videoController.videoPlayer.Play ();
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < hereFixedMasks.Length; i++)
+                    {
+                        // hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                        if (!CompareHeatmapValueToThreshold (degree)) return;
+                        hereFixedMasks[i].SetActive (true);
+                    }
                 }
             }
             // 固定のmaskがrayの位置でないところに発生
@@ -63,15 +113,15 @@ public class InspectHeatMap : MonoBehaviour
             if (CompareHeatmapValueToThreshold (degree))
             {
                 mask.SetActive (true);
-                if (isControlByOSC) return;
-                SetMaskSizeAlongWithHeatMapValue (degree);
-                SetMaskAlphaAlongWithHeatMapValue (degree);
+                // if (isControlByOSC) return;
+                // SetMaskSizeAlongWithHeatMapValue (degree);
+                // SetMaskAlphaAlongWithHeatMapValue (degree);
             }
             else
             {
                 mask.SetActive (false);
-                mask.transform.localScale = maskController.originalScale;
-                maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", 1.0f);
+                // mask.transform.localScale = maskController.originalScale;
+                // maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", 1.0f);
             }
         }
     }
@@ -94,7 +144,7 @@ public class InspectHeatMap : MonoBehaviour
             time_sec = 0.0f;
         }
 
-        if (time_sec > 3.0f)
+        if (time_sec > timeThreshold)
         {
             return true;
         }
@@ -112,5 +162,11 @@ public class InspectHeatMap : MonoBehaviour
     void SetMaskAlphaAlongWithHeatMapValue (float val)
     {
         maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", val);
+    }
+
+    IEnumerator WaitToPlay ()
+    {
+        yield return new WaitForSeconds (0.6f);
+        videoController.videoPlayer.Pause ();
     }
 }
