@@ -154,9 +154,9 @@ MonoBehaviour:
   - {fileID: 0}
   aroundFixedMasks:
   - {fileID: 2110656838}
-  - {fileID: 0}
-  - {fileID: 0}
-  timeThreshold: 3
+  - {fileID: 1213923520}
+  - {fileID: 1393029277}
+  timeThreshold: 1
 --- !u!64 &2815939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -697,6 +697,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &471504318 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 914048460}
 --- !u!1 &524589813 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
@@ -1124,8 +1129,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1168,10 +1172,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &600466384 stripped
@@ -1653,8 +1657,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -1697,10 +1700,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &914048461 stripped
@@ -2197,10 +2204,10 @@ MonoBehaviour:
   hereFixedMasks:
   - {fileID: 2110656838}
   aroundFixedMasks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  timeThreshold: 3
+  - {fileID: 471504318}
+  - {fileID: 1213923520}
+  - {fileID: 1393029277}
+  timeThreshold: 1
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,6 +2465,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1213923520 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 600466383}
 --- !u!1 &1388280912
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,6 +2566,11 @@ MonoBehaviour:
   equirectangulerTexture: {fileID: 8400000, guid: 6e9b290e8619cd94582501f51f9c9256,
     type: 2}
   cubemapTexture: {fileID: 8400000, guid: 3941a4aae92bc5046bcb72b9ae107145, type: 2}
+--- !u!1 &1393029277 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1733758156}
 --- !u!1 &1399060276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,54 +2834,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_Name
-      value: FixedMask4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.050000012
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.050000004
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.60000026
-      objectReference: {fileID: 0}
-    - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -38.323
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 72.759
-      objectReference: {fileID: 0}
     - target: {fileID: 114549568976778286, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
       propertyPath: targetCamera
       value: 
       objectReference: {fileID: 1388280916}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_TagString
-      value: Mask
+      propertyPath: m_Name
+      value: FixedMask4
       objectReference: {fileID: 0}
-    - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
-      propertyPath: m_TagString
-      value: Mask
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1733758157 stripped
@@ -2913,9 +2892,9 @@ MonoBehaviour:
   - {fileID: 0}
   aroundFixedMasks:
   - {fileID: 2110656838}
-  - {fileID: 0}
-  - {fileID: 0}
-  timeThreshold: 3
+  - {fileID: 471504318}
+  - {fileID: 1393029277}
+  timeThreshold: 1
 --- !u!64 &1745521379
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3026,9 +3005,9 @@ MonoBehaviour:
   - {fileID: 0}
   aroundFixedMasks:
   - {fileID: 2110656838}
-  - {fileID: 0}
-  - {fileID: 0}
-  timeThreshold: 3
+  - {fileID: 471504318}
+  - {fileID: 1213923520}
+  timeThreshold: 1
 --- !u!64 &1748758083
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3226,8 +3205,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -3270,10 +3248,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1779310417 stripped

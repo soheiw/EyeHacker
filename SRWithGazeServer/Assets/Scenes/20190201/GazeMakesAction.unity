@@ -2644,7 +2644,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}

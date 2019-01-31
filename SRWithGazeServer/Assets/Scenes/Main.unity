@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 1981136837}
   aroundFixedMasks:
   - {fileID: 1091300156}
+  timeThreshold: 3
 --- !u!64 &2815939
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2012,6 +2013,7 @@ MonoBehaviour:
   - {fileID: 2110656838}
   aroundFixedMasks:
   - {fileID: 1981136837}
+  timeThreshold: 3
 --- !u!1 &1201294508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2354,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
@@ -2723,6 +2725,7 @@ MonoBehaviour:
   - {fileID: 1091300156}
   aroundFixedMasks:
   - {fileID: 2110656838}
+  timeThreshold: 3
 --- !u!64 &1745521379
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2964,7 +2967,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
@@ -3682,6 +3685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Player1
   imageName: Main
+  startTime: 0
   server: {fileID: 921975423}
   client: {fileID: 0}
   maskPlayer: {fileID: 1147521904}
@@ -3773,7 +3777,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1778612464378654, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_TagString
-      value: Mask
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
