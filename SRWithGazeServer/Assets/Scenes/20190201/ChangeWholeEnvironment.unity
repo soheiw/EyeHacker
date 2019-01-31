@@ -151,9 +151,9 @@ MonoBehaviour:
   setMaskFixed: 1
   switchMaskHere: 0
   hereFixedMasks:
-  - {fileID: 1981136837}
+  - {fileID: 988080992}
   aroundFixedMasks:
-  - {fileID: 1091300156}
+  - {fileID: 2110656838}
   timeThreshold: 0.3
 --- !u!64 &2815939
 MeshCollider:
@@ -320,9 +320,9 @@ MonoBehaviour:
   setMaskFixed: 1
   switchMaskHere: 0
   hereFixedMasks:
-  - {fileID: 1036605301}
+  - {fileID: 1091300156}
   aroundFixedMasks:
-  - {fileID: 1036605301}
+  - {fileID: 988080992}
   timeThreshold: 0.3
 --- !u!64 &155162827
 MeshCollider:
@@ -810,7 +810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
@@ -819,7 +819,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_Name
-      value: FixedMask5
+      value: FixedMask3
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.x
@@ -2225,9 +2225,9 @@ MonoBehaviour:
   setMaskFixed: 1
   switchMaskHere: 0
   hereFixedMasks:
-  - {fileID: 2110656838}
+  - {fileID: 1981136837}
   aroundFixedMasks:
-  - {fileID: 2110656838}
+  - {fileID: 1036605301}
   timeThreshold: 0.3
 --- !u!1 &1201294508
 GameObject:
@@ -2523,7 +2523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
@@ -2532,7 +2532,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_Name
-      value: FixedMask2
+      value: FixedMask1
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.x
@@ -2701,11 +2701,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1779310417}
   - {fileID: 1270653864}
-  - {fileID: 2115893873}
   - {fileID: 1882855533}
   - {fileID: 404104005}
+  - {fileID: 1779310417}
+  - {fileID: 2115893873}
   m_Father: {fileID: 423836012}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   setMaskFixed: 1
   switchMaskHere: 0
   hereFixedMasks:
-  - {fileID: 988080992}
+  - {fileID: 2110656838}
   aroundFixedMasks:
   - {fileID: 1981136837}
   timeThreshold: 0.3
@@ -3050,9 +3050,9 @@ MonoBehaviour:
   setMaskFixed: 1
   switchMaskHere: 0
   hereFixedMasks:
-  - {fileID: 1091300156}
+  - {fileID: 1036605301}
   aroundFixedMasks:
-  - {fileID: 988080992}
+  - {fileID: 1091300156}
   timeThreshold: 0.3
 --- !u!64 &1745521379
 MeshCollider:
@@ -3249,7 +3249,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
@@ -3258,7 +3258,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_Name
-      value: FixedMask1
+      value: FixedMask4
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.x
@@ -3486,7 +3486,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
@@ -3495,7 +3495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_Name
-      value: FixedMask4
+      value: FixedMask2
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.x
@@ -4153,7 +4153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114099611348809594, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
         type: 2}
@@ -4162,7 +4162,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_Name
-      value: FixedMask3
+      value: FixedMask5
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.x
