@@ -673,6 +673,8 @@ MonoBehaviour:
   gazePosition: {x: 0, y: 0, z: 0}
   getControllerState: {fileID: 0}
   gazePos: {fileID: 989818643}
+  gazeCoord: {x: 0, y: 0}
+  textureSize: {x: 1280, y: 720}
 --- !u!114 &621358520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,6 +1013,11 @@ Prefab:
       propertyPath: m_Name
       value: ControllerPos(ForDebug)
       objectReference: {fileID: 0}
+    - target: {fileID: 114988175035852978, guid: dcfe3518f66a6d944bfb8c19c81778f6,
+        type: 2}
+      propertyPath: address
+      value: /server/gazepos
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
   m_IsPrefabParent: 0
@@ -1113,6 +1120,11 @@ Prefab:
     - target: {fileID: 1535834667799276, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114988175035852978, guid: dcfe3518f66a6d944bfb8c19c81778f6,
+        type: 2}
+      propertyPath: address
+      value: /server/gazepos
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dcfe3518f66a6d944bfb8c19c81778f6, type: 2}
@@ -1894,3 +1906,46 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &2087366504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2087366505}
+  - component: {fileID: 2087366506}
+  m_Layer: 0
+  m_Name: OSCGazeCoordSender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087366505
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087366504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2087366506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087366504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d8db89ec4345645bc624908443112b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayManager: {fileID: 621358519}
+  address: /server/gazecoord
+  sync: 1

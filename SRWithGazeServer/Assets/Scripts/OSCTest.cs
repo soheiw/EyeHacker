@@ -7,7 +7,8 @@ public class OSCTest : MonoBehaviour
 {
     public string recordVideoName;
     public string playVideoName;
-    public float ratio;
+    public float ratio = 0.2f;
+    public float maskScale = 1.2f;
 
     private uOscClient client;
 
@@ -22,32 +23,37 @@ public class OSCTest : MonoBehaviour
     {
         if (Input.GetKeyDown (KeyCode.R))
         {
-            client.Send ("/ndiserver/Recorder1/startrecording", recordVideoName);
+            client.Send ("/server/Recorder1/startrecording", recordVideoName);
         }
 
         if (Input.GetKeyDown (KeyCode.T))
         {
-            client.Send ("/ndiserver/Recorder1/stoprecording");
+            client.Send ("/server/Recorder1/stoprecording");
         }
 
         if (Input.GetKeyDown (KeyCode.Space))
         {
-            client.Send ("/ndiserver/Player1/startplaying", playVideoName);
+            client.Send ("/server/Player1/startplaying", playVideoName);
         }
 
         if (Input.GetKeyDown (KeyCode.P))
         {
-            client.Send ("/ndiserver/Player1/startplaying", playVideoName, ratio);
+            client.Send ("/server/Player1/startplaying", playVideoName, ratio);
         }
 
         if (Input.GetKeyDown (KeyCode.L))
         {
-            client.Send ("/ndiserver/Player1/stopplaying");
+            client.Send ("/server/Player1/stopplaying");
         }
 
         if (Input.GetKeyDown (KeyCode.A))
         {
-            client.Send ("/ndiserver/Player1/getvideonames", "127.0.0.1");
+            client.Send ("/server/Player1/getvideonames", "127.0.0.1");
+        }
+
+        if (Input.GetKeyDown (KeyCode.Y))
+        {
+            client.Send ("/server/Player1/maskscale", maskScale);
         }
     }
 }

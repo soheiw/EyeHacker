@@ -19,6 +19,10 @@ public class RayManager : MonoBehaviour
     [SerializeField] private GetControllerState getControllerState;
 
     public GameObject gazePos;
+    public Vector2 gazeCoord;
+    public Vector2 textureSize = new Vector2 (1280.0f, 720.0f);
+
+    private const float INF = 10000.0f;
 
     // public Material shaderMaterial;
 
@@ -56,6 +60,15 @@ public class RayManager : MonoBehaviour
         gazeRenderers.Add (gaze2DPoint.GetComponent<MeshRenderer> ());
         gazeRenderers.Add (gaze3D.GetComponent<MeshRenderer> ());
         gazeRenderers.Add (gaze3DPoint.GetComponent<MeshRenderer> ());
+
+        if (calibrationDemo.enabled)
+        {
+            heading.enabled = false;
+            for (int i = 0; i < gazeRenderers.Count; i++)
+            {
+                gazeRenderers[i].enabled = false;
+            }
+        }
     }
 
     void OnEnable ()
@@ -95,6 +108,7 @@ public class RayManager : MonoBehaviour
 
         // if (Input.GetKeyUp (KeyCode.L))
         if (Input.GetKeyUp (KeyCode.L) || isRightGripped)
+        {
             if (calibrationDemo.enabled)
             {
                 heading.enabled = !heading.enabled;
@@ -104,17 +118,23 @@ public class RayManager : MonoBehaviour
                     gazeRenderers[i].enabled = !isRendered;
                 }
             }
+        }
 
         Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
         RaycastHit hit;
         if (Physics.Raycast (ray, out hit))
         {
             gazePosition = hit.point;
+            gazeCoord = hit.textureCoord;
+            gazeCoord.x *= textureSize.x;
+            gazeCoord.y *= textureSize.y;
         }
         else
         {
             gazePosition = ray.origin + ray.direction * 50f;
+            gazeCoord = new Vector2 (INF, INF);
         }
+
         gazePos.transform.position = gazePosition;
         gazePos.transform.rotation = Quaternion.Euler (hit.normal);
 
