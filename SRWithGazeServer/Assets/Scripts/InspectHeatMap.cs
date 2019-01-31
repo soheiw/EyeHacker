@@ -34,6 +34,8 @@ public class InspectHeatMap : MonoBehaviour
         {
             alreadyPlayed = false;
             videoController.PlayVideo (OSCVideo.directoryPath + videoController.imageName, videoController.startTime);
+
+            // TODO: 頭出しをWaitToPlay内で秒数を決め打ちしてやっているが，それをVideoPlayerのメソッドを駆使して書き換える
             StartCoroutine (WaitToPlay ());
         }
     }
