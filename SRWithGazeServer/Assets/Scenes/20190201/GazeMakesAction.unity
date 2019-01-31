@@ -1890,13 +1890,15 @@ MonoBehaviour:
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
+  withPlayingVideo: 1
+  videoController: {fileID: 2095728789}
   isControlByOSC: 0
   setMaskFixed: 1
-  switchMaskHere: 0
+  switchMaskHere: 1
   hereFixedMasks:
   - {fileID: 2110656838}
   aroundFixedMasks:
-  - {fileID: 0}
+  - {fileID: 2110656838}
   timeThreshold: 3
 --- !u!1 &1201294508
 GameObject:
@@ -2570,11 +2572,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2582,19 +2584,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0.22381327
+      value: -0.23415771
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0.58446956
+      value: 0.59476054
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.17195217
+      value: 0.18667485
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.76074666
+      value: 0.74604464
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_RootOrder
@@ -2615,7 +2617,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd, type: 2}
       propertyPath: m_LocalScale.z
@@ -3265,7 +3267,7 @@ VideoPlayer:
   m_AudioOutputMode: 1
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: C:/Users/SR/Desktop/SRProject-EyeTracking/SRST_Input/Assets/StreamingAssets/Videos/OSCTEST.mp4
+  m_Url: C:/Users/SR/Desktop/SRProject-EyeTracking/SRWithGazeServer/Assets/StreamingAssets/Videos/GazeMakesAction.mp4
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
@@ -3357,9 +3359,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Player1
   imageName: GazeMakesAction
-  startTime: 0.3
+  startTime: 0.74
   server: {fileID: 921975423}
   client: {fileID: 0}
+  videoPlayer: {fileID: 0}
   maskPlayer: {fileID: 0}
 --- !u!1 &2110656838 stripped
 GameObject:

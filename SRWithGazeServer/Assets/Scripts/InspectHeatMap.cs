@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class InspectHeatMap : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class InspectHeatMap : MonoBehaviour
     public OSCMaskController maskController;
     public GameObject mask;
     public GameObject maskBlender;
+
+    public bool withPlayingVideo;
+    [SerializeField] OSCVideoController videoController;
+    private bool alreadyPlayed;
 
     [Header ("Mask")]
     public bool isControlByOSC = false;
@@ -25,6 +30,30 @@ public class InspectHeatMap : MonoBehaviour
     {
         drawRenderer = this.GetComponent<Renderer> ();
         bodyTexture = (Texture2D) drawRenderer.material.mainTexture;
+        if (withPlayingVideo)
+        {
+            alreadyPlayed = false;
+            videoController.PlayVideo (OSCVideo.directoryPath + videoController.imageName, videoController.startTime);
+            StartCoroutine (WaitToPlay ());
+        }
+    }
+
+    private void OnEnable ()
+    {
+        if (withPlayingVideo)
+        {
+            alreadyPlayed = false;
+            videoController.PlayVideo (OSCVideo.directoryPath + videoController.imageName, videoController.startTime);
+            StartCoroutine (WaitToPlay ());
+        }
+    }
+
+    private void OnDisable ()
+    {
+        if (withPlayingVideo)
+        {
+            videoController.StopVideo ();
+        }
     }
 
     // Update is called once per frame
@@ -42,9 +71,28 @@ public class InspectHeatMap : MonoBehaviour
             // 固定のmaskがrayの位置に発生
             if (switchMaskHere)
             {
-                for (int i = 0; i < hereFixedMasks.Length; i++)
+                if (withPlayingVideo)
                 {
-                    hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                    for (int i = 0; i < hereFixedMasks.Length; i++)
+                    {
+                        // hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                        if (!CompareHeatmapValueToThreshold (degree)) return;
+                        hereFixedMasks[i].SetActive (true);
+                    }
+                    if (!alreadyPlayed)
+                    {
+                        alreadyPlayed = true;
+                        videoController.videoPlayer.Play ();
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < hereFixedMasks.Length; i++)
+                    {
+                        // hereFixedMasks[i].SetActive (CompareHeatmapValueToThreshold (degree));
+                        if (!CompareHeatmapValueToThreshold (degree)) return;
+                        hereFixedMasks[i].SetActive (true);
+                    }
                 }
             }
             // 固定のmaskがrayの位置でないところに発生
@@ -112,5 +160,11 @@ public class InspectHeatMap : MonoBehaviour
     void SetMaskAlphaAlongWithHeatMapValue (float val)
     {
         maskBlender.GetComponent<OSCMaskController> ().realtime.SetFloat ("_AdjustAlpha", val);
+    }
+
+    IEnumerator WaitToPlay ()
+    {
+        yield return new WaitForSeconds (0.6f);
+        videoController.videoPlayer.Pause ();
     }
 }
