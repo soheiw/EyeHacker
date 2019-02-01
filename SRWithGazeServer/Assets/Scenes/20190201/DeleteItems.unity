@@ -147,6 +147,8 @@ MonoBehaviour:
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
+  withPlayingVideo: 0
+  videoController: {fileID: 0}
   isControlByOSC: 0
   setMaskFixed: 1
   switchMaskHere: 0
@@ -482,7 +484,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318130943}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45099d624c1e6c14e9514f4e5ea1ed9c, type: 3}
   m_Name: 
@@ -494,7 +496,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 318130943}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7abb10dd13839864baf966f44d548f39, type: 3}
   m_Name: 
@@ -1328,7 +1330,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 704390865}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7abb10dd13839864baf966f44d548f39, type: 3}
   m_Name: 
@@ -1342,7 +1344,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 704390865}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45099d624c1e6c14e9514f4e5ea1ed9c, type: 3}
   m_Name: 
@@ -2198,6 +2200,8 @@ MonoBehaviour:
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
+  withPlayingVideo: 0
+  videoController: {fileID: 0}
   isControlByOSC: 0
   setMaskFixed: 1
   switchMaskHere: 0
@@ -2885,6 +2889,8 @@ MonoBehaviour:
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
+  withPlayingVideo: 0
+  videoController: {fileID: 0}
   isControlByOSC: 0
   setMaskFixed: 1
   switchMaskHere: 0
@@ -2998,6 +3004,8 @@ MonoBehaviour:
   maskController: {fileID: 619061310}
   mask: {fileID: 524589813}
   maskBlender: {fileID: 619061309}
+  withPlayingVideo: 0
+  videoController: {fileID: 0}
   isControlByOSC: 0
   setMaskFixed: 1
   switchMaskHere: 0
@@ -3968,6 +3976,7 @@ MonoBehaviour:
   startTime: 0
   server: {fileID: 921975423}
   client: {fileID: 0}
+  videoPlayer: {fileID: 0}
   maskPlayer: {fileID: 0}
 --- !u!1 &2110656838 stripped
 GameObject:
