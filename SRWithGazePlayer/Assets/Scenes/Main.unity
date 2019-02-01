@@ -589,6 +589,7 @@ GameObject:
   - component: {fileID: 621358521}
   - component: {fileID: 621358520}
   - component: {fileID: 621358519}
+  - component: {fileID: 621358522}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -778,6 +779,21 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &621358522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 621358514}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e33f27cd2674ef48a7ac0033f90ffe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazePos: {fileID: 989818643}
+  gazePosition: {x: 0, y: 0, z: 0}
+  gazeCoord: {x: 0, y: 0}
+  textureSize: {x: 1280, y: 720}
 --- !u!1 &716845896
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,5 +2008,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayManager: {fileID: 621358519}
+  determineGaze: {fileID: 621358522}
   address: /server/gazecoord
   sync: 1

@@ -7,6 +7,7 @@ public class OSCGazeCoordSender : MonoBehaviour
 {
     uOscClient client;
     [SerializeField] RayManager rayManager;
+    [SerializeField] DetermineGazeByHMD determineGaze;
     [SerializeField] string address;
     [SerializeField] bool sync = true;
 
@@ -20,6 +21,13 @@ public class OSCGazeCoordSender : MonoBehaviour
     void Update ()
     {
         if (!sync || client == null) return;
-        client.Send (address, rayManager.gazeCoord.x, rayManager.gazeCoord.y);
+        if (rayManager.enabled)
+        {
+            client.Send (address, rayManager.gazeCoord.x, rayManager.gazeCoord.y);
+        }
+        else if (determineGaze.enabled)
+        {
+            client.Send (address, determineGaze.gazeCoord.x, determineGaze.gazeCoord.y);
+        }
     }
 }
