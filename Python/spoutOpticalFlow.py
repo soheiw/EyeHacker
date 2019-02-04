@@ -20,12 +20,15 @@ def parse_args():
 
     parser.add_argument('--spout_size', nargs = 2, type=int, default=[1280, 720], help='Width and height of the spout receiver')   
 
-    parser.add_argument('--spout_name', type=str, default='ThetaEqCh1', help='Spout receiving name - the name of the sender you want to receive')  
+    parser.add_argument('--receive_name', type=str, default='ThetaEqCh1', help='Spout receiving name - the name of the sender you want to receive')  
+
+    parser.add_argument('--pixel_ratio', type=int, default=8, help='pixel compression ratio')
+
+    parser.add_argument('--send_name', type=str, default='RealtimeOpticalFlow', help='Spout sending name - the name of the sender you want to send')
 
     #parser.add_argument('--window_size', nargs = 2, type=int, default=[1280, 720], help='Width and height of the window')    
 
     return parser.parse_args()
-
 
 """main"""
 def main():
@@ -36,13 +39,14 @@ def main():
     # window details
     spoutReceiverWidth = args.spout_size[0]
     spoutReceiverHeight = args.spout_size[1]
-    spoutSenderWidth = 160 # min(spoutReceiverWidth,1280)
-    spoutSenderHeight = 90 # min(spoutReceiverHeight,720)
+    per_pixel = args.pixel_ratio #GCD(720,1280) = 80の約数
+    spoutSenderWidth = int(spoutReceiverWidth / per_pixel) # min(spoutReceiverWidth,1280)
+    spoutSenderHeight = int(spoutReceiverHeight / per_pixel) # min(spoutReceiverHeight,720)
     display = (spoutSenderWidth,spoutSenderHeight)
     
     # window setup
     pygame.init() 
-    pygame.display.set_caption('OpticalFlow')
+    pygame.display.set_caption(args.send_name)
     pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
 
     # OpenGL init
@@ -55,7 +59,7 @@ def main():
     glEnable(GL_TEXTURE_2D)
 
     # init spout receiver
-    receiverName = args.spout_name 
+    receiverName = args.receive_name 
     
     # create spout receiver
     spoutReceiver = SpoutSDK.SpoutReceiver()
@@ -70,7 +74,7 @@ def main():
     spoutSender = SpoutSDK.SpoutSender()
     
     # Its signature in c++ looks like this: bool CreateSender(const char *Sendername, unsigned int width, unsigned int height, DWORD dwFormat = 0);
-    spoutSender.CreateSender('OpticalFlow', spoutSenderWidth, spoutSenderHeight, 0)
+    spoutSender.CreateSender(args.send_name, spoutSenderWidth, spoutSenderHeight, 0)
 
     # init spout sender texture ID
     senderTextureID = glGenTextures(1)
@@ -122,7 +126,6 @@ def main():
         glLoadIdentity()
        
         #imageに対してのopticalflow処理
-        per_pixel = 8 #GCD(720,1280) = 80の約数
         width = spoutReceiverWidth
         height = spoutReceiverHeight
 

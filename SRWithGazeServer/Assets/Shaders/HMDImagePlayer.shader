@@ -5,6 +5,8 @@
 		_MainTex ("RealtimeTexture", 2D) = "white" {}
         _PastTex ("PastTexture", 2D) = "white" {}
 		_MaskTex("MaskTexture", 2D) = "white" {}
+
+        _mask("Mask", Range(0,1)) = 1
 	}
 	SubShader
 	{
@@ -38,6 +40,8 @@
             sampler2D _PastTex;
 			sampler2D _MaskTex;
 			float4 _MainTex_ST;
+
+            fixed _mask;
 			
 			v2f vert (appdata v)
 			{
@@ -54,6 +58,7 @@
 				fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 past = tex2D(_PastTex, i.uv);
                 fixed alpha = tex2D(_MaskTex, i.uv);
+                alpha *= _mask;
 
                 fixed4 result = (1 - alpha) * col + alpha * past;
 

@@ -23,12 +23,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 8400000, guid: 2f36ebd79283b2847895f7275c66b777, type: 2}
+        m_Texture: {fileID: 2800000, guid: 6e1e7e94079708b438432186b293fd28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PastTex:
         m_Texture: {fileID: 8400000, guid: 1db1f8339b67d404b87a23e670141354, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _mask: 1
     m_Colors: []
