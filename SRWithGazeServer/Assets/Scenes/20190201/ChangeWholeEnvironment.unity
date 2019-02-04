@@ -3105,7 +3105,7 @@ MonoBehaviour:
   realtime: {fileID: 821054555}
   past: {fileID: 604770569}
   HMDImagePlayer: {fileID: 969792238}
-  threshold: 0.1
+  threshold: 0.005
   realToPastTime: 3
   PastToRealTime: 3
 --- !u!1 &1399060276
