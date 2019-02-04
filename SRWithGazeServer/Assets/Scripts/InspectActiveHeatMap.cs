@@ -34,7 +34,7 @@ public class InspectActiveHeatMap : MonoBehaviour
 
         StartCoroutine (ReadImage ());
 
-        Color pixel = texture2D.GetPixel ((int) hitPoint.x / perPixel, (int) hitPoint.y / perPixel);
+        Color pixel = texture2D.GetPixel (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
         risk = (pixel.r + pixel.g + pixel.b) / 3.0f;
     }
 
