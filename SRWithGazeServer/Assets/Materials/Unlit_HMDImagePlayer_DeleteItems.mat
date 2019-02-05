@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Unlit_HMDImagePlayer
+  m_Name: Unlit_HMDImagePlayer_DeleteItems
   m_Shader: {fileID: 4800000, guid: 350781767e2cf1d4195dc3fd7d781a2e, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -23,7 +23,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: 4414eec608a51514699b1696ee1de5a6, type: 3}
+        m_Texture: {fileID: 8400000, guid: 2f36ebd79283b2847895f7275c66b777, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PastTex:

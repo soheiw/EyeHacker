@@ -32,6 +32,10 @@ def parse_args():
 
 """main"""
 def main():
+    cap = cv2.VideoCapture(0)
+
+    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    out = cv2.VideoWriter('output.avi',fourcc,20.0,(160,90))
 
     # parse arguments
     args = parse_args()
@@ -100,6 +104,11 @@ def main():
                 pygame.quit()
                 quit()
         
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            out.release()
+            cv2.destroyAllWindows()
+            break
+
         # receive texture
         # Its signature in c++ looks like this: bool pyReceiveTexture(const char* theName, unsigned int theWidth, unsigned int theHeight, GLuint TextureID, GLuint TextureTarget, bool bInvert, GLuint HostFBO);
         spoutReceiver.pyReceiveTexture(receiverName, spoutReceiverWidth, spoutReceiverHeight, textureReceiveID, GL_TEXTURE_2D, False, 0)
@@ -166,6 +175,8 @@ def main():
 
             #cv2.namedWindow('OpticalFlow', cv2.WINDOW_NORMAL)
             #cv2.imshow('OpticalFlow',bgr)
+
+            out.write(bgr)
 
             prvs = next
 

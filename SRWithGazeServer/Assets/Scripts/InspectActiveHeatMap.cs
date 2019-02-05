@@ -7,7 +7,7 @@ public class InspectActiveHeatMap : MonoBehaviour
     public RenderTexture comparedImage;
     public int perPixel = 8;
 
-    private Texture2D texture2D;
+    public Texture2D texture2D;
 
     public OSCGazeCoordReceiver gazeCoordReceiver;
 
@@ -15,11 +15,16 @@ public class InspectActiveHeatMap : MonoBehaviour
 
     public float risk;
 
+    public bool fixPastHeatmap = false;
+
     // Use this for initialization
     void Start ()
     {
-        texture2D = new Texture2D (comparedImage.width, comparedImage.height, TextureFormat.ARGB32, false);
-        texture2D.filterMode = FilterMode.Point;
+        if (!fixPastHeatmap)
+        {
+            texture2D = new Texture2D (comparedImage.width, comparedImage.height, TextureFormat.ARGB32, false);
+            texture2D.filterMode = FilterMode.Point;
+        }
         risk = 1.0f;
     }
 
@@ -32,17 +37,28 @@ public class InspectActiveHeatMap : MonoBehaviour
             return;
         }
 
-        StartCoroutine (ReadImage ());
-
-        Color pixel = texture2D.GetPixel (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
-        risk = (pixel.r + pixel.g + pixel.b) / 3.0f;
+        if (!fixPastHeatmap)
+        {
+            StartCoroutine (ReadImage ());
+            Color pixel = texture2D.GetPixel (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
+            risk = (pixel.r + pixel.g + pixel.b) / 3.0f;
+        }
+        else
+        {
+            Color pixel = texture2D.GetPixel ((int) hitPoint.x, (int) hitPoint.y);
+            Debug.Log (hitPoint);
+            risk = (pixel.r + pixel.g + pixel.b) / 3.0f;
+        }
     }
 
     IEnumerator ReadImage ()
     {
         yield return new WaitForEndOfFrame ();
-        RenderTexture.active = comparedImage;
-        texture2D.ReadPixels (new Rect (0, 0, 1280, 720), 0, 0);
-        texture2D.Apply ();
+        if (!fixPastHeatmap)
+        {
+            RenderTexture.active = comparedImage;
+            texture2D.ReadPixels (new Rect (0, 0, 1280, 720), 0, 0);
+            texture2D.Apply ();
+        }
     }
 }
