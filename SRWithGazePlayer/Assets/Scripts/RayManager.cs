@@ -8,6 +8,9 @@ public class RayManager : MonoBehaviour
     private CalibrationDemo calibrationDemo;
     private LineRenderer heading;
     private List<MeshRenderer> gazeRenderers;
+    private int intLayerRay;
+    private bool isRayOn;
+    private GameObject mainCamera;
 
     private Vector3 standardViewportPoint = new Vector3 (0.5f, 0.5f, 10); // default marker position
 
@@ -41,8 +44,7 @@ public class RayManager : MonoBehaviour
         getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
 
         // TODO: tagで綺麗に取得
-        GameObject mainCamera = GameObject.Find ("Main Camera");
-        mainCamera.layer = LayerMask.NameToLayer ("Ray");
+        mainCamera = GameObject.Find ("Main Camera");
         GameObject leftEye = mainCamera.transform.Find ("LeftEye_2D").gameObject;
         leftEye.layer = LayerMask.NameToLayer ("Ray");
         GameObject leftEyePoint = leftEye.transform.Find ("MarkerEye").gameObject;
@@ -69,6 +71,9 @@ public class RayManager : MonoBehaviour
         gazeRenderers.Add (gaze2DPoint.GetComponent<MeshRenderer> ());
         gazeRenderers.Add (gaze3D.GetComponent<MeshRenderer> ());
         gazeRenderers.Add (gaze3DPoint.GetComponent<MeshRenderer> ());
+
+        intLayerRay = LayerMask.NameToLayer ("Ray");
+        isRayOn = false;
 
         /* if (calibrationDemo.enabled)
         {
@@ -120,12 +125,22 @@ public class RayManager : MonoBehaviour
         {
             if (calibrationDemo.enabled)
             {
-                heading.enabled = !heading.enabled;
+                /* heading.enabled = !heading.enabled;
                 for (int i = 0; i < gazeRenderers.Count; i++)
                 {
                     bool isRendered = gazeRenderers[i].enabled;
                     gazeRenderers[i].enabled = !isRendered;
+                } */
+
+                if (isRayOn)
+                {
+                    mainCamera.GetComponent<Camera> ().cullingMask &= ~(1 << intLayerRay);
                 }
+                else
+                {
+                    mainCamera.GetComponent<Camera> ().cullingMask |= (1 << intLayerRay);
+                }
+                isRayOn = !isRayOn;
             }
         }
 
