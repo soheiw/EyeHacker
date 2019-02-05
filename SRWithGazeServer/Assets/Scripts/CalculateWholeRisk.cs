@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class CalculateWholeRisk : MonoBehaviour
@@ -50,6 +51,7 @@ public class CalculateWholeRisk : MonoBehaviour
                 Debug.LogWarning ("change to past");
                 time = 0.0f;
                 playPastImage = true;
+                StartCoroutine (MaskOn ());
             }
         }
         else
@@ -59,16 +61,36 @@ public class CalculateWholeRisk : MonoBehaviour
                 Debug.LogWarning ("change to realtime");
                 time = 0.0f;
                 playPastImage = false;
+                StartCoroutine (MaskOff ());
             }
         }
 
         if (playPastImage)
         {
-            HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", 1);
+            // HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", 1);
         }
         else
         {
-            HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", 0);
+            // HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", 0);
         }
+    }
+
+    IEnumerator MaskOn ()
+    {
+        DOTween.To (SetAlpha, 0.0f, 1.0f, 1.0f)
+            .SetEase (Ease.InOutCubic);
+        yield return null;
+    }
+
+    IEnumerator MaskOff ()
+    {
+        DOTween.To (SetAlpha, 1.0f, 0.0f, 1.0f)
+            .SetEase (Ease.InOutCubic);
+        yield return null;
+    }
+
+    void SetAlpha (float val)
+    {
+        HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", val);
     }
 }
