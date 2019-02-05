@@ -32,9 +32,9 @@ def parse_args():
 
 """main"""
 def main():
-    fourcc = cv2.VideoWriter_fourcc('H','2','6','4')
+    fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
     out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(1280,720))
-    out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(160,90))
+    out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(320,180))
 
     # parse arguments
     args = parse_args()
@@ -104,7 +104,8 @@ def main():
                 quit()
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            out.release()
+            #out1.release()
+            #out2.release()
             cv2.destroyAllWindows()
             break
 
@@ -153,7 +154,11 @@ def main():
         else:
             frame2 = image
 
-            out1.write(image)
+            #showimage = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+            showimage = frame2[:,:,[2,1,0]]
+            
+            out1.write(showimage)
+
             frame2_picked = np.zeros((int(height / per_pixel),int(width / per_pixel),3))
             for v in range(int(height / per_pixel)):
                 for u in range(int(width / per_pixel)):
