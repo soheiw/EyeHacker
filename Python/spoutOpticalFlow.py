@@ -32,9 +32,9 @@ def parse_args():
 
 """main"""
 def main():
-    #fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    #out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(1280,720))
-    #out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(160,90))
+    fourcc = cv2.VideoWriter_fourcc('H','2','6','4')
+    out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(1280,720))
+    out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(160,90))
 
     # parse arguments
     args = parse_args()
@@ -153,7 +153,7 @@ def main():
         else:
             frame2 = image
 
-            #out1.write(image)
+            out1.write(image)
             frame2_picked = np.zeros((int(height / per_pixel),int(width / per_pixel),3))
             for v in range(int(height / per_pixel)):
                 for u in range(int(width / per_pixel)):
@@ -177,7 +177,7 @@ def main():
             #cv2.namedWindow('OpticalFlow', cv2.WINDOW_NORMAL)
             #cv2.imshow('OpticalFlow',bgr)
 
-            #out2.write(bgr)
+            out2.write(bgr)
 
             prvs = next
 

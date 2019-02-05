@@ -1960,7 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recorderName: Recorder1
-  imageName: ChangeWholeEnvironment
+  imageName: DeleteItems
   server: {fileID: 921975423}
   maskCapture: {fileID: 0}
 --- !u!81 &1117871098
@@ -4411,7 +4411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player1
-  imageName: ChangeWholeEnvironment
+  imageName: DeleteItems
   startTime: 0
   server: {fileID: 921975423}
   client: {fileID: 0}
