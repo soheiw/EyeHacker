@@ -14,10 +14,13 @@ public class DetermineGazeByHMD : MonoBehaviour
 
     private const float INF = 10000.0f;
 
+    private LineRenderer heading;
+
     // Use this for initialization
     void Start ()
     {
         sceneCamera = gameObject.GetComponent<Camera> ();
+        heading = gameObject.GetComponent<LineRenderer> ();
     }
 
     // Update is called once per frame
@@ -39,5 +42,11 @@ public class DetermineGazeByHMD : MonoBehaviour
         }
         gazePos.transform.position = gazePosition;
         gazePos.transform.rotation = Quaternion.Euler (hit.normal);
+
+        if (heading.enabled)
+        {
+            heading.SetPosition (0, sceneCamera.transform.position - sceneCamera.transform.up); // 下方向にちょっとずらす
+            heading.SetPosition (1, gazePosition);
+        }
     }
 }
