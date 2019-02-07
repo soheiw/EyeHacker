@@ -32,9 +32,6 @@ def parse_args():
 
 """main"""
 def main():
-    fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
-    out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(1280,720))
-    out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(320,180))
 
     # parse arguments
     args = parse_args()
@@ -46,6 +43,10 @@ def main():
     spoutSenderWidth = int(spoutReceiverWidth / per_pixel) # min(spoutReceiverWidth,1280)
     spoutSenderHeight = int(spoutReceiverHeight / per_pixel) # min(spoutReceiverHeight,720)
     display = (spoutSenderWidth,spoutSenderHeight)
+
+    #fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
+    #out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(spoutReceiverWidth,spoutReceiverHeight))
+    #out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(spoutSenderWidth,spoutSenderHeight))
     
     # window setup
     pygame.init() 
@@ -154,10 +155,9 @@ def main():
         else:
             frame2 = image
 
-            #showimage = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            showimage = frame2[:,:,[2,1,0]]
+            #show = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
             
-            out1.write(showimage)
+            #out1.write(show)
 
             frame2_picked = np.zeros((int(height / per_pixel),int(width / per_pixel),3))
             for v in range(int(height / per_pixel)):
@@ -169,7 +169,8 @@ def main():
             next = cv2.cvtColor(frame2_gray, cv2.COLOR_BGR2GRAY)
 
             cv2.namedWindow('movie', cv2.WINDOW_AUTOSIZE)
-            cv2.imshow('movie', frame2_gray)
+            show_movie = cv2.cvtColor(frame2_gray, cv2.COLOR_BGR2RGB)
+            cv2.imshow('movie', show_movie)
 
             flow = cv2.calcOpticalFlowFarneback(prvs,next, None, 0.5, 1, 15, 1, 5, 1.1, 0) #(720/per_pixel,1280/per_pixel,2)
 
@@ -182,7 +183,7 @@ def main():
             #cv2.namedWindow('OpticalFlow', cv2.WINDOW_NORMAL)
             #cv2.imshow('OpticalFlow',bgr)
 
-            out2.write(bgr)
+            #out2.write(bgr)
 
             prvs = next
 
