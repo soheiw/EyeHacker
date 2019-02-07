@@ -887,7 +887,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &423836012
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,7 +1305,6 @@ GameObject:
   - component: {fileID: 604770574}
   - component: {fileID: 604770573}
   - component: {fileID: 604770572}
-  - component: {fileID: 604770571}
   - component: {fileID: 604770570}
   - component: {fileID: 604770569}
   m_Layer: 0
@@ -1333,6 +1332,7 @@ MonoBehaviour:
   mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
+  edgeSize: 3
 --- !u!114 &604770570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1348,32 +1348,6 @@ MonoBehaviour:
   _targetTexture: {fileID: 8400000, guid: 2f770736cb1f98d499f70d8661d55b21, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
---- !u!114 &604770571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 604770568}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba90691a4aefa94898aa37efebe1924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gazeCoordReceiver: {fileID: 921975425}
-  maskController: {fileID: 619061310}
-  mask: {fileID: 524589813}
-  maskBlender: {fileID: 619061309}
-  withPlayingVideo: 0
-  videoController: {fileID: 0}
-  isControlByOSC: 0
-  setMaskFixed: 1
-  switchMaskHere: 0
-  hereFixedMasks:
-  - {fileID: 1981136837}
-  aroundFixedMasks:
-  - {fileID: 1036605301}
-  timeThreshold: 0.3
-  risk: 0
 --- !u!64 &604770572
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1437,7 +1411,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 604770568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14, y: 9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 12.8, y: 7.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1461,7 +1435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &619061310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,7 +1743,6 @@ GameObject:
   - component: {fileID: 821054552}
   - component: {fileID: 821054551}
   - component: {fileID: 821054550}
-  - component: {fileID: 821054549}
   - component: {fileID: 821054554}
   - component: {fileID: 821054555}
   m_Layer: 0
@@ -1779,32 +1752,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &821054549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 821054548}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba90691a4aefa94898aa37efebe1924, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gazeCoordReceiver: {fileID: 921975425}
-  maskController: {fileID: 619061310}
-  mask: {fileID: 524589813}
-  maskBlender: {fileID: 619061309}
-  withPlayingVideo: 0
-  videoController: {fileID: 0}
-  isControlByOSC: 0
-  setMaskFixed: 1
-  switchMaskHere: 0
-  hereFixedMasks:
-  - {fileID: 1981136837}
-  aroundFixedMasks:
-  - {fileID: 1036605301}
-  timeThreshold: 0.3
-  risk: 0
 --- !u!64 &821054550
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1868,7 +1815,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 821054548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 9, z: 0}
+  m_LocalPosition: {x: 0, y: -9, z: 0}
   m_LocalScale: {x: 12.8, y: 7.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1907,6 +1854,7 @@ MonoBehaviour:
   mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
+  edgeSize: 3
 --- !u!1 &885446257
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recorderName: Recorder1
-  imageName: ChangeWholeEnvironment2
+  imageName: ChangeWholeEnvironment
   server: {fileID: 921975423}
   maskCapture: {fileID: 0}
 --- !u!81 &1117871098
@@ -2705,7 +2653,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1201294508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 32, y: -9, z: 0}
   m_LocalScale: {x: 12.8, y: 7.2, z: 1}
   m_Children:
   - {fileID: 1208292010}
@@ -3114,9 +3062,76 @@ MonoBehaviour:
   realtime: {fileID: 821054555}
   past: {fileID: 604770569}
   HMDImagePlayer: {fileID: 969792238}
-  threshold: 0.001
+  threshold: 0.3
   realToPastTime: 3
   PastToRealTime: 3
+  textStyle:
+    m_Name: 
+    m_Normal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0.735849, g: 0.19784619, b: 0.19784619, a: 1}
+    m_Hover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Active:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Focused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnNormal:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnHover:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnActive:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_OnFocused:
+      m_Background: {fileID: 0}
+      m_ScaledBackgrounds: []
+      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+    m_Border:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Margin:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Padding:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Overflow:
+      m_Left: 0
+      m_Right: 0
+      m_Top: 0
+      m_Bottom: 0
+    m_Font: {fileID: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_Alignment: 0
+    m_WordWrap: 0
+    m_RichText: 1
+    m_TextClipping: 0
+    m_ImagePosition: 0
+    m_ContentOffset: {x: 0, y: 0}
+    m_FixedWidth: 0
+    m_FixedHeight: 0
+    m_StretchWidth: 1
+    m_StretchHeight: 0
 --- !u!1 &1399060276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4521,7 +4536,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2059959970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: 0, z: 0}
+  m_LocalPosition: {x: 14, y: -9, z: 0}
   m_LocalScale: {x: 12.8, y: 7.2, z: 1}
   m_Children:
   - {fileID: 1407518146}
@@ -4656,7 +4671,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2095728783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: -9, z: 0}
+  m_LocalPosition: {x: 14, y: 0, z: 0}
   m_LocalScale: {x: 12.8, y: 7.2, z: 1}
   m_Children:
   - {fileID: 1883264466}
@@ -4675,7 +4690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Player1
-  imageName: ChangeWholeEnvironment2
+  imageName: ChangeWholeEnvironment
   startTime: 0
   server: {fileID: 921975423}
   client: {fileID: 0}

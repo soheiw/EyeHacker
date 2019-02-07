@@ -17,6 +17,8 @@ public class InspectActiveHeatMap : MonoBehaviour
 
     public bool fixPastHeatmap = false;
 
+    public int edgeSize = 0;
+
     // Use this for initialization
     void Start ()
     {
@@ -37,11 +39,27 @@ public class InspectActiveHeatMap : MonoBehaviour
             return;
         }
 
+        risk = 0.0f;
+
         if (!fixPastHeatmap)
         {
             StartCoroutine (ReadImage ());
-            Color pixel = texture2D.GetPixel (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
-            risk = (pixel.r + pixel.g + pixel.b) / 3.0f;
+            Vector2Int centerPixel = new Vector2Int (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
+            for (int x = centerPixel.x - edgeSize; x <= centerPixel.x + edgeSize; x++)
+            {
+                for (int y = centerPixel.y - edgeSize; y <= centerPixel.y + edgeSize; y++)
+                {
+                    if (x >= 0 && x <= 159 && y >= 0 && y <= 89)
+                    {
+                        Color pixel = texture2D.GetPixel (x, y);
+                        risk += (pixel.r + pixel.g + pixel.b) / 3.0f;
+                    }
+                    else
+                    {
+                        // risk += 0.0f;
+                    }
+                }
+            }
         }
         else
         {
@@ -57,7 +75,7 @@ public class InspectActiveHeatMap : MonoBehaviour
         if (!fixPastHeatmap)
         {
             RenderTexture.active = comparedImage;
-            texture2D.ReadPixels (new Rect (0, 0, 1280, 720), 0, 0);
+            texture2D.ReadPixels (new Rect (0, 0, 160, 90), 0, 0);
             texture2D.Apply ();
         }
     }
