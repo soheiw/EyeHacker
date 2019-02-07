@@ -112,7 +112,7 @@ def main():
 
         # receive texture
         # Its signature in c++ looks like this: bool pyReceiveTexture(const char* theName, unsigned int theWidth, unsigned int theHeight, GLuint TextureID, GLuint TextureTarget, bool bInvert, GLuint HostFBO);
-        spoutReceiver.pyReceiveTexture(receiverName, spoutReceiverWidth, spoutReceiverHeight, textureReceiveID, GL_TEXTURE_2D, False, 0)
+        spoutReceiver.pyReceiveTexture(receiverName, spoutReceiverWidth, spoutReceiverHeight, np.uint32(textureReceiveID).item(), GL_TEXTURE_2D, False, 0)
        
         glBindTexture(GL_TEXTURE_2D, textureReceiveID)
 
@@ -231,7 +231,7 @@ def main():
 
         # send texture to Spout
         # Its signature in C++ looks like this: bool SendTexture(GLuint TextureID, GLuint TextureTarget, unsigned int width, unsigned int height, bool bInvert=true, GLuint HostFBO = 0);
-        spoutSender.SendTexture(senderTextureID, GL_TEXTURE_2D, spoutSenderWidth, spoutSenderHeight, True, 0)
+        spoutSender.SendTexture(np.uint32(senderTextureID).item(), GL_TEXTURE_2D, spoutSenderWidth, spoutSenderHeight, True, 0)
 
         #pygame.time.wait(10)
 
