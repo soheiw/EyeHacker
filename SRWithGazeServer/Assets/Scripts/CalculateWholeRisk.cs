@@ -11,7 +11,8 @@ public class CalculateWholeRisk : MonoBehaviour
     public GameObject HMDImagePlayer;
 
     [Range (0, 100)]
-    public float threshold;
+    public float originalThreshold;
+    [SerializeField] float threshold;
 
     [Header ("Time")]
     public float realToPastTime = 2.0f;
@@ -23,11 +24,15 @@ public class CalculateWholeRisk : MonoBehaviour
 
     public GUIStyle textStyle;
 
+    public bool adjustThreshold;
+    private AdjustThresholdByHMDRotation adjust;
+
     // Use this for initialization
     void Start ()
     {
         playPastImage = false;
         time = 0.0f;
+        adjust = GetComponent<AdjustThresholdByHMDRotation> ();
     }
 
     // Update is called once per frame
@@ -35,6 +40,21 @@ public class CalculateWholeRisk : MonoBehaviour
     {
         wholeRisk = realtime.risk * realtime.risk + past.risk * past.risk;
         // Debug.Log ((wholeRisk));
+        if (adjustThreshold)
+        {
+            if(adjust.magnitude > 1.0f)
+            {
+                threshold = originalThreshold * adjust.magnitude;
+            }
+            else
+            {
+                threshold = originalThreshold;
+            }
+        }
+        else
+        {
+            threshold = originalThreshold;
+        }
 
         if (wholeRisk < threshold)
         {
@@ -98,6 +118,6 @@ public class CalculateWholeRisk : MonoBehaviour
 
     void OnGUI ()
     {
-        GUI.Label (new Rect (50, 50, 50, 50), "Whole Risk: " + wholeRisk, textStyle);
+        GUI.Label (new Rect (50, 300, 50, 50), "Whole Risk: " + wholeRisk, textStyle);
     }
 }

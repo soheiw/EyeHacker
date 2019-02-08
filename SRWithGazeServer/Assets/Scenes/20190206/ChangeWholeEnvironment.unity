@@ -3028,6 +3028,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392968578}
   - component: {fileID: 1392968579}
+  - component: {fileID: 1392968580}
   m_Layer: 0
   m_Name: CalculateWholeRisk
   m_TagString: Untagged
@@ -3062,9 +3063,10 @@ MonoBehaviour:
   realtime: {fileID: 821054555}
   past: {fileID: 604770569}
   HMDImagePlayer: {fileID: 969792238}
-  threshold: 0.3
-  realToPastTime: 3
-  PastToRealTime: 3
+  originalThreshold: 0.3
+  threshold: 0
+  realToPastTime: 2
+  PastToRealTime: 2
   textStyle:
     m_Name: 
     m_Normal:
@@ -3132,6 +3134,21 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  adjustThreshold: 1
+--- !u!114 &1392968580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1392968577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b5bd7fb9f1d9c4992b3bc36989329d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnitude: 0
+  address: /server/direction
+  sync: 1
 --- !u!1 &1399060276
 GameObject:
   m_ObjectHideFlags: 0
