@@ -25,6 +25,8 @@ public class InspectHeatMap : MonoBehaviour
     private Renderer drawRenderer;
     private Texture2D bodyTexture;
 
+    public float risk;
+
     // Use this for initialization
     void Start ()
     {
@@ -37,6 +39,7 @@ public class InspectHeatMap : MonoBehaviour
 
             // TODO: 頭出しをWaitToPlay内で秒数を決め打ちしてやっているが，それをVideoPlayerのメソッドを駆使して書き換える
             StartCoroutine (WaitToPlay ());
+            risk = 1.0f;
         }
     }
 
@@ -68,6 +71,7 @@ public class InspectHeatMap : MonoBehaviour
         }
 
         float degree = InspectHeatmapValueAtGazePoint (hitPoint);
+        risk = degree;
         if (setMaskFixed)
         {
             // 固定のmaskがrayの位置に発生
@@ -100,11 +104,11 @@ public class InspectHeatMap : MonoBehaviour
             // 固定のmaskがrayの位置でないところに発生
             else
             {
-                for (int i = 0; i < aroundFixedMasks.Length; i++)
+                /* for (int i = 0; i < aroundFixedMasks.Length; i++)
                 {
                     if (!CompareHeatmapValueToThreshold (degree)) return;
                     aroundFixedMasks[i].SetActive (true);
-                }
+                } */
             }
         }
         else

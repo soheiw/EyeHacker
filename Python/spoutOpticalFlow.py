@@ -43,6 +43,10 @@ def main():
     spoutSenderWidth = int(spoutReceiverWidth / per_pixel) # min(spoutReceiverWidth,1280)
     spoutSenderHeight = int(spoutReceiverHeight / per_pixel) # min(spoutReceiverHeight,720)
     display = (spoutSenderWidth,spoutSenderHeight)
+
+    #fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
+    #out1 = cv2.VideoWriter('movie.avi',fourcc,20.0,(spoutReceiverWidth,spoutReceiverHeight))
+    #out2 = cv2.VideoWriter('opticalflow.avi',fourcc,20.0,(spoutSenderWidth,spoutSenderHeight))
     
     # window setup
     pygame.init() 
@@ -100,9 +104,15 @@ def main():
                 pygame.quit()
                 quit()
         
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            #out1.release()
+            #out2.release()
+            cv2.destroyAllWindows()
+            break
+
         # receive texture
         # Its signature in c++ looks like this: bool pyReceiveTexture(const char* theName, unsigned int theWidth, unsigned int theHeight, GLuint TextureID, GLuint TextureTarget, bool bInvert, GLuint HostFBO);
-        spoutReceiver.pyReceiveTexture(receiverName, spoutReceiverWidth, spoutReceiverHeight, textureReceiveID, GL_TEXTURE_2D, False, 0)
+        spoutReceiver.pyReceiveTexture(receiverName, spoutReceiverWidth, spoutReceiverHeight, np.uint32(textureReceiveID).item(), GL_TEXTURE_2D, False, 0)
        
         glBindTexture(GL_TEXTURE_2D, textureReceiveID)
 
@@ -144,6 +154,11 @@ def main():
             bgr = np.zeros_like(frame1_gray)
         else:
             frame2 = image
+
+            #show = cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB)
+            
+            #out1.write(show)
+
             frame2_picked = np.zeros((int(height / per_pixel),int(width / per_pixel),3))
             for v in range(int(height / per_pixel)):
                 for u in range(int(width / per_pixel)):
@@ -154,7 +169,8 @@ def main():
             next = cv2.cvtColor(frame2_gray, cv2.COLOR_BGR2GRAY)
 
             cv2.namedWindow('movie', cv2.WINDOW_AUTOSIZE)
-            cv2.imshow('movie', frame2_gray)
+            show_movie = cv2.cvtColor(frame2_gray, cv2.COLOR_BGR2RGB)
+            cv2.imshow('movie', show_movie)
 
             flow = cv2.calcOpticalFlowFarneback(prvs,next, None, 0.5, 1, 15, 1, 5, 1.1, 0) #(720/per_pixel,1280/per_pixel,2)
 
@@ -166,6 +182,8 @@ def main():
 
             #cv2.namedWindow('OpticalFlow', cv2.WINDOW_NORMAL)
             #cv2.imshow('OpticalFlow',bgr)
+
+            #out2.write(bgr)
 
             prvs = next
 
@@ -213,7 +231,7 @@ def main():
 
         # send texture to Spout
         # Its signature in C++ looks like this: bool SendTexture(GLuint TextureID, GLuint TextureTarget, unsigned int width, unsigned int height, bool bInvert=true, GLuint HostFBO = 0);
-        spoutSender.SendTexture(senderTextureID, GL_TEXTURE_2D, spoutSenderWidth, spoutSenderHeight, True, 0)
+        spoutSender.SendTexture(np.uint32(senderTextureID).item(), GL_TEXTURE_2D, spoutSenderWidth, spoutSenderHeight, True, 0)
 
         #pygame.time.wait(10)
 
