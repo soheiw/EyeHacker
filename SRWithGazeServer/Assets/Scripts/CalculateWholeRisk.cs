@@ -18,7 +18,7 @@ public class CalculateWholeRisk : MonoBehaviour
     public float realToPastTime = 2.0f;
     public float PastToRealTime = 2.0f;
 
-    private float wholeRisk;
+    public float wholeRisk;
     private bool playPastImage;
     private float time;
 
