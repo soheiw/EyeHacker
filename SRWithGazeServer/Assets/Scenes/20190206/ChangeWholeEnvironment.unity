@@ -1404,7 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcac84468b87e8409ba7543faa9fa2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comparedImage: {fileID: 8400000, guid: 56d919fcab5cb6d45acc72c595d3f627, type: 2}
+  comparedImage: {fileID: 8400000, guid: 2f770736cb1f98d499f70d8661d55b21, type: 2}
   perPixel: 8
   texture2D: {fileID: 0}
   gazeCoordReceiver: {fileID: 921975425}
