@@ -6,9 +6,11 @@ using System.IO;
  
 public class SaveWholeRisk : MonoBehaviour {
     public CalculateWholeRisk calculateWholeRisk;
+    public AdjustThresholdByHMDRotation adjust;
+
     private int count;
     private bool isWriting;
-    StreamWriter sw;
+    private StreamWriter sw;
  
     // Use this for initialization
     void Start () {
@@ -30,7 +32,7 @@ public class SaveWholeRisk : MonoBehaviour {
         }
 
         if(isWriting){
-            string[] str = {count.ToString(), calculateWholeRisk.wholeRisk.ToString()};
+            string[] str = {count.ToString(), Mathf.Sqrt(calculateWholeRisk.wholeRisk).ToString(), adjust.magnitude.ToString()};
             string strConnected = string.Join(",", str);
             sw.WriteLine(strConnected);
             count++;
