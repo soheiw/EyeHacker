@@ -99,14 +99,14 @@ public class CalculateWholeRisk : MonoBehaviour
 
     IEnumerator MaskOn ()
     {
-        DOTween.To (SetAlpha, 0.0f, 1.0f, 1.0f)
+        DOTween.To (SetAlpha, 0.0f, 1.0f, 0.1f)
             .SetEase (Ease.InOutCubic);
         yield return null;
     }
 
     IEnumerator MaskOff ()
     {
-        DOTween.To (SetAlpha, 1.0f, 0.0f, 1.0f)
+        DOTween.To (SetAlpha, 1.0f, 0.0f, 0.1f)
             .SetEase (Ease.InOutCubic);
         yield return null;
     }

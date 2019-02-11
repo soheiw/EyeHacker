@@ -3660,8 +3660,8 @@ MonoBehaviour:
   HMDImagePlayer: {fileID: 969792238}
   originalThreshold: 3.5
   threshold: 0
-  realToPastTime: 2
-  PastToRealTime: 2
+  realToPastTime: 5
+  PastToRealTime: 5
   wholeRisk: 0
   textStyle:
     m_Name: 
