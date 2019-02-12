@@ -10,6 +10,7 @@ public class InspectActiveHeatMap : MonoBehaviour
     public Texture2D texture2D;
 
     public OSCGazeCoordReceiver gazeCoordReceiver;
+    public GameObject gazeColoredHeatmap;
 
     public GameObject mask;
 
@@ -18,6 +19,7 @@ public class InspectActiveHeatMap : MonoBehaviour
     public bool fixPastHeatmap = false;
 
     public int edgeSize = 0;
+    public Vector2Int centerPixel;
 
     // Use this for initialization
     void Start ()
@@ -28,6 +30,7 @@ public class InspectActiveHeatMap : MonoBehaviour
             texture2D.filterMode = FilterMode.Point;
         }
         risk = 1.0f;
+        centerPixel = new Vector2Int(0,0);
     }
 
     // Update is called once per frame
@@ -44,7 +47,11 @@ public class InspectActiveHeatMap : MonoBehaviour
         if (!fixPastHeatmap)
         {
             StartCoroutine (ReadImage ());
-            Vector2Int centerPixel = new Vector2Int (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
+            centerPixel = new Vector2Int (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
+
+            gazeColoredHeatmap.GetComponent<Renderer> ().material.SetFloat("_GazeU", (float)centerPixel.x);
+            gazeColoredHeatmap.GetComponent<Renderer> ().material.SetFloat("_GazeV", (float)centerPixel.y);
+
             for (int x = centerPixel.x - edgeSize; x <= centerPixel.x + edgeSize; x++)
             {
                 for (int y = centerPixel.y - edgeSize; y <= centerPixel.y + edgeSize; y++)

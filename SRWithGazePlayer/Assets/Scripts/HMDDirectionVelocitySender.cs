@@ -31,6 +31,21 @@ public class HMDDirectionVelocitySender : MonoBehaviour
         newDir = dir_q.eulerAngles;
 
         velocity = newDir - oldDir;
+        if(Mathf.Abs(velocity.x) > 300.0f)
+        {
+            velocity.x = 360.0f - Mathf.Abs(velocity.x);
+        }
+
+        if(Mathf.Abs(velocity.y) > 300.0f)
+        {
+            velocity.y = 360.0f - Mathf.Abs(velocity.y);
+        }
+
+        if(Mathf.Abs(velocity.z) > 300.0f)
+        {
+            velocity.z = 360.0f - Mathf.Abs(velocity.z);
+        }
+
         client.Send (address, velocity.x, velocity.y, velocity.z);
 
         oldDir = newDir;

@@ -10,7 +10,7 @@ public class CalculateWholeRisk : MonoBehaviour
 
     public GameObject HMDImagePlayer;
 
-    [Range (0, 100)]
+    [Range (0, 1000)]
     public float originalThreshold;
     [SerializeField] float threshold;
 
@@ -18,7 +18,7 @@ public class CalculateWholeRisk : MonoBehaviour
     public float realToPastTime = 2.0f;
     public float PastToRealTime = 2.0f;
 
-    private float wholeRisk;
+    public float wholeRisk;
     private bool playPastImage;
     private float time;
 
@@ -99,14 +99,14 @@ public class CalculateWholeRisk : MonoBehaviour
 
     IEnumerator MaskOn ()
     {
-        DOTween.To (SetAlpha, 0.0f, 1.0f, 1.0f)
+        DOTween.To (SetAlpha, 0.0f, 1.0f, 0.1f)
             .SetEase (Ease.InOutCubic);
         yield return null;
     }
 
     IEnumerator MaskOff ()
     {
-        DOTween.To (SetAlpha, 1.0f, 0.0f, 1.0f)
+        DOTween.To (SetAlpha, 1.0f, 0.0f, 0.1f)
             .SetEase (Ease.InOutCubic);
         yield return null;
     }
