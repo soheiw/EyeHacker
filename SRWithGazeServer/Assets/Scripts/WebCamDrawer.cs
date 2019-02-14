@@ -8,39 +8,39 @@ public class WebCamDrawer : MonoBehaviour
     private WebCamTexture webcamTexture;
     public WebCamTexture WCTex { get { return this.webcamTexture; } }
 
-    void Start()
+    void Start ()
     {
-        StartStreaming();
+        StartStreaming ();
     }
 
-    void StartStreaming()
+    void StartStreaming ()
     {
-        WebCamDevice device = new WebCamDevice();
-        if (!FindDevice(ref device))
+        WebCamDevice device = new WebCamDevice ();
+        if (!FindDevice (ref device))
         {
-            Debug.LogError("<" + deviceNameKeyword + ">を含むWebカメラが検出できませんでした。");
+            Debug.LogError ("<" + deviceNameKeyword + ">を含むWebカメラが検出できませんでした。");
             return;
         }
-        Debug.Log("find: device.name = " + device.name);
+        Debug.Log ("find: device.name = " + device.name);
         //WebCamTexture webcamTexture = new WebCamTexture(device.name, 1920, 1080);
         //WebCamTexture webcamTexture = new WebCamTexture(device.name, 1280, 720);
-        webcamTexture = new WebCamTexture(device.name, 1280, 720);
-        Material mat = GetTargetMaterial();
+        webcamTexture = new WebCamTexture (device.name, 1280, 720);
+        Material mat = GetTargetMaterial ();
         if (mat == null)
         {
             return;
         }
         mat.mainTexture = webcamTexture;
-        webcamTexture.Play();
+        webcamTexture.Play ();
     }
 
-    bool FindDevice(ref WebCamDevice target)
+    bool FindDevice (ref WebCamDevice target)
     {
         WebCamDevice[] devices = WebCamTexture.devices;
         foreach (WebCamDevice device in devices)
         {
-            Debug.Log("device.name = " + device.name);
-            if (device.name.Contains(deviceNameKeyword))
+            Debug.Log ("device.name = " + device.name);
+            if (device.name.Contains (deviceNameKeyword))
             {
                 target = device;
                 return true;
@@ -49,20 +49,19 @@ public class WebCamDrawer : MonoBehaviour
         return false;
     }
 
-    Material GetTargetMaterial()
+    Material GetTargetMaterial ()
     {
-        Skybox skybox = GetComponent<Skybox>();
+        Skybox skybox = GetComponent<Skybox> ();
         if (skybox != null)
         {
             return skybox.material;
         }
-        Renderer renderer = GetComponent<Renderer>();
+        Renderer renderer = GetComponent<Renderer> ();
         if (renderer != null)
         {
             return renderer.material;
         }
-        Debug.LogError("no Renderer/Skybox components found.");
+        Debug.LogError ("no Renderer/Skybox components found.");
         return null;
     }
 }
-

@@ -8,6 +8,9 @@ public class RayManager : MonoBehaviour
     private CalibrationDemo calibrationDemo;
     private LineRenderer heading;
     private List<MeshRenderer> gazeRenderers;
+    private int intLayerRay;
+    private bool isRayOn;
+    private GameObject mainCamera;
 
     private Vector3 standardViewportPoint = new Vector3 (0.5f, 0.5f, 10); // default marker position
 
@@ -41,15 +44,23 @@ public class RayManager : MonoBehaviour
         getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
 
         // TODO: tagで綺麗に取得
-        GameObject mainCamera = GameObject.Find ("Main Camera");
+        mainCamera = GameObject.Find ("Main Camera");
         GameObject leftEye = mainCamera.transform.Find ("LeftEye_2D").gameObject;
+        leftEye.layer = LayerMask.NameToLayer ("Ray");
         GameObject leftEyePoint = leftEye.transform.Find ("MarkerEye").gameObject;
+        leftEyePoint.layer = LayerMask.NameToLayer ("Ray");
         GameObject rightEye = mainCamera.transform.Find ("RightEye_2D").gameObject;
+        rightEye.layer = LayerMask.NameToLayer ("Ray");
         GameObject rightEyePoint = rightEye.transform.Find ("MarkerEye").gameObject;
+        rightEyePoint.layer = LayerMask.NameToLayer ("Ray");
         GameObject gaze2D = mainCamera.transform.Find ("Gaze_2D").gameObject;
+        gaze2D.layer = LayerMask.NameToLayer ("Ray");
         GameObject gaze2DPoint = gaze2D.transform.Find ("MarkerEye").gameObject;
+        gaze2DPoint.layer = LayerMask.NameToLayer ("Ray");
         GameObject gaze3D = mainCamera.transform.Find ("Gaze_3D").gameObject;
+        gaze3D.layer = LayerMask.NameToLayer ("Ray");
         GameObject gaze3DPoint = gaze3D.transform.Find ("MarkerEye").gameObject;
+        gaze3DPoint.layer = LayerMask.NameToLayer ("Ray");
 
         gazeRenderers = new List<MeshRenderer> ();
         gazeRenderers.Add (leftEye.GetComponent<MeshRenderer> ());
@@ -61,14 +72,17 @@ public class RayManager : MonoBehaviour
         gazeRenderers.Add (gaze3D.GetComponent<MeshRenderer> ());
         gazeRenderers.Add (gaze3DPoint.GetComponent<MeshRenderer> ());
 
-        if (calibrationDemo.enabled)
+        intLayerRay = LayerMask.NameToLayer ("Ray");
+        isRayOn = false;
+
+        /* if (calibrationDemo.enabled)
         {
             heading.enabled = false;
             for (int i = 0; i < gazeRenderers.Count; i++)
             {
                 gazeRenderers[i].enabled = false;
             }
-        }
+        } */
     }
 
     void OnEnable ()
@@ -111,12 +125,22 @@ public class RayManager : MonoBehaviour
         {
             if (calibrationDemo.enabled)
             {
-                heading.enabled = !heading.enabled;
+                /* heading.enabled = !heading.enabled;
                 for (int i = 0; i < gazeRenderers.Count; i++)
                 {
                     bool isRendered = gazeRenderers[i].enabled;
                     gazeRenderers[i].enabled = !isRendered;
+                } */
+
+                if (isRayOn)
+                {
+                    mainCamera.GetComponent<Camera> ().cullingMask &= ~(1 << intLayerRay);
                 }
+                else
+                {
+                    mainCamera.GetComponent<Camera> ().cullingMask |= (1 << intLayerRay);
+                }
+                isRayOn = !isRayOn;
             }
         }
 
