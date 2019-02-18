@@ -10,7 +10,6 @@ public class CalculateWholeRisk : MonoBehaviour
 
     public GameObject HMDImagePlayer;
 
-    [Range (0, 1000)]
     public float originalThreshold;
     [SerializeField] float threshold;
 
