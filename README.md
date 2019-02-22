@@ -2,7 +2,7 @@
 
 ## What is this?
 
-2つの全天周動画，例えばリアルタイム映像と過去映像とを自働的に切り替えるシステム．
+2つの全天周動画，例えばリアルタイム映像と過去映像とを自動的に切り替えるシステム．
 
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
 ![Blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Blend.png)
@@ -35,6 +35,7 @@
 #### Server
 
 * THETAを繋いでLiveモードで起動する．
+* BlendSystem Sceneを起動する．
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 
 #### Player
@@ -51,3 +52,8 @@
 * `Play`ボタンで録画映像の再生・停止．
 * `Rec`ボタンで録画開始・終了．
 * `HMDdirection`ボタンで視線位置をPupilLabsのデータにするかHMDのdirectionに固定するかを決定．
+
+#### Python
+
+* `python spoutOpticalFlow.py --receive_name RecordPlayer --send_name PastOpticalFlow`と`python spoutOpticalFlow.py --receive_name ThetaEqCh1 --send_name RealtimeOpticalFlow`を同時に行う
+* あるいは，`python spoutBackgroundSubtractor.py --receive_name RecordPlayer --send_name PastOpticalFlow`と`python spoutBackgroundSubtractor.py --receive_name ThetaEqCh1 --send_name RealtimeOpticalFlow`を同時に行う
