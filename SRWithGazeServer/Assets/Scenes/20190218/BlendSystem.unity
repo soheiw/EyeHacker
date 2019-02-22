@@ -325,7 +325,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372954012}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &372954014
 Behaviour:
   m_ObjectHideFlags: 0
@@ -634,13 +634,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comparedImage: {fileID: 8400000, guid: 2f770736cb1f98d499f70d8661d55b21, type: 2}
   perPixel: 8
-  texture2D: {fileID: 0}
   gazeCoordReceiver: {fileID: 921975425}
-  gazeColoredHeatmap: {fileID: 0}
-  mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
-  edgeSize: 6
+  gazeAreaOneSide: 13
   centerPixel: {x: 0, y: 0}
 --- !u!114 &604770570
 MonoBehaviour:
@@ -945,13 +942,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comparedImage: {fileID: 8400000, guid: 56d919fcab5cb6d45acc72c595d3f627, type: 2}
   perPixel: 8
-  texture2D: {fileID: 0}
   gazeCoordReceiver: {fileID: 921975425}
-  gazeColoredHeatmap: {fileID: 821054548}
-  mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
-  edgeSize: 6
+  gazeAreaOneSide: 13
   centerPixel: {x: 0, y: 0}
 --- !u!1 &921975422
 GameObject:
@@ -1097,11 +1091,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1091300156 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2115893872}
 --- !u!1 &1117871094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1862,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1392968577}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e37f273092d62cb478724c4a429a2fc9, type: 3}
   m_Name: 

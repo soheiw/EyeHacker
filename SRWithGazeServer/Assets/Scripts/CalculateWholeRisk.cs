@@ -12,16 +12,16 @@ public class CalculateWholeRisk : MonoBehaviour
 
     public float originalThreshold;
     [SerializeField] float threshold;
+    public float wholeRisk;
 
     [Header ("Time")]
     public float realToPastTime = 2.0f;
     public float PastToRealTime = 2.0f;
 
-    public float wholeRisk;
     private bool playPastImage;
     private float time;
 
-    public GUIStyle textStyle;
+    // public GUIStyle textStyle;
 
     public bool adjustThreshold;
     private AdjustThresholdByHMDRotation adjust;
@@ -41,7 +41,7 @@ public class CalculateWholeRisk : MonoBehaviour
         // Debug.Log ((wholeRisk));
         if (adjustThreshold)
         {
-            if(adjust.magnitude > 1.0f)
+            if (adjust.magnitude > 1.0f)
             {
                 threshold = originalThreshold * adjust.magnitude;
             }
