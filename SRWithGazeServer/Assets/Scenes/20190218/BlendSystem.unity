@@ -325,7 +325,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 372954012}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &372954014
 Behaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ Transform:
   - {fileID: 1999407456}
   - {fileID: 2059236531}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &524589814 stripped
 Transform:
@@ -634,13 +634,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comparedImage: {fileID: 8400000, guid: 2f770736cb1f98d499f70d8661d55b21, type: 2}
   perPixel: 8
-  texture2D: {fileID: 0}
   gazeCoordReceiver: {fileID: 921975425}
-  gazeColoredHeatmap: {fileID: 0}
-  mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
-  edgeSize: 6
+  gazeAreaOneSide: 13
   centerPixel: {x: 0, y: 0}
 --- !u!114 &604770570
 MonoBehaviour:
@@ -725,7 +722,7 @@ Transform:
   m_Children:
   - {fileID: 1265300916}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &679268759
 GameObject:
@@ -915,7 +912,7 @@ Transform:
   m_Children:
   - {fileID: 679268760}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &821054554
 MonoBehaviour:
@@ -945,13 +942,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   comparedImage: {fileID: 8400000, guid: 56d919fcab5cb6d45acc72c595d3f627, type: 2}
   perPixel: 8
-  texture2D: {fileID: 0}
   gazeCoordReceiver: {fileID: 921975425}
-  gazeColoredHeatmap: {fileID: 821054548}
-  mask: {fileID: 1091300156}
   risk: 1
   fixPastHeatmap: 0
-  edgeSize: 6
+  gazeAreaOneSide: 13
   centerPixel: {x: 0, y: 0}
 --- !u!1 &921975422
 GameObject:
@@ -1095,13 +1089,8 @@ Transform:
   m_Children:
   - {fileID: 1757046809}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1091300156 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1510103393612940, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 2115893872}
 --- !u!1 &1117871094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1344,7 @@ Transform:
   m_Children:
   - {fileID: 235124297}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1201294508
 GameObject:
@@ -1443,7 +1432,7 @@ Transform:
   m_Children:
   - {fileID: 1117871095}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1265300915
 GameObject:
@@ -1639,48 +1628,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4805565214465792, guid: ae5a705d85a19cf45bea4aa9b25f13fd,
     type: 2}
   m_PrefabInternal: {fileID: 1270653863}
---- !u!1 &1308148523
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1308148525}
-  - component: {fileID: 1308148524}
-  m_Layer: 0
-  m_Name: CreateCSV
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1308148524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1308148523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37f273092d62cb478724c4a429a2fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  calculateWholeRisk: {fileID: 1392968579}
-  adjust: {fileID: 1392968580}
---- !u!4 &1308148525
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1308148523}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388280912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1734,7 @@ GameObject:
   - component: {fileID: 1392968578}
   - component: {fileID: 1392968579}
   - component: {fileID: 1392968580}
+  - component: {fileID: 1392968581}
   m_Layer: 0
   m_Name: CalculateWholeRisk
   m_TagString: Untagged
@@ -1908,6 +1856,17 @@ MonoBehaviour:
   magnitude: 0
   address: /server/direction
   sync: 1
+--- !u!114 &1392968581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1392968577}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37f273092d62cb478724c4a429a2fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1399060276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2677,7 +2636,7 @@ Transform:
   m_Children:
   - {fileID: 318130944}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2059959975
 MonoBehaviour:
@@ -2810,7 +2769,7 @@ Transform:
   m_Children:
   - {fileID: 1883264466}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2095728789
 MonoBehaviour:

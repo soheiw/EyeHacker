@@ -7,18 +7,18 @@ public class InspectActiveHeatMap : MonoBehaviour
     public RenderTexture comparedImage;
     public int perPixel = 8;
 
-    public Texture2D texture2D;
+    private Texture2D texture2D;
 
     public OSCGazeCoordReceiver gazeCoordReceiver;
-    public GameObject gazeColoredHeatmap;
 
-    public GameObject mask;
+    // public GameObject mask;
 
     public float risk;
 
     public bool fixPastHeatmap = false;
 
-    public int edgeSize = 0;
+    public int gazeAreaOneSide;
+    private int edgeSize;
     public Vector2Int centerPixel;
 
     // Use this for initialization
@@ -30,7 +30,9 @@ public class InspectActiveHeatMap : MonoBehaviour
             texture2D.filterMode = FilterMode.Point;
         }
         risk = 1.0f;
-        centerPixel = new Vector2Int(0,0);
+        centerPixel = new Vector2Int (0, 0);
+
+        edgeSize = (gazeAreaOneSide - 1) / 2;
     }
 
     // Update is called once per frame
@@ -47,16 +49,13 @@ public class InspectActiveHeatMap : MonoBehaviour
         if (!fixPastHeatmap)
         {
             StartCoroutine (ReadImage ());
-            centerPixel = new Vector2Int (159 - (int) hitPoint.x / perPixel, 89 - (int) hitPoint.y / perPixel);
-
-            gazeColoredHeatmap.GetComponent<Renderer> ().material.SetFloat("_GazeU", (float)centerPixel.x);
-            gazeColoredHeatmap.GetComponent<Renderer> ().material.SetFloat("_GazeV", (float)centerPixel.y);
+            centerPixel = new Vector2Int ((comparedImage.width - 1) - (int) hitPoint.x / perPixel, (comparedImage.height - 1) - (int) hitPoint.y / perPixel);
 
             for (int x = centerPixel.x - edgeSize; x <= centerPixel.x + edgeSize; x++)
             {
                 for (int y = centerPixel.y - edgeSize; y <= centerPixel.y + edgeSize; y++)
                 {
-                    if (x >= 0 && x <= 159 && y >= 0 && y <= 89)
+                    if (x >= 0 && x <= (comparedImage.width - 1) && y >= 0 && y <= (comparedImage.height - 1))
                     {
                         Color pixel = texture2D.GetPixel (x, y);
                         risk += (pixel.r + pixel.g + pixel.b) / 3.0f;
@@ -82,7 +81,7 @@ public class InspectActiveHeatMap : MonoBehaviour
         if (!fixPastHeatmap)
         {
             RenderTexture.active = comparedImage;
-            texture2D.ReadPixels (new Rect (0, 0, 160, 90), 0, 0);
+            texture2D.ReadPixels (new Rect (0, 0, comparedImage.width, comparedImage.height), 0, 0);
             texture2D.Apply ();
         }
     }
