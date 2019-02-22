@@ -43,8 +43,6 @@ public class SwitchMasksDependingOnRisk : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        bool gazeSomething = false;
-
         for (int i = 0; i < risks.Length; i++)
         {
             risks[i] = realtime.risk * realtime.risk + past[i].risk * past[i].risk;
