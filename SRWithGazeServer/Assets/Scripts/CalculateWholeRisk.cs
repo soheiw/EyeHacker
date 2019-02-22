@@ -115,8 +115,8 @@ public class CalculateWholeRisk : MonoBehaviour
         HMDImagePlayer.GetComponent<Renderer> ().material.SetFloat ("_mask", val);
     }
 
-    void OnGUI ()
-    {
-        GUI.Label (new Rect (50, 300, 50, 50), "Whole Risk: " + wholeRisk, textStyle);
-    }
+    // void OnGUI ()
+    // {
+    //     GUI.Label (new Rect (50, 300, 50, 50), "Whole Risk: " + wholeRisk, textStyle);
+    // }
 }
