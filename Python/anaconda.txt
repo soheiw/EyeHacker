@@ -1,4 +1,4 @@
-activate tensorflow
+activate sr
 
 cd desktop/srproject-eyetracking/python
 
