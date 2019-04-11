@@ -42,8 +42,8 @@ def main():
     spoutReceiverWidth = args.spout_size[0]
     spoutReceiverHeight = args.spout_size[1]
     per_pixel = args.pixel_ratio #GCD(720,1280) = 80の約数
-    spoutSenderWidth = int(spoutReceiverWidth / per_pixel) # min(spoutReceiverWidth,1280)
-    spoutSenderHeight = int(spoutReceiverHeight / per_pixel) # min(spoutReceiverHeight,720)
+    spoutSenderWidth = int(spoutReceiverWidth / per_pixel)
+    spoutSenderHeight = int(spoutReceiverHeight / per_pixel)
     display = (spoutSenderWidth,spoutSenderHeight)
 
     #fourcc = cv2.VideoWriter_fourcc('M','J','P','G')
@@ -122,12 +122,12 @@ def main():
         data = glGetTexImage(GL_TEXTURE_2D, 0, GL_RGB, GL_UNSIGNED_BYTE, outputType=None)  #Using GL_RGB can use GL_RGBA 
         
         # swap width and height data around due to oddness with glGetTextImage. http://permalink.gmane.org/gmane.comp.python.opengl.user/2423
-        data.shape = (data.shape[1], data.shape[0], data.shape[2]) #(720,1280,3)
+        data.shape = (data.shape[1], data.shape[0], data.shape[2]) #(720,1280,3)的な
         image = cv2.resize(data, (spoutReceiverWidth, spoutReceiverHeight))
-        if image.shape[0] > 720:
-                image = cv2.resize(image,(image.shape[1],720))
-        if image.shape[1] > 1280:
-            image = cv2.resize(image,(1280,image.shape[0])) 
+        # if image.shape[0] > 720:
+        #         image = cv2.resize(image,(image.shape[1],720))
+        # if image.shape[1] > 1280:
+        #     image = cv2.resize(image,(1280,image.shape[0])) 
 
         # setup window to draw to screen
         glActiveTexture(GL_TEXTURE0)
@@ -174,7 +174,7 @@ def main():
             show_movie = cv2.cvtColor(frame2_gray, cv2.COLOR_BGR2RGB)
             cv2.imshow('movie', show_movie)
 
-            flow = cv2.calcOpticalFlowFarneback(prvs,next, None, 0.5, 1, 15, 1, 5, 1.1, 0) #(720/per_pixel,1280/per_pixel,2)
+            flow = cv2.calcOpticalFlowFarneback(prvs,next, None, 0.5, 1, 15, 1, 5, 1.1, 0) #(height/per_pixel,width/per_pixel,2)
 
             mag, ang = cv2.cartToPolar(flow[...,0], flow[...,1])
             mag_normalized = cv2.normalize(mag,None,0,255,cv2.NORM_MINMAX)
