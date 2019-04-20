@@ -8,8 +8,6 @@ public class OSCSwitchGazeToHMD : MonoBehaviour
     private RayManager rayManager;
     private DetermineGazeByHMD determineGazeByHMD;
 
-    public string playerName;
-
     [SerializeField] private uOscServer server;
 
     // Use this for initialization
@@ -31,16 +29,18 @@ public class OSCSwitchGazeToHMD : MonoBehaviour
 
     void OnDataReceived (Message message)
     {
-        if (message.address == "/player/" + playerName + "/switchgaze")
+        if (message.address == "/player/switchgaze")
         {
-            var state = (float) message.values[0];
-            if (state != 0)
+            var state = message.values[0].ToString();
+            if (state != "0")
             {
+                if(!rayManager.enabled) return;
                 rayManager.enabled = false;
                 determineGazeByHMD.enabled = true;
             }
             else
             {
+                if(rayManager.enabled) return;
                 rayManager.enabled = true;
                 determineGazeByHMD.enabled = false;
             }
