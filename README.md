@@ -31,6 +31,8 @@
 
 * UnityでSRWithGazePlayerを，TouchDesignerでVideoServerをそれぞれ開く．
 
+![system.png](https://github.com/inamilab/EyeHacker/blob/develop/images/system.png)
+
 #### Server(TouchDesigner)
 
 * THETAを繋いでLiveモードで起動する．`RealtimeImage`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`DirectShow (WDM)`に，`Device`を`THETA UVC FullHD Blender`に設定する．
@@ -52,4 +54,4 @@
 * 右コントローラのタッチパッドを押すと，瞳孔キャリブレーション開始．
 * 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
 
-![TouchDesigner.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/TouchDesigner.png)
+![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
