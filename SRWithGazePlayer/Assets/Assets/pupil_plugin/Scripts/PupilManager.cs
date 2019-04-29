@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PupilManager : MonoBehaviour 
 {
@@ -79,7 +80,7 @@ public class PupilManager : MonoBehaviour
 
 	void ShowCalibrate()
 	{
-		calibrationText.text = "Press touchpad to start calibration.";
+		calibrationText.text = "Press 'c' or touchpad to start Calibration";
 	}
 
 	void OnCalibtaionStarted()

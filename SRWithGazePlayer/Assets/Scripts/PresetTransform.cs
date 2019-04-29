@@ -41,13 +41,6 @@ public class PresetTransform : MonoBehaviour
             presetPosition = leftController.transform.position;
             presetRotation = leftController.transform.rotation;
         }
-
-        // if (getControllerState.rightControllerTriggerPressUp)
-        // {
-        //     // FIXME: 結局controller自体を呼びに行くので冗長
-        //     presetTransform.position = rightController.transform.position;
-        //     presetTransform.rotation = rightController.transform.rotation;
-        // }
     }
 
     // void OnGUI ()

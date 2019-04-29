@@ -1,9 +1,0 @@
-activate tensorflow
-
-cd desktop/srproject-eyetracking/python
-
-python spoutOpticalFlow.py --receive_name RecordPlayer --send_name PastOpticalFlow
-python spoutOpticalFlow.py --receive_name ThetaEqCh1 --send_name RealtimeOpticalFlow
-
-python spoutBackgroundSubtractor.py --receive_name RecordPlayer --send_name PastOpticalFlow
-python spoutBackgroundSubtractor.py --receive_name ThetaEqCh1 --send_name RealtimeOpticalFlow
