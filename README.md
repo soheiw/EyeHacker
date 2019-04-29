@@ -29,22 +29,27 @@
 
 ### 使用方法
 
-* UnityでSRWithGazePlayerを，TouchDesignerでVideoServerをそれぞれ開く．さらにspoutOpticalFlowForTD.batかspoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
+* UnityでSRWithGazePlayerを，TouchDesignerでVideoServerをそれぞれ開く．
 
 #### Server(TouchDesigner)
 
-* THETAを繋いでLiveモードで起動する．
-* BlendSystem Sceneを起動する．
-![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
-![TouchDesigner.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/TouchDesigner.png)
+* THETAを繋いでLiveモードで起動する．`RealtimeImage`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`DirectShow (WDM)`に，`Device`を`THETA UVC FullHD Blender`に設定する．
+* spoutOpticalFlowForTD.batかspoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
 
-* `Play`ボタンで録画映像の再生・停止．
-* `Rec`ボタンで録画開始・終了．
-* `HMDdirection`ボタンで視線位置をPupilLabsのデータにするかHMDのdirectionに固定するかを決定．
+![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
+
+* 各`FileName`フィールドでファイル名の変更．
+* 各`Play`ボタンで録画映像の再生・停止．
+* 各`Rec`ボタンで録画開始・終了．
+* 各`Begin`，`End`スライダで映像のトリミング．
+* `BaseLine`や`RotFactor`，`Radius`スライダでWholeTiskやThresholdの計算式におけるパラメータが操作可能．
+* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
 
 #### Player(Unity)
 
 * Calibration Sceneから起動する．
 * Pupil Serviceを立ち上げる．
-* 右コントローラのタッチパッドを押すと瞳孔キャリブレーション開始．
-* 右コントローラのグリップを押すとrayの表示/非表示を切り替え．
+* 右コントローラのタッチパッドを押すと，瞳孔キャリブレーション開始．
+* 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
+
+![TouchDesigner.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/TouchDesigner.png)
