@@ -5,7 +5,10 @@
 2つの全天周動画，例えばリアルタイム映像と過去映像とを自動的に切り替えるシステム．
 
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
-![Blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Blend.png)
+
+![overview.png](https://github.com/inamilab/EyeHacker/blob/develop/images/overview.png)
+
+![blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/blend.png)
 
 ## How To Use
 
