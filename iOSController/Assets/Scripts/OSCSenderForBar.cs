@@ -11,8 +11,8 @@ public class OSCSenderForBar : MonoBehaviour
 
     public void OnValueChanged (float v)
     {
-        float baseline = 10 + v * 30;
-        Debug.Log ("Send" + address);
+        float baseline = Mathf.Lerp(10.0f, 200.0f, v);
+        Debug.Log (baseline);
         client.Send (address, baseline);
     }
 }
