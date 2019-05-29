@@ -9,6 +9,8 @@ public class OSCSenderForToggle : MonoBehaviour
     public uOscClient client;
     public string address;
 
+    public bool onToOff = true;
+
     public void OnToggleChanged (Toggle toggle)
     {
         if (toggle.isOn)
@@ -18,6 +20,8 @@ public class OSCSenderForToggle : MonoBehaviour
         }
         else
         {
+            if (!onToOff) return;
+            
             Debug.Log ("Send" + address);
             client.Send (address, 0);
         }
