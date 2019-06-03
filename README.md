@@ -49,12 +49,21 @@
 * 各`Begin`，`End`スライダで映像のトリミング．
 * `BaseLine`や`RotFactor`，`Radius`スライダでWholeTiskやThresholdの計算式におけるパラメータが操作可能．
 * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+* `Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
+  * `Manual`のときは，`ManualVideo`トグルで映像を選択．
+* `Method`トグルでアルゴリズムを選択
+
+#### Controller(iOS, optional)
+
+* UnityでiOSControllerをビルドしてiPhoneに移す．
+* iOSアプリ右上のフィールドでPC側のIPアドレスを指定する．
+* TouchDesignerの`IPOut`オペレータでiOS側のIPアドレスを指定する．
 
 #### Player(Unity)
 
 * Calibration Sceneから起動する．
 * Pupil Serviceを立ち上げる．
-* 右コントローラのタッチパッドを押すと，瞳孔キャリブレーション開始．
+* `c`キーを押すと，瞳孔キャリブレーション開始．
 * 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
 
 ![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
