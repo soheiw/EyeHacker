@@ -18,7 +18,7 @@ public class ChangeTransformByController : MonoBehaviour
         // TODO: Findを使わない実装
         getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
         leftController = GameObject.Find ("Controller (left)");
-        rightController = GameObject.Find ("Controller (right)");
+        // rightController = GameObject.Find ("Controller (right)");
 
         PresetTransform presetTransform = GameObject.Find ("PresetTransform").GetComponent<PresetTransform> ();
         if (presetTransform != null)
@@ -39,12 +39,12 @@ public class ChangeTransformByController : MonoBehaviour
             leftTarget.transform.rotation = leftController.transform.rotation;
         }
 
-        if (getControllerState.rightControllerTriggerPressUp)
-        {
-            if (!rightTarget) return;
-            // FIXME: 結局controller自体を呼びに行くので冗長
-            rightTarget.transform.position = rightController.transform.position;
-            rightTarget.transform.rotation = rightController.transform.rotation;
-        }
+        // if (getControllerState.rightControllerTriggerPressUp)
+        // {
+        //     if (!rightTarget) return;
+        //     // FIXME: 結局controller自体を呼びに行くので冗長
+        //     rightTarget.transform.position = rightController.transform.position;
+        //     rightTarget.transform.rotation = rightController.transform.rotation;
+        // }
     }
 }
