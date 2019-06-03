@@ -55,15 +55,17 @@
 
 #### Controller(iOS, optional)
 
+![iOSController.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/iOSController.png)
+
 * UnityでiOSControllerをビルドしてiPhoneに移す．
 * iOSアプリ右上のフィールドでPC側のIPアドレスを指定する．
 * TouchDesignerの`IPOut`オペレータでiOS側のIPアドレスを指定する．
 
 #### Player(Unity)
 
+![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
+
 * Calibration Sceneから起動する．
 * Pupil Serviceを立ち上げる．
 * `c`キーを押すと，瞳孔キャリブレーション開始．
 * 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
-
-![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
