@@ -5,7 +5,10 @@
 2つの全天周動画，例えばリアルタイム映像と過去映像とを自動的に切り替えるシステム．
 
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
-![Blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Blend.png)
+
+![overview.png](https://github.com/inamilab/EyeHacker/blob/develop/images/overview.png)
+
+![blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/blend.png)
 
 ## How To Use
 
@@ -46,12 +49,23 @@
 * 各`Begin`，`End`スライダで映像のトリミング．
 * `BaseLine`や`RotFactor`，`Radius`スライダでWholeTiskやThresholdの計算式におけるパラメータが操作可能．
 * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+* `Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
+  * `Manual`のときは，`ManualVideo`トグルで映像を選択．
+* `Method`トグルでアルゴリズムを選択
+
+#### Controller(iOS, optional)
+
+![iOSController.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/iOSController.png)
+
+* UnityでiOSControllerをビルドしてiPhoneに移す．
+* iOSアプリ右上のフィールドでPC側のIPアドレスを指定する．
+* TouchDesignerの`IPOut`オペレータでiOS側のIPアドレスを指定する．
 
 #### Player(Unity)
 
+![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
+
 * Calibration Sceneから起動する．
 * Pupil Serviceを立ち上げる．
-* 右コントローラのタッチパッドを押すと，瞳孔キャリブレーション開始．
+* `c`キーを押すと，瞳孔キャリブレーション開始．
 * 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
-
-![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
