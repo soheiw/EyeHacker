@@ -31,6 +31,7 @@ cv2.rectangle(img, top_left, bottom_right, (0, 0, 255), 3)
 
 cv2.startWindowThread()
 
+cv2.namedWindow('result',cv2.WINDOW_NORMAL)
 cv2.imshow('result', img)
 
 plt.show()
