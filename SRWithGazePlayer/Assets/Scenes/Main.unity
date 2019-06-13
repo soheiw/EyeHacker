@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f7dec0b00674947bc631624c21970a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameFilter: FromTouchDesigner
+  _sourceName: FromTouchDesigner
   _targetTexture: {fileID: 8400000, guid: ae84fc89224ac72489556af5c094e619, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
@@ -564,7 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9ffb0f74eb6354fa597e2080be8c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: Player1
   server: {fileID: 0}
 --- !u!1 &861605517
 GameObject:
