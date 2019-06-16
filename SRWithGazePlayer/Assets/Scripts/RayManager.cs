@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using uOSC;
 using UnityEngine;
 
 public class RayManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class RayManager : MonoBehaviour
     private LineRenderer heading;
     private List<MeshRenderer> gazeRenderers;
     private int intLayerRay;
-    private bool isRayOn;
+    // private bool isRayOn;
     private GameObject mainCamera;
 
     private Vector3 standardViewportPoint = new Vector3 (0.5f, 0.5f, 10); // default marker position
@@ -26,6 +27,8 @@ public class RayManager : MonoBehaviour
     public Vector2 textureSize = new Vector2 (1280.0f, 720.0f);
 
     private const float INF = 10000.0f;
+
+    [SerializeField] private uOscServer server;
 
     // public Material shaderMaterial;
 
@@ -73,7 +76,14 @@ public class RayManager : MonoBehaviour
         gazeRenderers.Add (gaze3DPoint.GetComponent<MeshRenderer> ());
 
         intLayerRay = LayerMask.NameToLayer ("Ray");
-        isRayOn = false;
+        // isRayOn = false;
+
+        // server = FindObjectOfType<uOscServer> ();
+        if (!server)
+        {
+            UnityEngine.Debug.Log ("OSCserver not set");
+        }
+        server.onDataReceived.AddListener (OnDataReceived);
 
         /* if (calibrationDemo.enabled)
         {
@@ -111,7 +121,7 @@ public class RayManager : MonoBehaviour
         //     monoColorMode = !monoColorMode;
 
         // bool isLeftGripped = getControllerState.leftControllerGripped;
-        bool isLeftGripped = getControllerState.leftControllerGripped;
+        // bool isLeftGripped = getControllerState.leftControllerGripped;
 
         // if (Input.GetKeyUp (KeyCode.G))
         // if (Input.GetKeyUp (KeyCode.G) || isLeftGripped)
@@ -121,28 +131,28 @@ public class RayManager : MonoBehaviour
         // }
 
         // if (Input.GetKeyUp (KeyCode.L))
-        if (Input.GetKeyUp (KeyCode.L) || isLeftGripped)
-        {
-            if (calibrationDemo.enabled)
-            {
-                /* heading.enabled = !heading.enabled;
-                for (int i = 0; i < gazeRenderers.Count; i++)
-                {
-                    bool isRendered = gazeRenderers[i].enabled;
-                    gazeRenderers[i].enabled = !isRendered;
-                } */
+        // if (Input.GetKeyUp (KeyCode.L) || isLeftGripped)
+        // {
+        //     if (calibrationDemo.enabled)
+        //     {
+        //         /* heading.enabled = !heading.enabled;
+        //         for (int i = 0; i < gazeRenderers.Count; i++)
+        //         {
+        //             bool isRendered = gazeRenderers[i].enabled;
+        //             gazeRenderers[i].enabled = !isRendered;
+        //         } */
 
-                if (isRayOn)
-                {
-                    mainCamera.GetComponent<Camera> ().cullingMask &= ~(1 << intLayerRay);
-                }
-                else
-                {
-                    mainCamera.GetComponent<Camera> ().cullingMask |= (1 << intLayerRay);
-                }
-                isRayOn = !isRayOn;
-            }
-        }
+        //         if (isRayOn)
+        //         {
+        //             mainCamera.GetComponent<Camera> ().cullingMask &= ~(1 << intLayerRay);
+        //         }
+        //         else
+        //         {
+        //             mainCamera.GetComponent<Camera> ().cullingMask |= (1 << intLayerRay);
+        //         }
+        //         isRayOn = !isRayOn;
+        //     }
+        // }
 
         Ray ray = sceneCamera.ViewportPointToRay (viewportPoint);
         RaycastHit hit;
@@ -166,6 +176,22 @@ public class RayManager : MonoBehaviour
         {
             heading.SetPosition (0, sceneCamera.transform.position - sceneCamera.transform.up); // 下方向にちょっとずらす
             heading.SetPosition (1, gazePosition);
+        }
+    }
+
+    void OnDataReceived (Message message)
+    {
+        if (message.address == "/player/viewray")
+        {
+            var state = message.values[0].ToString ();
+            if (state == "1")
+            {
+                mainCamera.GetComponent<Camera> ().cullingMask &= ~(1 << intLayerRay);
+            }
+            else
+            {
+                mainCamera.GetComponent<Camera> ().cullingMask |= (1 << intLayerRay);
+            }
         }
     }
 

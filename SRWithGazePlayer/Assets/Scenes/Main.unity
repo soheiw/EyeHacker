@@ -435,6 +435,7 @@ MonoBehaviour:
   gazePos: {fileID: 989818643}
   gazeCoord: {x: 0, y: 0}
   textureSize: {x: 1920, y: 960}
+  server: {fileID: 861605518}
 --- !u!114 &621358520
 MonoBehaviour:
   m_ObjectHideFlags: 0
