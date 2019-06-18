@@ -82,6 +82,7 @@ public class RayManager : MonoBehaviour
         if (!server)
         {
             UnityEngine.Debug.Log ("OSCserver not set");
+            return;
         }
         server.onDataReceived.AddListener (OnDataReceived);
 
