@@ -44,7 +44,7 @@ public class RayManager : MonoBehaviour
         heading = gameObject.GetComponent<LineRenderer> ();
 
         // TODO: Findを使わない実装
-        getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
+        // getControllerState = GameObject.Find ("[CameraRig]").GetComponent<GetControllerState> ();
 
         // TODO: tagで綺麗に取得
         mainCamera = GameObject.Find ("Main Camera");
