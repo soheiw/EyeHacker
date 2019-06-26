@@ -19,7 +19,7 @@ MonoBehaviour:
     IP: 127.0.0.1
     IPHeader: '>tcp://127.0.0.1:'
     PORT: 50020
-    subport: 53148
+    subport: 51615
     isLocal: 1
     confidenceThreshold: 0.6
     PupilVersion: 1.11.4
@@ -56,16 +56,16 @@ MonoBehaviour:
       samplesPerDepth: 120
     samplesToIgnoreForEyeMovement: 20
     rightEyeTranslation:
-    - -12.819349
+    - -15
     - 0
     - 0
     leftEyeTranslation:
-    - 12.81932
+    - -15
     - 0
     - 0
   customGUIVariables:
     tabs:
-      mainTab: 0
+      mainTab: 1
     bools:
       isAdvanced: 1
   currentCamera: {fileID: 0}

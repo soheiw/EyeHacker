@@ -24,7 +24,7 @@
 
 ### 使用アセット
 
-* [KlakSpout v0.1.2](https://github.com/keijiro/KlakSpout)
+* [KlakSpout v0.2.4](https://github.com/keijiro/KlakSpout)
 * [uOSC](https://github.com/hecomi/uOSC)
 * [warapuriさん作天球モデル](http://warapuri.com/post/131599525953/unity%E3%81%A8oculus%E3%81%A7360%E5%BA%A6%E3%83%91%E3%83%8E%E3%83%A9%E3%83%9E%E5%85%A8%E5%A4%A9%E5%91%A8%E5%8B%95%E7%94%BB%E3%82%92%E8%A6%8B%E3%82%8B%E6%96%B9%E6%B3%95%E7%84%A1%E6%96%99%E7%B7%A8)
 * [SteamVR v1.2.3](https://github.com/ValveSoftware/steamvr_unity_plugin/releases/tag/1.2.3)

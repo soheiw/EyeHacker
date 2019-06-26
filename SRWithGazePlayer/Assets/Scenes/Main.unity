@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f7dec0b00674947bc631624c21970a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameFilter: FromTouchDesigner
+  _sourceName: FromTouchDesigner
   _targetTexture: {fileID: 8400000, guid: ae84fc89224ac72489556af5c094e619, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
@@ -435,6 +435,7 @@ MonoBehaviour:
   gazePos: {fileID: 989818643}
   gazeCoord: {x: 0, y: 0}
   textureSize: {x: 1920, y: 960}
+  server: {fileID: 861605518}
 --- !u!114 &621358520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,8 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9ffb0f74eb6354fa597e2080be8c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: Player1
-  server: {fileID: 0}
+  server: {fileID: 861605518}
 --- !u!1 &861605517
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +780,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1991118634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1991118635}
+  - component: {fileID: 1991118636}
+  m_Layer: 0
+  m_Name: OSCRotReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1991118635
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991118634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1991118636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991118634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d447357218e20549a25d15b38b34263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  server: {fileID: 861605518}
+  sphere: {fileID: 356951474}
 --- !u!1 &2087366504
 GameObject:
   m_ObjectHideFlags: 0
