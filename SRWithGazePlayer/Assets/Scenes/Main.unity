@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sourceName: FromTouchDesigner
-  _targetTexture: {fileID: 8400000, guid: ae84fc89224ac72489556af5c094e619, type: 2}
+  _targetTexture: {fileID: 8400000, guid: 145c2c9bf8c134641b2c6b6f8c07b2a7, type: 2}
   _targetRenderer: {fileID: 0}
   _targetMaterialProperty: 
 --- !u!4 &374520772
@@ -434,7 +434,7 @@ MonoBehaviour:
   getControllerState: {fileID: 0}
   gazePos: {fileID: 989818643}
   gazeCoord: {x: 0, y: 0}
-  textureSize: {x: 1920, y: 960}
+  textureSize: {x: 3008, y: 1504}
   server: {fileID: 861605518}
 --- !u!114 &621358520
 MonoBehaviour:
@@ -553,7 +553,7 @@ MonoBehaviour:
   gazePos: {fileID: 989818643}
   gazePosition: {x: 0, y: 0, z: 0}
   gazeCoord: {x: 0, y: 0}
-  textureSize: {x: 1920, y: 960}
+  textureSize: {x: 3008, y: 1504}
 --- !u!114 &621358523
 MonoBehaviour:
   m_ObjectHideFlags: 0

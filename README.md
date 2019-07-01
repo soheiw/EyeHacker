@@ -16,9 +16,9 @@
 
 * Windows10 64bit
 * Unity 2018.1.6f1
-* HTC VIVE
+* HTC VIVE Pro
 * Pupil Labs
-* RICOH THETA S
+* Insta 360 Air
 * TouchDesigner 099 Educational 2018.27910
 * Python 3.5.6
 
@@ -38,20 +38,29 @@
 
 #### Server(TouchDesigner)
 
-* THETAを繋いでLiveモードで起動する．`RealtimeImage`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`DirectShow (WDM)`に，`Device`を`THETA UVC FullHD Blender`に設定する．
+* カメラを繋いでLiveモードで起動する．`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
 * spoutOpticalFlowForTD.batかspoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 
 * 各`FileName`フィールドでファイル名の変更．
+* 各`Begin`，`End`スライダで映像のトリミング．
+* 各`Roll`，`Pitch`，`Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
+* 各`Black`，`Gamma`フィールドで映像の明るさ調整．
+* `Threshold`スライダでThresholdの値調整．
+* `RotFactor`，`Radius`スライダでWholeTiskの計算におけるパラメータを操作．
+* `WaitingTime`スライダで待ち時間を調整．
+* `RewindSpeed`スライダで巻き戻りの速度を調整．
+* `Auto/Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
+  * `Manual`のときは，`PlayingBuffer`トグルで映像を選択．
+* `Auto switch is disabled`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
+* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
+* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
+* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+* `Method`トグルでアルゴリズムを選択．
 * 各`Play`ボタンで録画映像の再生・停止．
 * 各`Rec`ボタンで録画開始・終了．
-* 各`Begin`，`End`スライダで映像のトリミング．
-* `BaseLine`や`RotFactor`，`Radius`スライダでWholeTiskやThresholdの計算式におけるパラメータが操作可能．
-* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
-* `Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
-  * `Manual`のときは，`ManualVideo`トグルで映像を選択．
-* `Method`トグルでアルゴリズムを選択
+* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 
 #### Controller(iOS, optional)
 
@@ -67,5 +76,7 @@
 
 * Calibration Sceneから起動する．
 * Pupil Serviceを立ち上げる．
-* `c`キーを押すと，瞳孔キャリブレーション開始．
-* 右コントローラのグリップを押すと，体験者へのrayの表示/非表示を切り替え．
+* TouchDesignerの`Calibration`スイッチを押すと，瞳孔キャリブレーション開始．
+  * 正常にキャリブレーションが終わると，自動でMain Sceneに移り映像が提示される．
+  * キャリブレーションの精度が悪いとやり直しになる．もう一度`Calibration`スイッチを押す．
+* Main Scene移行後に`Calibration`スイッチを押すと，瞳孔キャリブレーション開始前の場面に戻る．さらに`Calibration`スイッチを押すと，再度瞳孔キャリブレーション開始．
