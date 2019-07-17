@@ -7,10 +7,8 @@
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
 
 ![overview.png](https://github.com/inamilab/EyeHacker/blob/develop/images/overview.png)
-**TODO：写真差し替え**
 
 ![blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/blend.png)
-**TODO：写真差し替え**
 
 ## How To Use
 
@@ -40,32 +38,35 @@
 #### Server(TouchDesigner)
 
 * カメラとマイクをPCに繋いで，マイクの電源を入れる．
-  * TouchDesignerのperform画面に`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
-  * **TODO:音に関する記述**
+  * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
+  * 音がこの時点で聞こえない場合は，編集画面で`audiodevout1`オペレータを探し，`Device`を`VIVE Pro`に指定し直す．また，`realtimeaudio`オペレータを探し，`Active`をOFF/ONしてみる．
 * spoutBackgroundSubstractorForTD.batを起動し，Pythonによる背景差分法を走らせる．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
-**TODO:写真差し替え**
 
 * 各`FileName`フィールドでファイル名の変更．
 * 各`Begin`，`End`スライダで映像のトリミング．
 * 各`Roll`，`Pitch`，`Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
 * 各`Black`，`Gamma`フィールドで映像の明るさ調整．
 * `Threshold`スライダでThresholdの値調整．
-* `RotFactor`，`Radius`スライダでWholeTiskの計算におけるパラメータを操作．
-* `WaitingTime`スライダで待ち時間を調整．
-* `RewindSpeed`スライダで巻き戻りの速度を調整．
 * `Auto/Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
   * `Manual`のときは，`PlayingBuffer`トグルで映像を選択．
 * `Auto switch is disabled`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
-* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
-* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
-* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
-* `Method`トグルでアルゴリズムを選択．
+* `WaitingTime`スライダで待ち時間を調整．
+* `RewindSpeed`スライダで巻き戻りの速度を調整．
+* `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
+  * 実際の切り替え時間は，HMDの回転速度を反映した`BlendTime`の値になる．
+* `RotFactor`，`RiskRadius`スライダでWholeRiskの計算におけるパラメータを操作．
+* `MaskRadius`スライダでMaskモード時のMaskの大きさを調整．
+* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 * 各`Play`ボタンで録画映像の再生・停止．
 * 各`Rec`ボタンで録画開始・終了．
-* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
-* **TODO:追記**
+* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
+* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
+* `All/Mask`トグルを`All`にすると映像全体を切り替え，`Mask`にすると注視領域のMask内外の映像を切り替え．
+  * `Mask`モード時は，再生中でないBufferの映像を変えることで，Mask外の映像を切り替え可能．
+* `Method`トグルでアルゴリズムを選択．
+* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
 
 #### Remote Controller(iOS, optional)
 
