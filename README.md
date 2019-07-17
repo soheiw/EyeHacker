@@ -2,7 +2,7 @@
 
 ## What is this?
 
-2つの全天周動画，例えばリアルタイム映像と過去映像とを自動的に切り替えるシステム．
+2つの全天周動画，例えばリアルタイム映像と過去映像とを，気づかれないタイミングを見計らって自動的に切り替えるシステム．
 
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
 
@@ -16,11 +16,12 @@
 
 * Windows10 64bit
 * Unity 2018.1.6f1
-* HTC VIVE Pro
-* Pupil Labs
-* Insta 360 Air
 * TouchDesigner 099 Educational 2018.27910
 * Python 3.5.6
+* HTC VIVE Pro
+* Pupil Labs
+* Insta360 Air
+* ZOOM H2n
 
 ### 使用アセット
 
@@ -32,14 +33,14 @@
 
 ### 使用方法
 
-* UnityでSRWithGazePlayerを，TouchDesignerでVideoServerをそれぞれ開く．
-
-![system.png](https://github.com/inamilab/EyeHacker/blob/develop/images/system.png)
+* TouchDesignerでVideoServerを，UnityでSRWithGazePlayerを起動．
 
 #### Server(TouchDesigner)
 
-* カメラを繋いでLiveモードで起動する．`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
-* spoutOpticalFlowForTD.batかspoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
+* カメラとマイクをPCに繋いで，マイクの電源を入れる．
+  * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
+  * 音がこの時点で聞こえない場合は，編集画面で`audiodevout1`オペレータを探し，`Device`を`VIVE Pro`に指定し直す．また，`realtimeaudio`オペレータを探し，`Active`をOFF/ONしてみる．
+* spoutBackgroundSubstractorForTD.batを起動し，Pythonによる背景差分法を走らせる．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 
@@ -48,27 +49,28 @@
 * 各`Roll`，`Pitch`，`Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
 * 各`Black`，`Gamma`フィールドで映像の明るさ調整．
 * `Threshold`スライダでThresholdの値調整．
-* `RotFactor`，`Radius`スライダでWholeTiskの計算におけるパラメータを操作．
-* `WaitingTime`スライダで待ち時間を調整．
-* `RewindSpeed`スライダで巻き戻りの速度を調整．
 * `Auto/Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
   * `Manual`のときは，`PlayingBuffer`トグルで映像を選択．
 * `Auto switch is disabled`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
-* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
-* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
-* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
-* `Method`トグルでアルゴリズムを選択．
+* `WaitingTime`スライダで待ち時間を調整．
+* `RewindSpeed`スライダで巻き戻りの速度を調整．
+* `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
+  * 実際の切り替え時間は，HMDの回転速度を反映した`BlendTime`の値になる．
+* `RotFactor`，`RiskRadius`スライダでWholeRiskの計算におけるパラメータを操作．
+* `MaskRadius`スライダでMaskモード時のMaskの大きさを調整．
+* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 * 各`Play`ボタンで録画映像の再生・停止．
 * 各`Rec`ボタンで録画開始・終了．
-* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
+* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
+* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
+* `All/Mask`トグルを`All`にすると映像全体を切り替え，`Mask`にすると注視領域のMask内外の映像を切り替え．
+  * `Mask`モード時は，再生中でないBufferの映像を変えることで，Mask外の映像を切り替え可能．
+* `Method`トグルでアルゴリズムを選択．
+* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
 
-#### Controller(iOS, optional)
+#### Remote Controller(iOS, optional)
 
-![iOSController.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/iOSController.png)
-
-* UnityでiOSControllerをビルドしてiPhoneに移す．
-* iOSアプリ右上のフィールドでPC側のIPアドレスを指定する．
-* TouchDesignerの`IPOut`オペレータでiOS側のIPアドレスを指定する．
+* [Chromeリモートデスクトップ](https://apps.apple.com/jp/app/chrome-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88-%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/id944025852)をPC/iOSの両方に入れ，同じアカウントで両方にログインする．PC画面を共有することで，iOS側からPC画面を直接操作する．
 
 #### Player(Unity)
 
