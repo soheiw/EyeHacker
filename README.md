@@ -2,7 +2,7 @@
 
 ## What is this?
 
-2つの全天周動画，例えばリアルタイム映像と過去映像とを自動的に切り替えるシステム．
+2つの全天周動画，例えばリアルタイム映像と過去映像とを，気づかれないタイミングを見計らって自動的に切り替えるシステム．
 
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
 
@@ -18,7 +18,8 @@
 * Unity 2018.1.6f1
 * HTC VIVE Pro
 * Pupil Labs
-* Insta 360 Air
+* Insta360 Air
+* ZOOM H2n
 * TouchDesigner 099 Educational 2018.27910
 * Python 3.5.6
 
@@ -38,8 +39,8 @@
 
 #### Server(TouchDesigner)
 
-* カメラを繋いでLiveモードで起動する．`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
-* spoutOpticalFlowForTD.batかspoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
+* カメラとマイクを繋いで，マイクの電源を入れる．TouchDesignerのperform画面に`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
+* spoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 
@@ -64,11 +65,7 @@
 
 #### Controller(iOS, optional)
 
-![iOSController.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/iOSController.png)
-
-* UnityでiOSControllerをビルドしてiPhoneに移す．
-* iOSアプリ右上のフィールドでPC側のIPアドレスを指定する．
-* TouchDesignerの`IPOut`オペレータでiOS側のIPアドレスを指定する．
+* [Chromeリモートデスクトップ](https://apps.apple.com/jp/app/chrome-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88-%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/id944025852)をPC/iOSの両方に入れ，同じアカウントで両方にログインする．PC画面を共有することで，iOS側からPC画面を直接操作する．
 
 #### Player(Unity)
 
