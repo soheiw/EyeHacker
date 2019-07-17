@@ -7,8 +7,10 @@
 全天周映像のどこを見ているのかという視線情報を取得し，その周辺における動画の動きの情報をもとに，動画を切り替えるか否かを決定する．
 
 ![overview.png](https://github.com/inamilab/EyeHacker/blob/develop/images/overview.png)
+**TODO：写真差し替え**
 
 ![blend.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/blend.png)
+**TODO：写真差し替え**
 
 ## How To Use
 
@@ -16,12 +18,12 @@
 
 * Windows10 64bit
 * Unity 2018.1.6f1
+* TouchDesigner 099 Educational 2018.27910
+* Python 3.5.6
 * HTC VIVE Pro
 * Pupil Labs
 * Insta360 Air
 * ZOOM H2n
-* TouchDesigner 099 Educational 2018.27910
-* Python 3.5.6
 
 ### 使用アセット
 
@@ -33,16 +35,17 @@
 
 ### 使用方法
 
-* UnityでSRWithGazePlayerを，TouchDesignerでVideoServerをそれぞれ開く．
-
-![system.png](https://github.com/inamilab/EyeHacker/blob/develop/images/system.png)
+* TouchDesignerでVideoServerを，UnityでSRWithGazePlayerを起動．
 
 #### Server(TouchDesigner)
 
-* カメラとマイクを繋いで，マイクの電源を入れる．TouchDesignerのperform画面に`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
-* spoutBackgroundSubstractorForTD.batを起動し，Pythonの画像処理を走らせる．
+* カメラとマイクをPCに繋いで，マイクの電源を入れる．
+  * TouchDesignerのperform画面に`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`と`Device`を適宜指定し直す．
+  * **TODO:音に関する記述**
+* spoutBackgroundSubstractorForTD.batを起動し，Pythonによる背景差分法を走らせる．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
+**TODO:写真差し替え**
 
 * 各`FileName`フィールドでファイル名の変更．
 * 各`Begin`，`End`スライダで映像のトリミング．
@@ -62,8 +65,9 @@
 * 各`Play`ボタンで録画映像の再生・停止．
 * 各`Rec`ボタンで録画開始・終了．
 * `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
+* **TODO:追記**
 
-#### Controller(iOS, optional)
+#### Remote Controller(iOS, optional)
 
 * [Chromeリモートデスクトップ](https://apps.apple.com/jp/app/chrome-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88-%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/id944025852)をPC/iOSの両方に入れ，同じアカウントで両方にログインする．PC画面を共有することで，iOS側からPC画面を直接操作する．
 
