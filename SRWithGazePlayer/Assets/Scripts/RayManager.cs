@@ -166,32 +166,14 @@ public class RayManager : MonoBehaviour
         if (Physics.Raycast (ray, out hit))
         {
             gazePosition = hit.point;
-
-            if (isFirstEyeTrack)
-            {
-                isFirstEyeTrack = false;
-                prevGazePosition = gazePosition;
-            }
-
-            if (Vector3.Distance (prevGazePosition, gazePosition) < gazeDistanceThr)
-            {
-                gazeCoord = hit.textureCoord;
-                gazeCoord.x *= textureSize.x;
-                gazeCoord.y *= textureSize.y;
-
-                prevGazePosition = gazePosition;
-            }
-            else
-            {
-                Debug.Log ("gaze movement: " + Vector3.Distance (prevGazePosition, gazePosition));
-                gazePosition = prevGazePosition;
-            }
+            gazeCoord = hit.textureCoord;
+            gazeCoord.x *= textureSize.x;
+            gazeCoord.y *= textureSize.y;
         }
         else
         {
             gazePosition = ray.origin + ray.direction * 50f;
             gazeCoord = new Vector2 (INF, INF);
-            Debug.Log ("raycast failed.");
         }
 
         gazePos.transform.position = gazePosition;
