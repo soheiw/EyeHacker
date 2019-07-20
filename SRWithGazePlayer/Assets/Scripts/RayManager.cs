@@ -26,9 +26,16 @@ public class RayManager : MonoBehaviour
 
     public GameObject gazePos;
     public Vector2 gazeCoord;
+    private Vector2 gazeCoordSum;
     public Vector2 textureSize = new Vector2 (1280.0f, 720.0f);
 
-    public float gazeDistanceThr = 100.0f;
+    public float gazeDistanceThr = 10.0f;
+    // distance ratio when gaze position is considered as stable
+    [Range (0, 1)] public float gazeDistanceRatio = 0.0f;
+    [Range (0, 1)] public float currentGazeCoordWeight = 0.5f;
+    // number of frames when gaze position is stable
+    private int nStablegazePosition;
+
     private bool isFirstEyeTrack;
     [SerializeField] private Vector3 prevGazePosition;
 
@@ -102,6 +109,7 @@ public class RayManager : MonoBehaviour
         } */
 
         isFirstEyeTrack = true;
+        gazeCoordSum = new Vector2 (0.0f, 0.0f);
     }
 
     void OnEnable ()
@@ -175,9 +183,25 @@ public class RayManager : MonoBehaviour
                 prevGazePosition = gazePosition;
             }
 
-            if (Vector3.Distance (prevGazePosition, gazePosition) < gazeDistanceThr)
+            float dist = Vector3.Distance (prevGazePosition, gazePosition);
+
+            if (dist < gazeDistanceThr)
             {
-                gazeCoord = hit.textureCoord;
+                if (dist < gazeDistanceRatio * gazeDistanceThr)
+                {
+                    // if gazeDistanceRation = 0, this block is never called.
+                    // low-pass filter about gazeCoord
+                    gazeCoord = (nStablegazePosition > 0) ? gazeCoordSum * (1.0f - currentGazeCoordWeight) + hit.textureCoord * currentGazeCoordWeight : hit.textureCoord;
+                    gazeCoordSum = gazeCoord;
+
+                    nStablegazePosition++;
+                }
+                else
+                {
+                    nStablegazePosition = 0;
+                    gazeCoord = hit.textureCoord;
+                    gazeCoordSum = new Vector2 (0.0f, 0.0f);
+                }
                 gazeCoord.x *= textureSize.x;
                 gazeCoord.y *= textureSize.y;
 
