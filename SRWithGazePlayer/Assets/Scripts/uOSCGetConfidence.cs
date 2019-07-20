@@ -22,7 +22,7 @@ public class uOSCGetConfidence : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        Debug.Log (setting.connection.confidenceThreshold);
+        // Debug.Log (setting.connection.confidenceThreshold);
     }
 
     void OnDataReceived (Message message)

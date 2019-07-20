@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gazePosition: {x: 0, y: 0, z: 0}
+  setting: {fileID: 11400000, guid: 19e52fef3bed37e4f9089d08d7c1773e, type: 2}
   getControllerState: {fileID: 0}
   gazePos: {fileID: 989818643}
   gazeCoord: {x: 0, y: 0}
