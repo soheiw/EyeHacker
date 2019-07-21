@@ -31,6 +31,9 @@ public class RayManager : MonoBehaviour
 
     public float gazeDistanceThr = 10.0f;
     // distance ratio when gaze position is considered as stable
+
+    public float xCoordThrRatio = 0.8f;
+
     [Range (0, 1)] public float gazeDistanceRatio = 0.0f;
     [Range (0, 1)] public float currentGazeCoordWeight = 0.5f;
     // number of frames when gaze position is stable
@@ -184,16 +187,25 @@ public class RayManager : MonoBehaviour
             }
 
             float dist = Vector3.Distance (prevGazePosition, gazePosition);
-
+            float xCoordThr = xCoordThrRatio * textureSize.x;
             if (dist < gazeDistanceThr)
             {
                 if (dist < gazeDistanceRatio * gazeDistanceThr)
                 {
                     // if gazeDistanceRation = 0, this block is never called.
                     // low-pass filter about gazeCoord
-                    gazeCoord = (nStablegazePosition > 0) ? gazeCoordSum * (1.0f - currentGazeCoordWeight) + hit.textureCoord * currentGazeCoordWeight : hit.textureCoord;
-                    gazeCoordSum = gazeCoord;
-
+                    float IshitGreaterSum = hit.textureCoord.x - gazeCoordSum.x;
+                    if( Mathf.Abs(IshitGreaterSum) < xCoordThr){
+                        gazeCoord = (nStablegazePosition > 0) ? gazeCoordSum * (1.0f - currentGazeCoordWeight) + hit.textureCoord * currentGazeCoordWeight : hit.textureCoord;
+                        gazeCoordSum = gazeCoord;
+                    }
+                    else{
+                        Vector2 Width = new Vector2(textureSize.x ,0.0f);
+                        gazeCoord = (nStablegazePosition > 0) ? (gazeCoordSum + (IshitGreaterSum < 0) * Width) * (1.0f - currentGazeCoordWeight) + (hit.textureCoord + (IshitGreaterSum > 0) * Width)* currentGazeCoordWeight : hit.textureCoord;
+                        gazeCoord = (gazeCoord.x > textureSize.x) ? (gazeCoord - Width) : (gazeCoord);
+                        gazeCoordSum = gazeCoord;
+                    }
+                    
                     nStablegazePosition++;
                 }
                 else
