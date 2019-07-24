@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Threading;
+using uOSC;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
@@ -37,6 +38,9 @@ public class PupilGazeTracker : MonoBehaviour
     }
 
     public string ProjectName;
+
+    [SerializeField] private uOscServer server;
+    private bool waitCalibration;
 
     #region delegates
 
@@ -76,6 +80,15 @@ public class PupilGazeTracker : MonoBehaviour
         var relativeLeftEyePosition = UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.LeftEye) - UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.CenterEye);
         PupilTools.Calibration.leftEyeTranslation = new float[] { relativeLeftEyePosition.z * PupilSettings.PupilUnitScalingFactor, 0, 0 };
 
+        // server = FindObjectOfType<uOscServer> ();
+        if (!server)
+        {
+            UnityEngine.Debug.Log ("OSCserver not set");
+        }
+        server.onDataReceived.AddListener (OnDataReceived);
+
+        waitCalibration = false;
+
 #if !UNITY_WSA
         RunConnect ();
 #endif
@@ -102,8 +115,10 @@ public class PupilGazeTracker : MonoBehaviour
         bool isLeftPressUp = getControllerState.leftControllerTouchpadPressUp;
 
         // if (PupilTools.IsConnected && Input.GetKeyUp (KeyCode.C))
-        if (PupilTools.IsConnected && (isLeftPressUp || Input.GetKeyUp (KeyCode.C)))
+        // if (PupilTools.IsConnected && (isLeftPressUp || Input.GetKeyUp (KeyCode.C)) || waitCalibration)
+        if (PupilTools.IsConnected && (Input.GetKeyUp (KeyCode.C)) || waitCalibration)
         {
+            waitCalibration = false;
             if (PupilTools.IsCalibrating)
             {
                 PupilTools.StopCalibration ();
@@ -236,4 +251,20 @@ public class PupilGazeTracker : MonoBehaviour
     }
 
     #endregion
+
+    void OnDataReceived (Message message)
+    {
+        if (message.address == "/player/startcalibration")
+        {
+            var state = message.values[0].ToString ();
+            if (state == "0")
+            {
+                waitCalibration = true;
+            }
+            else
+            {
+                UnityEngine.Debug.Log ("incorrect address");
+            }
+        }
+    }
 }

@@ -13,8 +13,11 @@ public class OSCSwitchGazeToHMD : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        server = FindObjectOfType<uOscServer> ();
-        if (!server) return;
+        if (!server)
+        {
+            UnityEngine.Debug.Log ("OSCserver not set");
+            return;
+        }
         server.onDataReceived.AddListener (OnDataReceived);
 
         rayManager = GetComponent<RayManager> ();
@@ -31,16 +34,16 @@ public class OSCSwitchGazeToHMD : MonoBehaviour
     {
         if (message.address == "/player/switchgaze")
         {
-            var state = message.values[0].ToString();
+            var state = message.values[0].ToString ();
             if (state != "0")
             {
-                if(!rayManager.enabled) return;
+                if (!rayManager.enabled) return;
                 rayManager.enabled = false;
                 determineGazeByHMD.enabled = true;
             }
             else
             {
-                if(rayManager.enabled) return;
+                if (rayManager.enabled) return;
                 rayManager.enabled = true;
                 determineGazeByHMD.enabled = false;
             }
