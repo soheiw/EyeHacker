@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// using System;
+using System.Collections;
 using System.Collections.Generic;
 using uOSC;
 using UnityEngine;
@@ -20,11 +21,27 @@ public class RayManager : MonoBehaviour
     private Vector2 gazePointRight;
     private Vector2 gazePointCenter;
 
+    public PupilSettings setting;
+
     [SerializeField] private GetControllerState getControllerState;
 
     public GameObject gazePos;
     public Vector2 gazeCoord;
+    // private Vector2 gazeCoordSum;
     public Vector2 textureSize = new Vector2 (1280.0f, 720.0f);
+
+    // public float gazeDistanceThr = 10.0f;
+    // distance ratio when gaze position is considered as stable
+
+    // public float xCoordThrRatio = 0.8f;
+
+    // [Range (0, 1)] public float gazeDistanceRatio = 0.0f;
+    // [Range (0, 1)] public float currentGazeCoordWeight = 0.5f;
+    // number of frames when gaze position is stable
+    // private int nStablegazePosition;
+
+    // private bool isFirstEyeTrack;
+    // [SerializeField] private Vector3 prevGazePosition;
 
     private const float INF = 10000.0f;
 
@@ -94,6 +111,9 @@ public class RayManager : MonoBehaviour
                 gazeRenderers[i].enabled = false;
             }
         } */
+
+        // isFirstEyeTrack = true;
+        // gazeCoordSum = new Vector2 (0.0f, 0.0f);
     }
 
     void OnEnable ()
@@ -160,6 +180,54 @@ public class RayManager : MonoBehaviour
         if (Physics.Raycast (ray, out hit))
         {
             gazePosition = hit.point;
+
+            // if (isFirstEyeTrack)
+            // {
+            //     isFirstEyeTrack = false;
+            //     prevGazePosition = gazePosition;
+            // }
+
+            // float dist = Vector3.Distance (prevGazePosition, gazePosition);
+            // float xCoordThr = xCoordThrRatio * textureSize.x;
+            // if (dist < gazeDistanceThr)
+            // {
+            //     if (dist < gazeDistanceRatio * gazeDistanceThr)
+            //     {
+            //         // if gazeDistanceRation = 0, this block is never called.
+            //         // low-pass filter about gazeCoord
+            //         float hitGreaterSum = hit.textureCoord.x - gazeCoordSum.x; 
+            //         if (Mathf.Abs (hitGreaterSum) < xCoordThr)
+            //         {
+            //             gazeCoord = (nStablegazePosition > 0) ? gazeCoordSum * (1.0f - currentGazeCoordWeight) + hit.textureCoord * currentGazeCoordWeight : hit.textureCoord;
+            //             gazeCoordSum = gazeCoord;
+            //         }
+            //         else
+            //         {
+            //             Vector2 Width = new Vector2 (textureSize.x, 0.0f);
+            //             gazeCoord = (nStablegazePosition > 0) ? (gazeCoordSum + Convert.ToInt32 ((hitGreaterSum > 0)) * Width) * (1.0f - currentGazeCoordWeight) + (hit.textureCoord + Convert.ToInt32 ((hitGreaterSum < 0)) * Width) * currentGazeCoordWeight : hit.textureCoord;
+            //             gazeCoord = (gazeCoord.x > textureSize.x) ? (gazeCoord - Width) : (gazeCoord);
+            //             gazeCoordSum = gazeCoord;
+            //         }
+
+            //         nStablegazePosition++;
+            //     }
+            //     else
+            //     {
+            //         nStablegazePosition = 0;
+            //         gazeCoord = hit.textureCoord;
+            //         gazeCoordSum = new Vector2 (0.0f, 0.0f);
+            //     }
+            //     gazeCoord.x *= textureSize.x;
+            //     gazeCoord.y *= textureSize.y;
+
+            //     prevGazePosition = gazePosition;
+            // }
+            // else
+            // {
+            //     Debug.Log ("gaze movement: " + Vector3.Distance (prevGazePosition, gazePosition) + ", Threshold: " + setting.connection.confidenceThreshold);
+            //     gazePosition = prevGazePosition;
+            // }
+
             gazeCoord = hit.textureCoord;
             gazeCoord.x *= textureSize.x;
             gazeCoord.y *= textureSize.y;
@@ -168,6 +236,7 @@ public class RayManager : MonoBehaviour
         {
             gazePosition = ray.origin + ray.direction * 50f;
             gazeCoord = new Vector2 (INF, INF);
+            Debug.Log ("raycast failed.");
         }
 
         gazePos.transform.position = gazePosition;
