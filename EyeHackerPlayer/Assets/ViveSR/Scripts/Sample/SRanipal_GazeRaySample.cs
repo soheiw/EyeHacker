@@ -10,7 +10,7 @@ namespace ViveSR
         {
             public class SRanipal_GazeRaySample : MonoBehaviour
             {
-                public Vector2 textureSize = new Vector2 (3008.0f, 1504.0f);
+                // public Vector2 textureSize = new Vector2 (3008.0f, 1504.0f);
                 private Vector3 gazePosition;
                 public Vector2 gazeCoord;
 
@@ -44,14 +44,15 @@ namespace ViveSR
                     {
                         gazePosition = hit.point;
                         gazeCoord = hit.textureCoord;
-                        gazeCoord.x *= textureSize.x;
-                        gazeCoord.y *= textureSize.y;
+                        // gazeCoord.x *= textureSize.x;
+                        // gazeCoord.y *= textureSize.y;
                         Debug.Log ("gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
                     }
                     else
                     {
                         gazePosition = Camera.main.transform.position + GazeDirectionCombined * 50.0f;
-                        gazeCoord = new Vector2 (textureSize.x * 0.5f, textureSize.y * 0.5f);
+                        // gazeCoord = new Vector2 (textureSize.x * 0.5f, textureSize.y * 0.5f);
+                        gazeCoord = new Vector2 (0.5f, 0.5f);
                         Debug.Log ("raycast failed.");
                     }
 
