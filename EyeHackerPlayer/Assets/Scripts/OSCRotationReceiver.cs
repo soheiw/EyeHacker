@@ -26,7 +26,7 @@ public class OSCRotationReceiver : MonoBehaviour
             float r = System.Convert.ToSingle (message.values[0]);
             float p = System.Convert.ToSingle (message.values[1]);
             float y = System.Convert.ToSingle (message.values[2]);
-            sphere.transform.rotation = Quaternion.Euler (p, y, r);
+            sphere.transform.rotation = Quaternion.Euler (r, y, p);
         }
     }
 }
