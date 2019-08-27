@@ -538,7 +538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912a79107363c8247ade03be0c501912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textureSize: {x: 3008, y: 1504}
   gazeCoord: {x: 0, y: 0}
   LengthOfRay: 25
   GazeRayRenderer: {fileID: 396771081}
@@ -744,7 +743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1154914629
 RectTransform:
   m_ObjectHideFlags: 0
