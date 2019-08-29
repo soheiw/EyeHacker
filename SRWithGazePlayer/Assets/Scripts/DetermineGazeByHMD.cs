@@ -32,13 +32,13 @@ public class DetermineGazeByHMD : MonoBehaviour
         {
             gazePosition = hit.point;
             gazeCoord = hit.textureCoord;
-            gazeCoord.x *= textureSize.x;
-            gazeCoord.y *= textureSize.y;
+            // gazeCoord.x *= textureSize.x;
+            // gazeCoord.y *= textureSize.y;
         }
         else
         {
             gazePosition = ray.origin + ray.direction * 50f;
-            gazeCoord = new Vector2 (INF, INF);
+            gazeCoord = new Vector2 (0.5f, 0.5f);
         }
         gazePos.transform.position = gazePosition;
         gazePos.transform.rotation = Quaternion.Euler (hit.normal);
