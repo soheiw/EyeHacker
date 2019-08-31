@@ -6,7 +6,16 @@ using UnityEngine.UI;
 
 public class OSCExperimentSegmentController : MonoBehaviour
 {
+    public GameObject canvas;
+    public GameObject slider;
     public Text text;
+
+    public GameObject sphere;
+    public Material fromTD;
+    public Material black;
+
+    public GameObject startPoint;
+
     [SerializeField] private uOscServer server;
 
     // Start is called before the first frame update
@@ -28,17 +37,56 @@ public class OSCExperimentSegmentController : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    text.text = "No." + message.values[1].ToString ();
+                    sphere.GetComponent<Renderer> ().material = black;
+                    canvas.SetActive (true);
+                    slider.SetActive (false);
+                    text.text = "Ready: No." + message.values[1].ToString ();
                     break;
                 case 1:
-                    text.text = message.values[1].ToString ();
+                    string direction = message.values[1].ToString ();
+                    if (direction != "CENTER")
+                    {
+                        string sentence = "";
+                        switch (direction)
+                        {
+                            case "LEFT":
+                                sentence = "左を";
+                                break;
+                            case "RIGHT":
+                                sentence = "右を";
+                                break;
+                            case "UP":
+                                sentence = "上を";
+                                break;
+                            case "DOWN":
+                                sentence = "下を";
+                                break;
+                            default:
+                                Debug.Log ("Undefined phrase.");
+                                break;
+                        }
+                        text.text = "ゆっくり\n" + sentence + "\n向いてください．";
+                    }
+                    else
+                    {
+                        text.text = "\n中央を\n向き続けてください．";
+                    }
                     break;
                 case 2:
+                    sphere.GetComponent<Renderer> ().material = fromTD;
                     text.text = "";
+                    startPoint.SetActive (true);
+                    canvas.SetActive (false);
                     break;
                 case 3:
+                    startPoint.SetActive (false);
                     break;
                 case 4:
+                    sphere.GetComponent<Renderer> ().material = black;
+                    canvas.SetActive (true);
+                    slider.SetActive (true);
+                    slider.GetComponent<Slider> ().value = 4;
+                    text.text = "select confidence\nwith your controller button.";
                     break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
