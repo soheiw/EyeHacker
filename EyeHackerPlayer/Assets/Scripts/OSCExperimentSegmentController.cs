@@ -16,6 +16,9 @@ public class OSCExperimentSegmentController : MonoBehaviour
 
     public GameObject startPoint;
 
+    public GameObject alphaObject;
+    public OSCAlphaReceiver alphaReceiver;
+
     [SerializeField] private uOscServer server;
 
     // Start is called before the first frame update
@@ -40,6 +43,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     sphere.GetComponent<Renderer> ().material = black;
                     canvas.SetActive (true);
                     slider.SetActive (false);
+                    alphaObject.SetActive (false);
                     text.text = "Ready: No." + message.values[1].ToString ();
                     break;
                 case 1:
@@ -94,6 +98,13 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     startPoint.SetActive (true);
                     startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
                     canvas.SetActive (false);
+
+                    alphaObject.SetActive (true);
+                    for (int i = 0; i < alphaReceiver.alphas.Length; i++)
+                    {
+                        alphaReceiver.alphas[i] = 0.0f;
+                        alphaReceiver.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaReceiver.color.r, alphaReceiver.color.g, alphaReceiver.color.b, 0.0f);
+                    }
                     break;
                 case 3:
                     startPoint.SetActive (false);
@@ -104,6 +115,8 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     slider.SetActive (true);
                     slider.GetComponent<Slider> ().value = 4;
                     text.text = "変化の有無を選んだときの\n確信度をタッチパッドの\n左右を押して選択してください．";
+
+                    alphaObject.SetActive (false);
                     break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
