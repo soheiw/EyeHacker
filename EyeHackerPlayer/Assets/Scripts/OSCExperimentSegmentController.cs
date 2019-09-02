@@ -44,28 +44,44 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     break;
                 case 1:
                     string direction = message.values[1].ToString ();
+                    string speed = message.values[2].ToString ();
                     if (direction != "CENTER")
                     {
-                        string sentence = "";
-                        switch (direction)
+                        string sentence1 = "";
+                        string sentence2 = "";
+
+                        switch (speed)
                         {
-                            case "LEFT":
-                                sentence = "左を";
+                            case "FAST":
+                                sentence1 = "素早く";
                                 break;
-                            case "RIGHT":
-                                sentence = "右を";
-                                break;
-                            case "UP":
-                                sentence = "上を";
-                                break;
-                            case "DOWN":
-                                sentence = "下を";
+                            case "SLOW":
+                                sentence1 = "ゆっくり";
                                 break;
                             default:
                                 Debug.Log ("Undefined phrase.");
                                 break;
                         }
-                        text.text = "+が消えたら\nゆっくり" + sentence + "\n向いてください．\n変化が起きたらトリガーを\n引いてください．";
+
+                        switch (direction)
+                        {
+                            case "LEFT":
+                                sentence2 = "左を";
+                                break;
+                            case "RIGHT":
+                                sentence2 = "右を";
+                                break;
+                            case "UP":
+                                sentence2 = "上を";
+                                break;
+                            case "DOWN":
+                                sentence2 = "下を";
+                                break;
+                            default:
+                                Debug.Log ("Undefined phrase.");
+                                break;
+                        }
+                        text.text = "+が消えたら\n" + sentence1 + sentence2 + "\n向いてください．\n変化が起きたらトリガーを\n引いてください．";
                     }
                     else
                     {
@@ -87,7 +103,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     canvas.SetActive (true);
                     slider.SetActive (true);
                     slider.GetComponent<Slider> ().value = 4;
-                    text.text = "変化が起きたかどうかの\n確信度をタッチパッドの\n左右を押して選択してください．";
+                    text.text = "変化の有無を選んだときの\n確信度をタッチパッドの\n左右を押して選択してください．";
                     break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
