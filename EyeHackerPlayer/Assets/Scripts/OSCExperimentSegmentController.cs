@@ -65,17 +65,18 @@ public class OSCExperimentSegmentController : MonoBehaviour
                                 Debug.Log ("Undefined phrase.");
                                 break;
                         }
-                        text.text = "ゆっくり\n" + sentence + "\n向いてください．";
+                        text.text = "+が消えたら\nゆっくり" + sentence + "\n向いてください．\n変化が起きたらトリガーを\n引いてください．";
                     }
                     else
                     {
-                        text.text = "\n中央を\n向き続けてください．";
+                        text.text = "\n中央を\n向き続けてください．\n変化が起きたらトリガーを\n引いてください．";
                     }
                     break;
                 case 2:
                     sphere.GetComponent<Renderer> ().material = fromTD;
                     text.text = "";
                     startPoint.SetActive (true);
+                    startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
                     canvas.SetActive (false);
                     break;
                 case 3:
@@ -86,7 +87,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     canvas.SetActive (true);
                     slider.SetActive (true);
                     slider.GetComponent<Slider> ().value = 4;
-                    text.text = "select confidence\nwith your controller button.";
+                    text.text = "変化が起きたかどうかの\n確信度をタッチパッドの\n左右を押して選択してください．";
                     break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
