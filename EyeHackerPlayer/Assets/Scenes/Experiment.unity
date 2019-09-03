@@ -3727,7 +3727,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1388388547}
-  - component: {fileID: 1388388546}
   m_Layer: 0
   m_Name: StaticObjects
   m_TagString: Untagged
@@ -3735,42 +3734,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1388388546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388388545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d4af7a6ed6a5284b9631c9771fba416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spheres:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  alphas:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  color:
-    r: 0
-    g: 0.64705884
-    b: 1
-    a: 1
-  server: {fileID: 2023127267}
 --- !u!4 &1388388547
 Transform:
   m_ObjectHideFlags: 0
