@@ -18,6 +18,8 @@ public class OSCExperimentSegmentController : MonoBehaviour
     public GameObject alphaObject;
     public OSCAlphaReceiver alphaReceiver;
 
+    public GameObject[] arrows;
+
     [SerializeField] private uOscServer server;
 
     // Start is called before the first frame update
@@ -49,6 +51,12 @@ public class OSCExperimentSegmentController : MonoBehaviour
                 case 1:
                     string direction = message.values[1].ToString ();
                     string speed = message.values[2].ToString ();
+
+                    for (int i = 0; i < arrows.Length; i++)
+                    {
+                        arrows[i].SetActive (true);
+                    }
+
                     if (direction != "CENTER")
                     {
                         string sentence1 = "";
@@ -61,6 +69,11 @@ public class OSCExperimentSegmentController : MonoBehaviour
                                 break;
                             case "SLOW":
                                 sentence1 = "ゆっくり";
+                                for (int i = 0; i < arrows.Length; i++)
+                                {
+                                    if (i == 0) continue;
+                                    arrows[i].SetActive (false);
+                                }
                                 break;
                             default:
                                 Debug.Log ("Undefined phrase.");
@@ -71,24 +84,52 @@ public class OSCExperimentSegmentController : MonoBehaviour
                         {
                             case "LEFT":
                                 sentence2 = "左を";
+                                for (int i = 0; i < arrows.Length; i++)
+                                {
+                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                                    rot.z = 180.0f;
+                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
+                                }
                                 break;
                             case "RIGHT":
                                 sentence2 = "右を";
+                                for (int i = 0; i < arrows.Length; i++)
+                                {
+                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                                    rot.z = 0.0f;
+                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
+                                }
                                 break;
                             case "UP":
                                 sentence2 = "上を";
+                                for (int i = 0; i < arrows.Length; i++)
+                                {
+                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                                    rot.z = 90.0f;
+                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
+                                }
                                 break;
                             case "DOWN":
                                 sentence2 = "下を";
+                                for (int i = 0; i < arrows.Length; i++)
+                                {
+                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                                    rot.z = 270.0f;
+                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
+                                }
                                 break;
                             default:
                                 Debug.Log ("Undefined phrase.");
                                 break;
                         }
-                        text.text = "+が消えたら\n" + sentence1 + sentence2 + "\n向いてください．\n変化が起きたらトリガーを\n引いてください．";
+                        text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\n変化が起きたらトリガーを\n引いてください．";
                     }
                     else
                     {
+                        for (int i = 0; i < arrows.Length; i++)
+                        {
+                            arrows[i].SetActive (false);
+                        }
                         text.text = "\n中央を\n向き続けてください．\n変化が起きたらトリガーを\n引いてください．";
                     }
                     break;
@@ -98,6 +139,10 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     text.text = "";
                     startPoint.SetActive (true);
                     startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
+                    for (int i = 0; i < arrows.Length; i++)
+                    {
+                        arrows[i].SetActive (false);
+                    }
                     canvas.SetActive (false);
 
                     alphaObject.SetActive (true);
