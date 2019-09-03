@@ -11,8 +11,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
     public Text text;
 
     public GameObject sphere;
-    public Material fromTD;
-    public Material black;
+    public GameObject room;
 
     public GameObject startPoint;
 
@@ -40,7 +39,8 @@ public class OSCExperimentSegmentController : MonoBehaviour
             switch (number)
             {
                 case 0:
-                    sphere.GetComponent<Renderer> ().material = black;
+                    sphere.SetActive (true);
+                    room.SetActive (false);
                     canvas.SetActive (true);
                     slider.SetActive (false);
                     alphaObject.SetActive (false);
@@ -93,7 +93,8 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     }
                     break;
                 case 2:
-                    sphere.GetComponent<Renderer> ().material = fromTD;
+                    sphere.SetActive (false);
+                    room.SetActive (true);
                     text.text = "";
                     startPoint.SetActive (true);
                     startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
@@ -110,7 +111,8 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     startPoint.SetActive (false);
                     break;
                 case 4:
-                    sphere.GetComponent<Renderer> ().material = black;
+                    sphere.SetActive (true);
+                    room.SetActive (false);
                     canvas.SetActive (true);
                     slider.SetActive (true);
                     slider.GetComponent<Slider> ().value = 4;
