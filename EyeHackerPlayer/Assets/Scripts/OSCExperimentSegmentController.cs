@@ -16,7 +16,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
     public GameObject startPoint;
 
     public GameObject alphaObject;
-    public OSCAlphaReceiver alphaReceiver;
+    public OSCAlphaModifier alphaModifier;
 
     public GameObject[] arrows;
 
@@ -71,8 +71,10 @@ public class OSCExperimentSegmentController : MonoBehaviour
                                 sentence1 = "ゆっくり";
                                 for (int i = 0; i < arrows.Length; i++)
                                 {
-                                    if (i == 0) continue;
-                                    arrows[i].SetActive (false);
+                                    if (i != 0)
+                                    {
+                                        arrows[i].SetActive (false);
+                                    }
                                 }
                                 break;
                             default:
@@ -146,10 +148,10 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     canvas.SetActive (false);
 
                     alphaObject.SetActive (true);
-                    for (int i = 0; i < alphaReceiver.alphas.Length; i++)
+                    for (int i = 0; i < alphaModifier.spheres.Length; i++)
                     {
-                        alphaReceiver.alphas[i] = 0.0f;
-                        alphaReceiver.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaReceiver.color.r, alphaReceiver.color.g, alphaReceiver.color.b, 0.0f);
+                        alphaModifier.alphas[i] = 0.0f;
+                        alphaModifier.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaModifier.color.r, alphaModifier.color.g, alphaModifier.color.b, 0.0f);
                     }
                     break;
                 case 3:

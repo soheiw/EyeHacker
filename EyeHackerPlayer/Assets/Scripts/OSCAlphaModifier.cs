@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using uOSC;
 using UnityEngine;
 
-public class OSCAlphaReceiver : MonoBehaviour
+public class OSCAlphaModifier : MonoBehaviour
 {
     public GameObject[] spheres;
     public float[] alphas;
@@ -14,7 +14,6 @@ public class OSCAlphaReceiver : MonoBehaviour
     // Start is called before the first frame update
     void Start ()
     {
-        alphas = new float[spheres.Length];
         for (int i = 0; i < spheres.Length; i++)
         {
             alphas[i] = 0.0f;
@@ -34,8 +33,9 @@ public class OSCAlphaReceiver : MonoBehaviour
         {
             int num = System.Convert.ToInt32 (message.values[1]) - 1;
             if (num == -1) return;
-            alphas[num] = System.Convert.ToSingle (message.values[0]);
-            spheres[num].GetComponent<Renderer> ().material.color = new Vector4 (color.r, color.g, color.b, alphas[num]);
+            float val = System.Convert.ToSingle (message.values[0]);
+            alphas[num] = val;
+            spheres[num].GetComponent<Renderer> ().material.color = new Vector4 (color.r, color.g, color.b, val);
         }
     }
 }
