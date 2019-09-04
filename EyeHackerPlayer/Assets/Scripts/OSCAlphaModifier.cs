@@ -76,10 +76,14 @@ public class OSCAlphaModifier : MonoBehaviour
                 }
                 isSelected = true;
             }
-            // int num = System.Convert.ToInt32 (message.values[1]) - 1;
-            // if (num == -1) return;
             float val = System.Convert.ToSingle (message.values[0]);
             // alphas[num] = val;
+            int num = System.Convert.ToInt32 (message.values[1]) - 1;
+            if (num == -1)
+            {
+                selectedBall = null;
+                return;
+            }
             selectedBall.GetComponent<Renderer> ().material.color = new Vector4 (color.r, color.g, color.b, val);
         }
     }

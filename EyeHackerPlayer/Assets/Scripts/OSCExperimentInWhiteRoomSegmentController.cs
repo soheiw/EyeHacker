@@ -28,6 +28,8 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
 
     [SerializeField] private uOscServer server;
 
+    public OSCBallInfoSender infoSender;
+
     // Start is called before the first frame update
     void Start ()
     {
@@ -239,6 +241,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     text.text = "変化があったかどうか\nタッチパッドの左右で選択し\nトリガーで決定してください．";
 
                     alphaObject.SetActive (false);
+                    infoSender.SendInfo ();
                     break;
                 case 5:
                     slider.SetActive (true);
