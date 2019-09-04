@@ -23,7 +23,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
 
     public GameObject[] arrows;
 
-    public Transform staticBallsRoot;
+    // public Transform staticBallsRoot;
     public GameObject ballPrefab;
 
     [SerializeField] private uOscServer server;
@@ -145,39 +145,6 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                 case 2:
                     sphere.SetActive (false);
                     room.SetActive (true);
-
-                    for (int i = 0; i < 30; i++)
-                    {
-                        Vector3 ballPos = Random.onUnitSphere * 9.0f;
-                        // if (i < 10)
-                        // {
-                        //     while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
-                        //     {
-                        //         ballPos = Random.onUnitSphere * 9.0f;
-                        //     }
-                        // }
-                        // else if (i < 20)
-                        // {
-                        //     while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
-                        //     {
-                        //         ballPos = Random.onUnitSphere * 9.0f;
-                        //     }
-                        // }
-                        // else
-                        // {
-                        //     while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 4.0f) || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
-                        //     {
-                        //         ballPos = Random.onUnitSphere * 9.0f;
-                        //     }
-                        // }
-                        while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f))
-                        {
-                            ballPos = Random.onUnitSphere * 9.0f;
-                        }
-                        GameObject obj = (GameObject) Instantiate (ballPrefab, ballPos, Quaternion.identity);
-                        obj.transform.parent = staticBallsRoot;
-                    }
-
                     text.text = "";
                     startPoint.SetActive (true);
                     startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
@@ -234,13 +201,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     break;
                 case 4:
                     sphere.SetActive (true);
-
-                    foreach (Transform child in staticBallsRoot)
-                    {
-                        Destroy (child.gameObject);
-                    }
                     room.SetActive (false);
-
                     canvas.SetActive (true);
                     buttons.SetActive (true);
                     yes.image.color = Color.gray;
