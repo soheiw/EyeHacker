@@ -146,10 +146,31 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     sphere.SetActive (false);
                     room.SetActive (true);
 
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 18; i++)
                     {
                         Vector3 ballPos = Random.onUnitSphere * 9.0f;
-                        while (ballPos.z < 1.0f || ballPos.y > 1.0f || ballPos.y < -1.0f)
+                        // if (i < 6)
+                        // {
+                        //     while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
+                        //     {
+                        //         ballPos = Random.onUnitSphere * 9.0f;
+                        //     }
+                        // }
+                        // else if (i < 12)
+                        // {
+                        //     while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
+                        //     {
+                        //         ballPos = Random.onUnitSphere * 9.0f;
+                        //     }
+                        // }
+                        // else
+                        // {
+                        //     while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 4.0f) || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
+                        //     {
+                        //         ballPos = Random.onUnitSphere * 9.0f;
+                        //     }
+                        // }
+                        while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f))
                         {
                             ballPos = Random.onUnitSphere * 9.0f;
                         }
@@ -178,7 +199,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                             // left
                             case 0:
                             case 1:
-                                while (ballPos.z < 1.0f || ballPos.y > 1.0f || ballPos.y < -1.0f || ballPos.x > -2.0f)
+                                while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
                                 {
                                     ballPos = Random.onUnitSphere * 9.0f;
                                 }
@@ -187,7 +208,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                                 // right
                             case 2:
                             case 3:
-                                while (ballPos.z < 1.0f || ballPos.y > 1.0f || ballPos.y < -1.0f || ballPos.x < 2.0f)
+                                while (ballPos.z < 0.0f || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
                                 {
                                     ballPos = Random.onUnitSphere * 9.0f;
                                 }
@@ -196,7 +217,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                                 // center
                             case 4:
                             case 5:
-                                while (ballPos.z < 1.0f || ballPos.y > 1.0f || ballPos.y < -1.0f || ballPos.x > 2.0f || ballPos.x < -2.0f)
+                                while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 4.0f) || ballPos.y > Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
                                 {
                                     ballPos = Random.onUnitSphere * 9.0f;
                                 }
