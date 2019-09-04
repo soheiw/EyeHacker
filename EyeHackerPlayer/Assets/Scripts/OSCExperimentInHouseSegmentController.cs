@@ -4,10 +4,11 @@ using uOSC;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OSCExperimentSegmentController : MonoBehaviour
+public class OSCExperimentInHouseSegmentController : MonoBehaviour
 {
     public GameObject canvas;
     public GameObject slider;
+    public GameObject buttons;
     public Text text;
 
     public GameObject sphere;
@@ -45,6 +46,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     room.SetActive (false);
                     canvas.SetActive (true);
                     slider.SetActive (false);
+                    buttons.SetActive (false);
                     alphaObject.SetActive (false);
                     text.text = "Ready: No." + message.values[1].ToString ();
                     break;
@@ -124,7 +126,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                                 Debug.Log ("Undefined phrase.");
                                 break;
                         }
-                        text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\n変化が起きたらトリガーを\n引いてください．";
+                        text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\nトリガーを引いて開始します．";
                     }
                     else
                     {
@@ -132,7 +134,7 @@ public class OSCExperimentSegmentController : MonoBehaviour
                         {
                             arrows[i].SetActive (false);
                         }
-                        text.text = "\n中央を\n向き続けてください．\n変化が起きたらトリガーを\n引いてください．";
+                        text.text = "\n中央を\n向き続けてください．\nトリガーを引いて開始します．";
                     }
                     break;
                 case 2:
@@ -161,9 +163,16 @@ public class OSCExperimentSegmentController : MonoBehaviour
                     sphere.SetActive (true);
                     room.SetActive (false);
                     canvas.SetActive (true);
+                    buttons.SetActive (true);
+                    text.text = "変化があったかどうか\nタッチパッドの左右で選択し\nトリガーで決定してください．";
+
+                    alphaObject.SetActive (false);
+                    break;
+                case 5:
                     slider.SetActive (true);
+                    buttons.SetActive (false);
                     slider.GetComponent<Slider> ().value = 4;
-                    text.text = "変化の有無を選んだときの\n確信度をタッチパッドの\n左右を押して選択してください．";
+                    text.text = "YES/NOの選択の確信度を\nタッチパッドの左右で選択し\nトリガーで決定してください．";
 
                     alphaObject.SetActive (false);
                     break;
