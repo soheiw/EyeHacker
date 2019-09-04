@@ -2337,6 +2337,8 @@ MonoBehaviour:
   canvas: {fileID: 1207685347}
   slider: {fileID: 496424470}
   buttons: {fileID: 1023116254}
+  yes: {fileID: 1296029894}
+  no: {fileID: 1592297268}
   text: {fileID: 1207685349}
   sphere: {fileID: 1498915213}
   room: {fileID: 403882811}

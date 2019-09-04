@@ -9,6 +9,8 @@ public class OSCExperimentInHouseSegmentController : MonoBehaviour
     public GameObject canvas;
     public GameObject slider;
     public GameObject buttons;
+    public Button yes;
+    public Button no;
     public Text text;
 
     public GameObject sphere;
@@ -164,6 +166,8 @@ public class OSCExperimentInHouseSegmentController : MonoBehaviour
                     room.SetActive (false);
                     canvas.SetActive (true);
                     buttons.SetActive (true);
+                    yes.image.color = Color.gray;
+                    no.image.color = Color.gray;
                     text.text = "変化があったかどうか\nタッチパッドの左右で選択し\nトリガーで決定してください．";
 
                     alphaObject.SetActive (false);
