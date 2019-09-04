@@ -24,7 +24,7 @@ public class DetermineGazeByHMD : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast (Camera.main.transform.position, Camera.main.transform.forward, out hit))
         {
-            gazePosition = hit.point;
+            gazePosition = transform.TransformPoint (hit.point);
             gazeCoord = hit.textureCoord;
             // gazeCoord.x *= textureSize.x;
             // gazeCoord.y *= textureSize.y;
@@ -32,7 +32,7 @@ public class DetermineGazeByHMD : MonoBehaviour
         }
         else
         {
-            gazePosition = Camera.main.transform.position + Camera.main.transform.forward * 50.0f;
+            gazePosition = transform.TransformPoint (Camera.main.transform.position + Camera.main.transform.forward * 50.0f);
             // gazeCoord = new Vector2 (textureSize.x * 0.5f, textureSize.y * 0.5f);
             gazeCoord = new Vector2 (0.5f, 0.5f);
             Debug.Log ("HMD raycast failed.");
