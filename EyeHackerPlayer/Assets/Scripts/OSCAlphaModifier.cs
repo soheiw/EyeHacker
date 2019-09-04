@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using uOSC;
 using UnityEngine;
 using ViveSR.anipal.Eye;
@@ -44,7 +45,35 @@ public class OSCAlphaModifier : MonoBehaviour
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
-                selectedBall = spheres[14]; // select a sphere
+                Collider[] hitColliders = Physics.OverlapSphere (center, 2.5f); // 9.0f * tan 15 deg
+                if (hitColliders.Length == 0)
+                {
+                    Debug.Log ("No Collision: center: " + center);
+                    return;
+                }
+                if (hitColliders.Length == 1 && hitColliders[0].gameObject.name == "Collider") return;
+
+                for (int i = 0; i < hitColliders.Length; i++)
+                {
+                    Collider tmp = hitColliders[i];
+                    int randomIndex = Random.Range (i, hitColliders.Length);
+                    hitColliders[i] = hitColliders[randomIndex];
+                    hitColliders[randomIndex] = tmp;
+                }
+
+                // for (int i = 0; i < hitColliders.Length; i++)
+                // {
+                //     Debug.Log (hitColliders[i].name);
+                // }
+
+                for (int i = 0; i < hitColliders.Length; i++)
+                {
+                    if (hitColliders[i].gameObject.name != "Collider")
+                    {
+                        selectedBall = hitColliders[i].gameObject;
+                        break;
+                    }
+                }
                 isSelected = true;
             }
             // int num = System.Convert.ToInt32 (message.values[1]) - 1;

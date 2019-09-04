@@ -43,11 +43,10 @@ namespace ViveSR
                     if (Physics.Raycast (Camera.main.transform.position, GazeDirectionCombined, out hit))
                     {
                         gazePosition = transform.TransformPoint (hit.point);
-                        Debug.Log ("center: " + gazePosition.magnitude);
                         gazeCoord = hit.textureCoord;
                         // gazeCoord.x *= textureSize.x;
                         // gazeCoord.y *= textureSize.y;
-                        Debug.Log ("gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
+                        // Debug.Log ("gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
                     }
                     else
                     {

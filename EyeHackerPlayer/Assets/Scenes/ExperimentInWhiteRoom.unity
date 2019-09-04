@@ -431,8 +431,8 @@ GameObject:
   - component: {fileID: 123387580}
   - component: {fileID: 123387579}
   - component: {fileID: 123387578}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,7 @@ SphereCollider:
   m_GameObject: {fileID: 123387576}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -522,8 +522,8 @@ GameObject:
   - component: {fileID: 151870726}
   - component: {fileID: 151870725}
   - component: {fileID: 151870724}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,7 +552,7 @@ SphereCollider:
   m_GameObject: {fileID: 151870722}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -613,8 +613,8 @@ GameObject:
   - component: {fileID: 163768524}
   - component: {fileID: 163768523}
   - component: {fileID: 163768522}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +643,7 @@ SphereCollider:
   m_GameObject: {fileID: 163768520}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -2758,8 +2758,8 @@ GameObject:
   - component: {fileID: 659534689}
   - component: {fileID: 659534688}
   - component: {fileID: 659534687}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2788,7 +2788,7 @@ SphereCollider:
   m_GameObject: {fileID: 659534685}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3031,8 +3031,8 @@ GameObject:
   - component: {fileID: 688946040}
   - component: {fileID: 688946039}
   - component: {fileID: 688946038}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3061,7 +3061,7 @@ SphereCollider:
   m_GameObject: {fileID: 688946036}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3164,8 +3164,8 @@ GameObject:
   - component: {fileID: 793278993}
   - component: {fileID: 793278992}
   - component: {fileID: 793278991}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3194,7 +3194,7 @@ SphereCollider:
   m_GameObject: {fileID: 793278989}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -3255,8 +3255,8 @@ GameObject:
   - component: {fileID: 802130851}
   - component: {fileID: 802130850}
   - component: {fileID: 802130849}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3285,7 +3285,7 @@ SphereCollider:
   m_GameObject: {fileID: 802130847}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4226,8 +4226,8 @@ GameObject:
   - component: {fileID: 1101100516}
   - component: {fileID: 1101100515}
   - component: {fileID: 1101100514}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4256,7 +4256,7 @@ SphereCollider:
   m_GameObject: {fileID: 1101100512}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4317,8 +4317,8 @@ GameObject:
   - component: {fileID: 1106379752}
   - component: {fileID: 1106379751}
   - component: {fileID: 1106379750}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4347,7 +4347,7 @@ SphereCollider:
   m_GameObject: {fileID: 1106379748}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4408,8 +4408,8 @@ GameObject:
   - component: {fileID: 1124467175}
   - component: {fileID: 1124467174}
   - component: {fileID: 1124467173}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4438,7 +4438,7 @@ SphereCollider:
   m_GameObject: {fileID: 1124467171}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4760,8 +4760,8 @@ GameObject:
   - component: {fileID: 1165138378}
   - component: {fileID: 1165138377}
   - component: {fileID: 1165138376}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,7 +4790,7 @@ SphereCollider:
   m_GameObject: {fileID: 1165138374}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -4851,8 +4851,8 @@ GameObject:
   - component: {fileID: 1223617442}
   - component: {fileID: 1223617441}
   - component: {fileID: 1223617440}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4881,7 +4881,7 @@ SphereCollider:
   m_GameObject: {fileID: 1223617438}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -5236,8 +5236,8 @@ GameObject:
   - component: {fileID: 1305276715}
   - component: {fileID: 1305276714}
   - component: {fileID: 1305276713}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5266,7 +5266,7 @@ SphereCollider:
   m_GameObject: {fileID: 1305276711}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -5509,8 +5509,8 @@ GameObject:
   - component: {fileID: 1392830723}
   - component: {fileID: 1392830722}
   - component: {fileID: 1392830721}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5539,7 +5539,7 @@ SphereCollider:
   m_GameObject: {fileID: 1392830719}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -5861,8 +5861,8 @@ GameObject:
   - component: {fileID: 1461670119}
   - component: {fileID: 1461670118}
   - component: {fileID: 1461670117}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5891,7 +5891,7 @@ SphereCollider:
   m_GameObject: {fileID: 1461670115}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -6808,8 +6808,8 @@ GameObject:
   - component: {fileID: 1672481460}
   - component: {fileID: 1672481459}
   - component: {fileID: 1672481458}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6838,7 +6838,7 @@ SphereCollider:
   m_GameObject: {fileID: 1672481456}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -7050,8 +7050,8 @@ GameObject:
   - component: {fileID: 1748520779}
   - component: {fileID: 1748520778}
   - component: {fileID: 1748520777}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7080,7 +7080,7 @@ SphereCollider:
   m_GameObject: {fileID: 1748520775}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -7618,8 +7618,8 @@ GameObject:
   - component: {fileID: 1856011788}
   - component: {fileID: 1856011787}
   - component: {fileID: 1856011786}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7648,7 +7648,7 @@ SphereCollider:
   m_GameObject: {fileID: 1856011784}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -8482,8 +8482,8 @@ GameObject:
   - component: {fileID: 2110630368}
   - component: {fileID: 2110630367}
   - component: {fileID: 2110630366}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8512,7 +8512,7 @@ SphereCollider:
   m_GameObject: {fileID: 2110630364}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -8743,8 +8743,8 @@ GameObject:
   - component: {fileID: 2133617680}
   - component: {fileID: 2133617679}
   - component: {fileID: 2133617678}
-  m_Layer: 0
-  m_Name: BallTest(Clone)
+  m_Layer: 2
+  m_Name: BallTest(9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8773,7 +8773,7 @@ SphereCollider:
   m_GameObject: {fileID: 2133617676}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

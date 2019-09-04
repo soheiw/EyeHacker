@@ -28,7 +28,7 @@ public class DetermineGazeByHMD : MonoBehaviour
             gazeCoord = hit.textureCoord;
             // gazeCoord.x *= textureSize.x;
             // gazeCoord.y *= textureSize.y;
-            Debug.Log ("HMD gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
+            // Debug.Log ("HMD gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
         }
         else
         {
