@@ -9,7 +9,7 @@ public class OSCAngularVelocitySender : MonoBehaviour
     [SerializeField] private uOscClient client;
     [SerializeField] private string address;
 
-    [SerializeField] private Vector3 velocity;
+    public Vector3 velocity;
 
     private Vector3 prevDir;
     private Vector3 nextDir;
