@@ -35,7 +35,7 @@ public class DataWrite : MonoBehaviour
         FileInfo fi;　　 // Aplication.dataPath で プロジェクトファイルがある絶対パスが取り込める
         fi = new FileInfo (Application.dataPath + "/Resources/" + fileName + ".csv");
         sw = fi.AppendText ();
-        sw.WriteLine (time + ", " + velocity.ToString () + ", " + gazePosition.ToString ());
+        sw.WriteLine (time + ", " + velocity.ToString () + ", " + gazePosition.x.ToString ("f4") + ", " + gazePosition.y.ToString ("f4") + ", " + gazePosition.z.ToString ("f4"));
         sw.Flush ();
         sw.Close ();
     }
