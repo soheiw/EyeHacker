@@ -23,12 +23,16 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
 
     public GameObject[] arrows;
 
+    public CreateBallPos createBallPos;
+
     // public Transform staticBallsRoot;
     // public GameObject ballPrefab;
 
     [SerializeField] private uOscServer server;
 
     public OSCBallInfoSender infoSender;
+
+    private int index = 0;
 
     // Start is called before the first frame update
     void Start ()
@@ -148,6 +152,10 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     sphere.SetActive (false);
                     room.SetActive (true);
 
+                    createBallPos.DestroyAll ();
+                    createBallPos.SetBallPositions (index);
+                    if (index < 144) index += 1;
+
                     // for (int i = 0; i < 30; i++)
                     // {
                     //     Vector3 ballPos = Random.onUnitSphere * 9.0f;
@@ -185,46 +193,46 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     canvas.SetActive (false);
 
                     alphaObject.SetActive (true);
-                    for (int i = 0; i < alphaModifier.spheres.Length; i++)
-                    {
-                        alphaModifier.alphas[i] = 0.0f;
-                        alphaModifier.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaModifier.color.r, alphaModifier.color.g, alphaModifier.color.b, 0.0f);
+                    // for (int i = 0; i < alphaModifier.spheres.Length; i++)
+                    // {
+                    // alphaModifier.alphas[i] = 0.0f;
+                    // alphaModifier.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaModifier.color.r, alphaModifier.color.g, alphaModifier.color.b, 0.0f);
 
-                        // Vector3 ballPos = Random.onUnitSphere * 9.0f;
-                        // switch (i)
-                        // {
-                        //     // left
-                        //     case 0:
-                        //     case 1:
-                        //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
-                        //         {
-                        //             ballPos = Random.onUnitSphere * 9.0f;
-                        //         }
-                        //         alphaModifier.spheres[i].transform.position = ballPos;
-                        //         break;
-                        //         // right
-                        //     case 2:
-                        //     case 3:
-                        //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
-                        //         {
-                        //             ballPos = Random.onUnitSphere * 9.0f;
-                        //         }
-                        //         alphaModifier.spheres[i].transform.position = ballPos;
-                        //         break;
-                        //         // center
-                        //     case 4:
-                        //     case 5:
-                        //         while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 6.0f) || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
-                        //         {
-                        //             ballPos = Random.onUnitSphere * 9.0f;
-                        //         }
-                        //         alphaModifier.spheres[i].transform.position = ballPos;
-                        //         break;
-                        //     default:
-                        //         Debug.Log ("Out of Range.");
-                        //         break;
-                        // }
-                    }
+                    // Vector3 ballPos = Random.onUnitSphere * 9.0f;
+                    // switch (i)
+                    // {
+                    //     // left
+                    //     case 0:
+                    //     case 1:
+                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
+                    //         {
+                    //             ballPos = Random.onUnitSphere * 9.0f;
+                    //         }
+                    //         alphaModifier.spheres[i].transform.position = ballPos;
+                    //         break;
+                    //         // right
+                    //     case 2:
+                    //     case 3:
+                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
+                    //         {
+                    //             ballPos = Random.onUnitSphere * 9.0f;
+                    //         }
+                    //         alphaModifier.spheres[i].transform.position = ballPos;
+                    //         break;
+                    //         // center
+                    //     case 4:
+                    //     case 5:
+                    //         while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 6.0f) || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
+                    //         {
+                    //             ballPos = Random.onUnitSphere * 9.0f;
+                    //         }
+                    //         alphaModifier.spheres[i].transform.position = ballPos;
+                    //         break;
+                    //     default:
+                    //         Debug.Log ("Out of Range.");
+                    //         break;
+                    // }
+                    // }
                     alphaModifier.isSelected = false;
                     alphaModifier.selectedBall = null;
                     break;

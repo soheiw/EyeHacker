@@ -45,7 +45,7 @@ public class OSCAlphaModifier : MonoBehaviour
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
-                Collider[] hitColliders = Physics.OverlapSphere (center, 2.5f); // 9.0f * tan 15 deg
+                Collider[] hitColliders = Physics.OverlapSphere (center, 1.58f); // 9.0f * tan 10 deg
                 if (hitColliders.Length == 0)
                 {
                     Debug.Log ("No Collision: center: " + center);
@@ -61,19 +61,18 @@ public class OSCAlphaModifier : MonoBehaviour
                     hitColliders[randomIndex] = tmp;
                 }
 
-                // for (int i = 0; i < hitColliders.Length; i++)
-                // {
-                //     Debug.Log (hitColliders[i].name);
-                // }
-
+                int count = 0;
                 for (int i = 0; i < hitColliders.Length; i++)
                 {
-                    if (hitColliders[i].gameObject.name != "Collider")
+                    if (hitColliders[i].gameObject.tag == "changedBall")
                     {
                         selectedBall = hitColliders[i].gameObject;
-                        break;
+                        color = selectedBall.GetComponent<Renderer> ().material.color;
+                        // break;
                     }
+                    count++;
                 }
+                Debug.Log ("l: " + count);
                 isSelected = true;
             }
             float val = System.Convert.ToSingle (message.values[0]);
