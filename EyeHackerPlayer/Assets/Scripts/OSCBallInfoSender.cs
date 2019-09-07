@@ -10,7 +10,8 @@ public class OSCBallInfoSender : MonoBehaviour
     [SerializeField] private string address;
 
     [SerializeField] private OSCAlphaModifier alphaModifier;
-    [SerializeField] private
+    private static EyeData eyeData;
+    private static VerboseData verboseData;
 
     // Start is called before the first frame update
     void Start ()
@@ -24,14 +25,21 @@ public class OSCBallInfoSender : MonoBehaviour
 
     public void SendInfo ()
     {
-        Vector3 cameraRot = 9.0f * Camera.main.transform.forward;
+        // Vector3 cameraRot = 9.0f * Camera.main.transform.forward;
+        Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
+
+        SRanipal_Eye.GetEyeData (ref eyeData);
+        SRanipal_Eye.GetVerboseData (out verboseData);
+
+        Vector3 eyeDir = eyeData.verbose_data.combined.eye_data.gaze_direction_normalized;
+
         if (alphaModifier.selectedBall != null)
         {
-            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, alphaModifier.selectedBall.transform.position.x, alphaModifier.selectedBall.transform.position.y, alphaModifier.selectedBall.transform.position.z, cameraRot.x, cameraRot.y, cameraRot.z);
+            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, alphaModifier.selectedBall.transform.position.x, alphaModifier.selectedBall.transform.position.y, alphaModifier.selectedBall.transform.position.z, cameraRot.x, cameraRot.y, cameraRot.z, eyeDir.x, eyeDir.y, eyeDir.z);
         }
         else
         {
-            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, -1, -1, -1, cameraRot.x, cameraRot.y, cameraRot.z);
+            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, -1, -1, -1, cameraRot.x, cameraRot.y, cameraRot.z, eyeDir.x, eyeDir.y, eyeDir.z);
         }
     }
 }
