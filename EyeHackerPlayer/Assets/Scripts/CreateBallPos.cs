@@ -22,7 +22,7 @@ public class CreateBallPos : MonoBehaviour
         for (int k = 0; k < 144; k++)
         {
             List<Vector3> distribution = new List<Vector3> ();
-            for (int j = 0; j < 80; j++)
+            for (int j = 0; j < 90; j++)
             {
                 float phi_origin = (1.0f / 90.0f) * j * (2.0f * Mathf.PI);
                 for (int l = -2; l < 3; l++)
