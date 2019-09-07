@@ -19,7 +19,7 @@ public class CreateBallPos : MonoBehaviour
     // Start is called before the first frame update
     void Awake ()
     {
-        UnityEngine.Random.InitState (42);
+        // UnityEngine.Random.InitState (42);
         positionDistributions = new List<List<Vector3>> ();
 
         for (int k = 0; k < 144; k++)

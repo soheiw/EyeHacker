@@ -10031,6 +10031,7 @@ MonoBehaviour:
   logData: 
   angularVelocitySender: {fileID: 409798741}
   gazeRaySample: {fileID: 1296485662}
+  alphaModifier: {fileID: 901011779}
 --- !u!1001 &1517394240
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -42,7 +42,6 @@ public class OSCAlphaModifier : MonoBehaviour
     {
         if (message.address == "/player/alpha")
         {
-
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
@@ -69,11 +68,11 @@ public class OSCAlphaModifier : MonoBehaviour
                     {
                         selectedBall = hitColliders[i].gameObject;
                         color = selectedBall.GetComponent<Renderer> ().material.color;
+                        count++;
                         break;
                     }
-                    count++;
                 }
-                Debug.Log ("count: " + count + ", selected: " + selectedBall.name);
+                // Debug.Log ("count: " + count + ", selected: " + selectedBall.name);
                 if (selectedBall != null)
                 {
                     isSelected = true;
