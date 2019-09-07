@@ -72,7 +72,7 @@ public class OSCAlphaModifier : MonoBehaviour
                     }
                     count++;
                 }
-                Debug.Log ("l: " + count);
+                Debug.Log ("count: " + count + ", selected: " + selectedBall.name);
                 isSelected = true;
             }
             float val = System.Convert.ToSingle (message.values[0]);

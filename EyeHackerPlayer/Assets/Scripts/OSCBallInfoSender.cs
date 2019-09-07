@@ -24,16 +24,13 @@ public class OSCBallInfoSender : MonoBehaviour
 
     public void SendInfo ()
     {
-        // Vector3 cameraPos = Quaternion.Euler(9.0f * transform.forward) * cameraRot;
-
+        Vector3 cameraRot = 9.0f * Camera.main.transform.forward;
         if (alphaModifier.selectedBall != null)
         {
-            Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
             client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, alphaModifier.selectedBall.transform.position.x, alphaModifier.selectedBall.transform.position.y, alphaModifier.selectedBall.transform.position.z, cameraRot.x, cameraRot.y, cameraRot.z);
         }
         else
         {
-            Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
             client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, -1, -1, -1, cameraRot.x, cameraRot.y, cameraRot.z);
         }
     }
