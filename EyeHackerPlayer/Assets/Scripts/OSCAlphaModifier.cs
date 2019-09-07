@@ -45,7 +45,7 @@ public class OSCAlphaModifier : MonoBehaviour
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
-                Collider[] hitColliders = Physics.OverlapSphere (center, 1.58f); // 9.0f * tan 10 deg
+                Collider[] hitColliders = Physics.OverlapSphere (center, 1.58f); // diameter = 20 deg 
                 if (hitColliders.Length == 0)
                 {
                     Debug.Log ("No Collision: center: " + center);
