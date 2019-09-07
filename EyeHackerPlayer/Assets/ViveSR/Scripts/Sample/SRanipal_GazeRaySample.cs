@@ -11,7 +11,7 @@ namespace ViveSR
             public class SRanipal_GazeRaySample : MonoBehaviour
             {
                 // public Vector2 textureSize = new Vector2 (3008.0f, 1504.0f);
-                private Vector3 gazePosition;
+                public Vector3 gazePosition;
                 public Vector2 gazeCoord;
 
                 public int LengthOfRay = 25;
@@ -42,15 +42,15 @@ namespace ViveSR
                     RaycastHit hit;
                     if (Physics.Raycast (Camera.main.transform.position, GazeDirectionCombined, out hit))
                     {
-                        gazePosition = hit.point;
+                        gazePosition = transform.TransformPoint (hit.point);
                         gazeCoord = hit.textureCoord;
                         // gazeCoord.x *= textureSize.x;
                         // gazeCoord.y *= textureSize.y;
-                        Debug.Log ("gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
+                        // Debug.Log ("gazeCoord: x: " + gazeCoord.x + ", y: " + gazeCoord.y);
                     }
                     else
                     {
-                        gazePosition = Camera.main.transform.position + GazeDirectionCombined * 50.0f;
+                        gazePosition = transform.TransformPoint (Camera.main.transform.position + GazeDirectionCombined * 50.0f);
                         // gazeCoord = new Vector2 (textureSize.x * 0.5f, textureSize.y * 0.5f);
                         gazeCoord = new Vector2 (0.5f, 0.5f);
                         Debug.Log ("raycast failed.");
