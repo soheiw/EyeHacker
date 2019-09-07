@@ -27,7 +27,7 @@ public class OSCAlphaModifier : MonoBehaviour
             alphas[i] = 0.0f;
         }
 
-        isSelected = false;
+        // isSelected = false;
         center = new Vector3 (0.0f, 0.0f, 0.0f);
 
         if (!server)

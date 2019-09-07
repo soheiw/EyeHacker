@@ -59,6 +59,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     slider.SetActive (false);
                     buttons.SetActive (false);
                     alphaObject.SetActive (false);
+                    alphaModifier.isSelected = false;
                     text.text = "Ready: No." + message.values[1].ToString ();
                     break;
                 case 1:
@@ -233,7 +234,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     //         break;
                     // }
                     // }
-                    alphaModifier.isSelected = false;
+                    alphaModifier.center = new Vector3 (0.0f, 0.0f, 0.0f);
                     alphaModifier.selectedBall = null;
                     break;
                 case 3:
