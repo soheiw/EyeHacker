@@ -13,22 +13,25 @@ public class CreateBallPos : MonoBehaviour
 
     public GameObject ball;
 
+    private int widthCount = 80;
+    private int heightCount = 5; // odd number
+
     // Start is called before the first frame update
     void Awake ()
     {
-        UnityEngine.Random.InitState (42);
+        // UnityEngine.Random.InitState (42);
         positionDistributions = new List<List<Vector3>> ();
-        
+
         for (int k = 0; k < 144; k++)
         {
             List<Vector3> distribution = new List<Vector3> ();
-            for (int j = 0; j < 90; j++)
+            for (int j = 0; j < widthCount; j++)
             {
-                float phi_origin = (1.0f / 90.0f) * j * (2.0f * Mathf.PI);
-                for (int l = -2; l < 3; l++)
+                float phi_origin = (1.0f / widthCount) * j * (2.0f * Mathf.PI);
+                for (int l = -(heightCount - 1) / 2; l < (heightCount + 1) / 2; l++)
                 {
-                    float phi = phi_origin + UnityEngine.Random.Range (-(0.25f / 90.0f) * (2.0f * Mathf.PI), (0.25f / 90.0f) * (2.0f * Mathf.PI));
-                    float theta = (Mathf.PI / 36.0f) * l + UnityEngine.Random.Range (-(Mathf.PI / 144.0f), (Mathf.PI / 144.0f));
+                    float phi = phi_origin + UnityEngine.Random.Range (-(0.25f / widthCount) * (2.0f * Mathf.PI), (0.25f / widthCount) * (2.0f * Mathf.PI));
+                    float theta = (Mathf.PI / 40.0f) * l + UnityEngine.Random.Range (-(Mathf.PI / 160.0f), (Mathf.PI / 160.0f));
                     Vector3 pos = new Vector3 (9.0f * Mathf.Cos (theta) * Mathf.Cos (phi), 9.0f * Mathf.Sin (theta), 9.0f * Mathf.Cos (theta) * Mathf.Sin (phi));
                     distribution.Add (pos);
                 }
@@ -54,14 +57,14 @@ public class CreateBallPos : MonoBehaviour
         int areaSize = 10;
         int transparentRatio = 6;
 
-        int count = 0;
+        // int count = 0;
 
         for (int areaCount = 0; areaCount < areaSize; areaCount++)
         {
             List<Vector3> positionsInArea = new List<Vector3> ();
-            for (int k = 0; k < (450 / areaSize); k++)
+            for (int k = 0; k < (heightCount * widthCount / areaSize); k++)
             {
-                positionsInArea.Add (positions[k + areaCount * (450 / areaSize)]);
+                positionsInArea.Add (positions[k + areaCount * (heightCount * widthCount / areaSize)]);
             }
 
             positionsInArea = positionsInArea.OrderBy (i => Guid.NewGuid ()).ToList ();
@@ -70,10 +73,10 @@ public class CreateBallPos : MonoBehaviour
             {
                 GameObject g = Instantiate (ball, positionsInArea[n], Quaternion.identity);
                 g.transform.parent = staticBalls;
-                count++;
+                // count++;
             }
 
-            for (int m = transparentRatio; m < 10; m++)
+            for (int m = transparentRatio; m < 40; m++)
             {
                 GameObject h = Instantiate (ball, positionsInArea[m], Quaternion.identity);
                 Color col = h.GetComponent<Renderer> ().material.color;
