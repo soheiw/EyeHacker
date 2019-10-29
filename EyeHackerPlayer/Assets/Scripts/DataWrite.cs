@@ -5,7 +5,6 @@ using ViveSR.anipal.Eye;
 
 public class DataWrite : MonoBehaviour
 {
-    public int[] logData; // Logデータの宣言
     DateTime datetimeStr;
     private string time;
 
@@ -37,13 +36,13 @@ public class DataWrite : MonoBehaviour
         {
             ballPosition = new Vector3 (0.0f, 0.0f, 0.0f);
         }
-        LogSave (logData, "logData"); // Logデータをcsv形式で書き出す
+        LogSave ("logData");
     }
 
-    public void LogSave (int[] x, string fileName)
+    public void LogSave (string fileName)
     {
-        StreamWriter sw; // これがキモらしい
-        FileInfo fi;　　 // Aplication.dataPath で プロジェクトファイルがある絶対パスが取り込める
+        StreamWriter sw;
+        FileInfo fi;
         fi = new FileInfo (Application.dataPath + "/Resources/" + fileName + ".csv");
         sw = fi.AppendText ();
         sw.WriteLine (time + ", " + velocity.ToString () + ", " + gazePosition.x.ToString ("f4") + ", " + gazePosition.y.ToString ("f4") + ", " + gazePosition.z.ToString ("f4") + ", " + ballPosition.x.ToString ("f4") + ", " + ballPosition.y.ToString ("f4") + ", " + ballPosition.z.ToString ("f4"));

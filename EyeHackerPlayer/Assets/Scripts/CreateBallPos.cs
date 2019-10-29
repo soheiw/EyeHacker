@@ -13,8 +13,10 @@ public class CreateBallPos : MonoBehaviour
 
     public GameObject ball;
 
-    private int widthCount = 80;
-    private int heightCount = 5; // odd number
+    private const int WIDTH_COUNT = 80;
+    private const int HEIGHT_COUNT = 5; // should be odd number
+    private const int TRIAL_COUNT = 48 * 3;
+    private const float RADIUS = 9.0f;
 
     // Start is called before the first frame update
     void Awake ()
@@ -22,17 +24,30 @@ public class CreateBallPos : MonoBehaviour
         // UnityEngine.Random.InitState (42);
         positionDistributions = new List<List<Vector3>> ();
 
-        for (int k = 0; k < 144; k++)
+        for (int k = 0; k < TRIAL_COUNT; k++)
         {
             List<Vector3> distribution = new List<Vector3> ();
-            for (int j = 0; j < widthCount; j++)
+            for (int j = 0; j < WIDTH_COUNT; j++)
             {
-                float phi_origin = (1.0f / widthCount) * j * (2.0f * Mathf.PI);
-                for (int l = -(heightCount - 1) / 2; l < (heightCount + 1) / 2; l++)
+                float phi_origin = (2.0f * Mathf.PI) * j / WIDTH_COUNT;
+
+                for (int l = -(HEIGHT_COUNT - 1) / 2; l < (HEIGHT_COUNT + 1) / 2; l++)
                 {
-                    float phi = phi_origin + UnityEngine.Random.Range (-(0.25f / widthCount) * (2.0f * Mathf.PI), (0.25f / widthCount) * (2.0f * Mathf.PI));
-                    float theta = (Mathf.PI / 40.0f) * l + UnityEngine.Random.Range (-(Mathf.PI / 160.0f), (Mathf.PI / 160.0f));
-                    Vector3 pos = new Vector3 (9.0f * Mathf.Cos (theta) * Mathf.Cos (phi), 9.0f * Mathf.Sin (theta), 9.0f * Mathf.Cos (theta) * Mathf.Sin (phi));
+                    float phi = phi_origin +
+                        UnityEngine.Random.Range (-(0.25f / WIDTH_COUNT) * (2.0f * Mathf.PI),
+                            (0.25f / WIDTH_COUNT) * (2.0f * Mathf.PI)
+                        ); // [-1.125 deg, 1.125 deg] perturbation
+
+                    float theta = (Mathf.PI / 40.0f) * l +
+                        UnityEngine.Random.Range (-(0.25f / WIDTH_COUNT) * (2.0f * Mathf.PI),
+                            (0.25f / WIDTH_COUNT) * (2.0f * Mathf.PI)
+                        ); // [-1.125 deg, 1.125 deg] perturbation
+
+                    Vector3 pos = new Vector3 (
+                        RADIUS * Mathf.Cos (theta) * Mathf.Cos (phi),
+                        RADIUS * Mathf.Sin (theta),
+                        RADIUS * Mathf.Cos (theta) * Mathf.Sin (phi)
+                    );
                     distribution.Add (pos);
                 }
             }
@@ -44,39 +59,31 @@ public class CreateBallPos : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update ()
-    {
-
-    }
-
+    // instantiate balls referring to list made beforehand
     public void SetBallPositions (int number)
     {
         List<Vector3> positions = positionDistributions[number];
 
-        int areaSize = 10;
-        int transparentRatio = 6;
+        const int AREA_LENGTH = 10; // should be a divisor of HEIGHT_COUNT * WIDTH_COUNT
+        const int CHANGING_OBJECT_NUMBER = 6;
 
-        // int count = 0;
-
-        for (int areaCount = 0; areaCount < areaSize; areaCount++)
+        for (int areaCount = 0; areaCount < AREA_LENGTH; areaCount++)
         {
             List<Vector3> positionsInArea = new List<Vector3> ();
-            for (int k = 0; k < (heightCount * widthCount / areaSize); k++)
+            for (int k = 0; k < (HEIGHT_COUNT * WIDTH_COUNT / AREA_LENGTH); k++)
             {
-                positionsInArea.Add (positions[k + areaCount * (heightCount * widthCount / areaSize)]);
+                positionsInArea.Add (positions[k + areaCount * (HEIGHT_COUNT * WIDTH_COUNT / AREA_LENGTH)]);
             }
 
             positionsInArea = positionsInArea.OrderBy (i => Guid.NewGuid ()).ToList ();
 
-            for (int n = 0; n < transparentRatio; n++)
+            for (int n = 0; n < CHANGING_OBJECT_NUMBER; n++)
             {
                 GameObject g = Instantiate (ball, positionsInArea[n], Quaternion.identity);
                 g.transform.parent = staticBalls;
-                // count++;
             }
 
-            for (int m = transparentRatio; m < 40; m++)
+            for (int m = CHANGING_OBJECT_NUMBER; m < (HEIGHT_COUNT * WIDTH_COUNT / AREA_LENGTH); m++)
             {
                 GameObject h = Instantiate (ball, positionsInArea[m], Quaternion.identity);
                 Color col = h.GetComponent<Renderer> ().material.color;
@@ -84,32 +91,6 @@ public class CreateBallPos : MonoBehaviour
                 h.tag = "changedBall";
                 h.transform.parent = changedBalls;
             }
-
-            // for (int l = 0; l < 5; l++)
-            // {
-            //     List<Vector3> positionsInSquare = new List<Vector3> ();
-            //     for (int num = l; num < (450 / areaSize); num = num + 5)
-            //     {
-            //         positionsInSquare.Add (positionsInArea[num]);
-            //     }
-            //     positionsInSquare = positionsInSquare.OrderBy (i => Guid.NewGuid ()).ToList ();
-            //     for (int n = 0; n < transparentRatio; n++)
-            //     {
-            //         GameObject g = Instantiate (ball, positionsInSquare[n], Quaternion.identity);
-            //         g.transform.parent = staticBalls;
-            //         count++;
-            //     }
-
-            //     for (int m = transparentRatio; m < 9; m++)
-            //     {
-            //         GameObject h = Instantiate (ball, positionsInSquare[m], Quaternion.identity);
-            //         Color col = h.GetComponent<Renderer> ().material.color;
-            //         h.GetComponent<Renderer> ().material.color = new Vector4 (col.r, col.g, col.b, 0.0f);
-            //         h.tag = "changedBall";
-            //         h.transform.parent = changedBalls;
-            //     }
-            //     positionsInSquare.Clear ();
-            // }
             positionsInArea.Clear ();
         }
     }

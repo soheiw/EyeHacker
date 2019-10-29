@@ -25,14 +25,13 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
 
     public CreateBallPos createBallPos;
 
-    // public Transform staticBallsRoot;
-    // public GameObject ballPrefab;
-
     [SerializeField] private uOscServer server;
 
     public OSCBallInfoSender infoSender;
 
     private int index = 0;
+
+    private const int TRIAL_NUMBER = 48 * 3;
 
     // Start is called before the first frame update
     void Start ()
@@ -50,220 +49,188 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         if (message.address == "/player/segment")
         {
             int number = System.Convert.ToInt32 (message.values[0]);
+
             switch (number)
             {
                 case 0:
-                    sphere.SetActive (true);
-                    room.SetActive (false);
-                    canvas.SetActive (true);
-                    slider.SetActive (false);
-                    buttons.SetActive (false);
-                    alphaObject.SetActive (false);
-                    alphaModifier.isSelected = false;
-                    text.text = "Ready: No." + message.values[1].ToString ();
+                    startSegmentZero (message);
                     break;
                 case 1:
-                    string direction = message.values[1].ToString ();
-                    string speed = message.values[2].ToString ();
-
-                    for (int i = 0; i < arrows.Length; i++)
-                    {
-                        arrows[i].SetActive (true);
-                    }
-
-                    if (direction != "CENTER")
-                    {
-                        string sentence1 = "";
-                        string sentence2 = "";
-
-                        switch (speed)
-                        {
-                            case "FAST":
-                                sentence1 = "素早く";
-                                break;
-                            case "SLOW":
-                                sentence1 = "ゆっくり";
-                                for (int i = 0; i < arrows.Length; i++)
-                                {
-                                    if (i != 0)
-                                    {
-                                        arrows[i].SetActive (false);
-                                    }
-                                }
-                                break;
-                            default:
-                                Debug.Log ("Undefined phrase.");
-                                break;
-                        }
-
-                        switch (direction)
-                        {
-                            case "LEFT":
-                                sentence2 = "左を";
-                                for (int i = 0; i < arrows.Length; i++)
-                                {
-                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
-                                    rot.z = 180.0f;
-                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
-                                }
-                                break;
-                            case "RIGHT":
-                                sentence2 = "右を";
-                                for (int i = 0; i < arrows.Length; i++)
-                                {
-                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
-                                    rot.z = 0.0f;
-                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
-                                }
-                                break;
-                            case "UP":
-                                sentence2 = "上を";
-                                for (int i = 0; i < arrows.Length; i++)
-                                {
-                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
-                                    rot.z = 90.0f;
-                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
-                                }
-                                break;
-                            case "DOWN":
-                                sentence2 = "下を";
-                                for (int i = 0; i < arrows.Length; i++)
-                                {
-                                    Vector3 rot = arrows[i].transform.rotation.eulerAngles;
-                                    rot.z = 270.0f;
-                                    arrows[i].transform.rotation = Quaternion.Euler (rot);
-                                }
-                                break;
-                            default:
-                                Debug.Log ("Undefined phrase.");
-                                break;
-                        }
-                        text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\nトリガーを引いて開始します．";
-                    }
-                    else
-                    {
-                        for (int i = 0; i < arrows.Length; i++)
-                        {
-                            arrows[i].SetActive (false);
-                        }
-                        text.text = "\n中央を\n向き続けてください．\nトリガーを引いて開始します．";
-                    }
+                    startSegmentOne (message);
                     break;
                 case 2:
-                    sphere.SetActive (false);
-                    room.SetActive (true);
-
-                    createBallPos.DestroyAll ();
-                    createBallPos.SetBallPositions (index);
-                    if (index < 144) index += 1;
-
-                    // for (int i = 0; i < 30; i++)
-                    // {
-                    //     Vector3 ballPos = Random.onUnitSphere * 9.0f;
-                    //     if (i < 10)
-                    //     {
-                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //     }
-                    //     else if (i < 20)
-                    //     {
-                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //     }
-                    //     else
-                    //     {
-                    //         while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 4.0f) || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 18.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 18.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //     }
-                    //     GameObject obj = (GameObject) Instantiate (ballPrefab, ballPos, Quaternion.identity);
-                    //     obj.transform.parent = staticBallsRoot;
-                    // }
-                    text.text = "";
-                    startPoint.SetActive (true);
-                    startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
-                    for (int i = 0; i < arrows.Length; i++)
-                    {
-                        arrows[i].SetActive (false);
-                    }
-                    canvas.SetActive (false);
-
-                    alphaObject.SetActive (true);
-                    // for (int i = 0; i < alphaModifier.spheres.Length; i++)
-                    // {
-                    // alphaModifier.alphas[i] = 0.0f;
-                    // alphaModifier.spheres[i].GetComponent<Renderer> ().material.color = new Vector4 (alphaModifier.color.r, alphaModifier.color.g, alphaModifier.color.b, 0.0f);
-
-                    // Vector3 ballPos = Random.onUnitSphere * 9.0f;
-                    // switch (i)
-                    // {
-                    //     // left
-                    //     case 0:
-                    //     case 1:
-                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < -9.0f || ballPos.x > 9.0f * Mathf.Sin (-Mathf.PI / 6.0f))
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //         alphaModifier.spheres[i].transform.position = ballPos;
-                    //         break;
-                    //         // right
-                    //     case 2:
-                    //     case 3:
-                    //         while (ballPos.z < 0.0f || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (Mathf.PI / 6.0f) || ballPos.x > 9.0f)
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //         alphaModifier.spheres[i].transform.position = ballPos;
-                    //         break;
-                    //         // center
-                    //     case 4:
-                    //     case 5:
-                    //         while (ballPos.z < 9.0 * Mathf.Cos (Mathf.PI / 6.0f) || ballPos.y > 9.0f * Mathf.Sin (Mathf.PI / 12.0f) || ballPos.y < 9.0f * Mathf.Sin (-Mathf.PI / 12.0f) || ballPos.x < 9.0f * Mathf.Sin (-Mathf.PI / 6.0f) || ballPos.x > 9.0f * Mathf.Sin (Mathf.PI / 6.0f))
-                    //         {
-                    //             ballPos = Random.onUnitSphere * 9.0f;
-                    //         }
-                    //         alphaModifier.spheres[i].transform.position = ballPos;
-                    //         break;
-                    //     default:
-                    //         Debug.Log ("Out of Range.");
-                    //         break;
-                    // }
-                    // }
-                    alphaModifier.center = new Vector3 (0.0f, 0.0f, 0.0f);
-                    alphaModifier.selectedBall = null;
+                    startSegmentTwo (message);
                     break;
                 case 3:
-                    startPoint.SetActive (false);
+                    startSegmentThree (message);
                     break;
                 case 4:
-                    sphere.SetActive (true);
-                    room.SetActive (false);
-                    canvas.SetActive (true);
-                    buttons.SetActive (true);
-                    yes.image.color = Color.gray;
-                    no.image.color = Color.gray;
-                    text.text = "変化があったかどうか\nタッチパッドの左右で選択し\nトリガーで決定してください．";
-
-                    alphaObject.SetActive (false);
-                    infoSender.SendInfo ();
+                    startSegmentFour (message);
                     break;
                 case 5:
-                    slider.SetActive (true);
-                    buttons.SetActive (false);
-                    slider.GetComponent<Slider> ().value = 4;
-                    text.text = "YES/NOの選択の確信度を\nタッチパッドの左右で選択し\nトリガーで決定してください．";
-
-                    alphaObject.SetActive (false);
+                    startSegmentFive (message);
                     break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
                     break;
             }
         }
+    }
+
+    void startSegmentZero (Message message)
+    {
+        sphere.SetActive (true);
+        room.SetActive (false);
+
+        canvas.SetActive (true);
+        slider.SetActive (false);
+        buttons.SetActive (false);
+        text.text = "Ready: No." + message.values[1].ToString ();
+
+        alphaObject.SetActive (false);
+        alphaModifier.isSelected = false;
+    }
+
+    void startSegmentOne (Message message)
+    {
+        string direction = message.values[1].ToString ();
+        string speed = message.values[2].ToString ();
+
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            arrows[i].SetActive (true);
+        }
+
+        if (direction != "CENTER")
+        {
+            string sentence1 = "";
+            string sentence2 = "";
+
+            switch (speed)
+            {
+                case "FAST":
+                    sentence1 = "素早く";
+                    break;
+                case "SLOW":
+                    sentence1 = "ゆっくり";
+                    // show only one arrow
+                    for (int i = 0; i < arrows.Length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            arrows[i].SetActive (false);
+                        }
+                    }
+                    break;
+                default:
+                    Debug.Log ("Undefined phrase.");
+                    break;
+            }
+
+            switch (direction)
+            {
+                case "LEFT":
+                    sentence2 = "左を";
+                    for (int i = 0; i < arrows.Length; i++)
+                    {
+                        Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                        rot.z = 180.0f;
+                        arrows[i].transform.rotation = Quaternion.Euler (rot);
+                    }
+                    break;
+                case "RIGHT":
+                    sentence2 = "右を";
+                    for (int i = 0; i < arrows.Length; i++)
+                    {
+                        Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                        rot.z = 0.0f;
+                        arrows[i].transform.rotation = Quaternion.Euler (rot);
+                    }
+                    break;
+                    // case "UP":
+                    //     sentence2 = "上を";
+                    //     for (int i = 0; i < arrows.Length; i++)
+                    //     {
+                    //         Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                    //         rot.z = 90.0f;
+                    //         arrows[i].transform.rotation = Quaternion.Euler (rot);
+                    //     }
+                    //     break;
+                    // case "DOWN":
+                    //     sentence2 = "下を";
+                    //     for (int i = 0; i < arrows.Length; i++)
+                    //     {
+                    //         Vector3 rot = arrows[i].transform.rotation.eulerAngles;
+                    //         rot.z = 270.0f;
+                    //         arrows[i].transform.rotation = Quaternion.Euler (rot);
+                    //     }
+                    //     break;
+                default:
+                    Debug.Log ("Undefined phrase.");
+                    break;
+            }
+            text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\nトリガーを引いて開始します．";
+        }
+        // direction == "CENTER"
+        else
+        {
+            for (int i = 0; i < arrows.Length; i++)
+            {
+                arrows[i].SetActive (false);
+            }
+            text.text = "\n中央を\n向き続けてください．\nトリガーを引いて開始します．";
+        }
+    }
+
+    void startSegmentTwo (Message message)
+    {
+        sphere.SetActive (false);
+        room.SetActive (true);
+
+        text.text = "";
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            arrows[i].SetActive (false);
+        }
+        canvas.SetActive (false);
+
+        startPoint.SetActive (true);
+        startPoint.GetComponentInChildren<CountDownController> ().CountDown ();
+
+        createBallPos.DestroyAll ();
+        createBallPos.SetBallPositions (index);
+        if (index < TRIAL_NUMBER) index += 1;
+
+        alphaObject.SetActive (true);
+        alphaModifier.center = new Vector3 (0.0f, 0.0f, 0.0f);
+        alphaModifier.selectedBall = null;
+    }
+
+    void startSegmentThree (Message message)
+    {
+        startPoint.SetActive (false);
+    }
+
+    void startSegmentFour (Message message)
+    {
+        sphere.SetActive (true);
+        room.SetActive (false);
+
+        alphaObject.SetActive (false);
+        infoSender.SendInfo ();
+
+        canvas.SetActive (true);
+        buttons.SetActive (true);
+        yes.image.color = Color.gray;
+        no.image.color = Color.gray;
+        text.text = "変化があったかどうか\nタッチパッドの左右で選択し\nトリガーで決定してください．";
+    }
+
+    void startSegmentFive (Message message)
+    {
+        buttons.SetActive (false);
+        slider.SetActive (true);
+        slider.GetComponent<Slider> ().value = 4;
+        text.text = "YES/NOの選択の確信度を\nタッチパッドの左右で選択し\nトリガーで決定してください．";
     }
 }
