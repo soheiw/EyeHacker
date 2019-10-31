@@ -26,7 +26,7 @@ public class CreateBallPos : MonoBehaviour
 
         for (int k = 0; k < TRIAL_COUNT; k++)
         {
-            List<Vector3> distribution = new List<Vector3> ();
+            List<Vector3> trialDistribution = new List<Vector3> ();
             for (int j = 0; j < WIDTH_COUNT; j++)
             {
                 float phi_origin = (2.0f * Mathf.PI) * j / WIDTH_COUNT;
@@ -48,15 +48,14 @@ public class CreateBallPos : MonoBehaviour
                         RADIUS * Mathf.Sin (theta),
                         RADIUS * Mathf.Cos (theta) * Mathf.Sin (phi)
                     );
-                    distribution.Add (pos);
+                    trialDistribution.Add (pos);
                 }
             }
             // distribution = distribution.OrderBy (i => Guid.NewGuid ()).ToList ();
-            positionDistributions.Add (distribution);
+            positionDistributions.Add (trialDistribution);
             // distribution.Clear ();
         }
         //  positionDistributions = positionDistributions.OrderBy (i => Guid.NewGuid ()).ToList ();
-
     }
 
     // instantiate balls referring to list made beforehand
