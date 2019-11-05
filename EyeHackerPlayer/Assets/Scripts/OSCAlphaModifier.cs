@@ -45,8 +45,7 @@ public class OSCAlphaModifier : MonoBehaviour
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
-                // radius = 10 deg, r^2 = 9^2 + 9^2 - 2 * 9 * 9 * cos(10 deg), r = 1.569
-                Collider[] hitColliders = Physics.OverlapSphere (center, 1.57f);
+                Collider[] hitColliders = Physics.OverlapSphere (center, calculateCollisionRadius (30.0f));
 
                 if (hitColliders.Length == 0)
                 {
@@ -72,7 +71,7 @@ public class OSCAlphaModifier : MonoBehaviour
                 // int count = 0;
                 for (int i = 0; i < hitColliders.Length; i++)
                 {
-                    if (hitColliders[i].gameObject.tag == "changedBall")
+                    if (hitColliders[i].gameObject.tag == "changedBall" && Vector3.Distance (hitColliders[i].gameObject.transform.position, center) > calculateCollisionRadius (10.0f))
                     {
                         selectedBall = hitColliders[i].gameObject;
                         color = selectedBall.GetComponent<Renderer> ().material.color;
@@ -84,6 +83,10 @@ public class OSCAlphaModifier : MonoBehaviour
                 if (selectedBall != null)
                 {
                     isSelected = true;
+                }
+                else
+                {
+                    Debug.Log ("Nothing is selected.");
                 }
             }
 
@@ -105,5 +108,11 @@ public class OSCAlphaModifier : MonoBehaviour
                 isSelected = false;
             }
         }
+    }
+
+    float calculateCollisionRadius (float degree)
+    {
+        float radius = 9.0f;
+        return Mathf.Sqrt (radius * radius + radius * radius - 2 * radius * radius * Mathf.Cos (degree * Mathf.Deg2Rad));
     }
 }
