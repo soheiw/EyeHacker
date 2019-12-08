@@ -17,6 +17,13 @@ public class OSCAlphaModifier : MonoBehaviour
     public Vector3 center;
     public Color color = new Color (50.0f / 255.0f, 50.0f / 255.0f, 50.0f / 255.0f, 1.0f);
 
+    public float min = 20.0f;
+    public float max = 30.0f;
+
+    private float innerRadius;
+    private float outerRadius;
+    private bool setBallPosleft;
+
     [SerializeField] private uOscServer server;
 
     // Start is called before the first frame update
@@ -45,7 +52,21 @@ public class OSCAlphaModifier : MonoBehaviour
             if (!isSelected)
             {
                 center = gazeRaySample.gazePosition;
-                Collider[] hitColliders = Physics.OverlapSphere (center, calculateCollisionRadius (30.0f));
+
+                if (min * max > 0)
+                {
+                    innerRadius = Mathf.Min (Mathf.Abs (min), Mathf.Abs (max));
+                    outerRadius = Mathf.Max (Mathf.Abs (min), Mathf.Abs (max));
+                    setBallPosleft = (min >= 0.0f);
+                }
+                else
+                {
+                    innerRadius = 0.0f;
+                    outerRadius = min != 0.0f ? Mathf.Abs (min) : Mathf.Abs (max);
+                    // setBallPosleft = true;
+                }
+
+                Collider[] hitColliders = Physics.OverlapSphere (center, calculateCollisionRadius (outerRadius));
 
                 if (hitColliders.Length == 0)
                 {
@@ -71,12 +92,44 @@ public class OSCAlphaModifier : MonoBehaviour
                 // int count = 0;
                 for (int i = 0; i < hitColliders.Length; i++)
                 {
-                    if (hitColliders[i].gameObject.tag == "changedBall" && Vector3.Distance (hitColliders[i].gameObject.transform.position, center) > calculateCollisionRadius (10.0f))
+                    if (!hitColliders[i].gameObject.CompareTag ("changedBall"))
+                    {
+                        continue;
+                    }
+
+                    if (innerRadius == 0.0f)
                     {
                         selectedBall = hitColliders[i].gameObject;
                         color = selectedBall.GetComponent<Renderer> ().material.color;
                         // count++;
                         break;
+                    }
+                    else
+                    {
+                        if (Vector3.Distance (hitColliders[i].gameObject.transform.position, center) <= calculateCollisionRadius (innerRadius))
+                        {
+                            continue;
+                        }
+                        if (setBallPosleft)
+                        {
+                            if (hitColliders[i].gameObject.transform.position.x - center.x >= 0.0f)
+                            {
+                                continue;
+                            }
+                        }
+                        else
+                        {
+                            if (hitColliders[i].gameObject.transform.position.x - center.x <= 0.0f)
+                            {
+                                continue;
+                            }
+                        }
+                        {
+                            selectedBall = hitColliders[i].gameObject;
+                            color = selectedBall.GetComponent<Renderer> ().material.color;
+                            // count++;
+                            break;
+                        }
                     }
                 }
                 // Debug.Log ("count: " + count + ", selected: " + selectedBall.name);
@@ -110,6 +163,7 @@ public class OSCAlphaModifier : MonoBehaviour
         }
     }
 
+    // cosine formula
     float calculateCollisionRadius (float degree)
     {
         float radius = 9.0f;
