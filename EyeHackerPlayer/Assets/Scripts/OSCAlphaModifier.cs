@@ -17,8 +17,8 @@ public class OSCAlphaModifier : MonoBehaviour
     public Vector3 center;
     public Color color = new Color (50.0f / 255.0f, 50.0f / 255.0f, 50.0f / 255.0f, 1.0f);
 
-    public float min = 20.0f;
-    public float max = 30.0f;
+    public float min = 0.0f;
+    public float max = 10.0f;
 
     private float innerRadius;
     private float outerRadius;

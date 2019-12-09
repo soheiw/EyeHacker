@@ -95,6 +95,8 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
     {
         string direction = message.values[1].ToString ();
         string speed = message.values[2].ToString ();
+        float areaMin = System.Convert.ToSingle (message.values[3]);
+        float areaMax = System.Convert.ToSingle (message.values[4]);
 
         for (int i = 0; i < arrows.Length; i++)
         {
@@ -180,6 +182,9 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
             }
             text.text = "\n中央を\n向き続けてください．\nトリガーを引いて開始します．";
         }
+
+        alphaModifier.min = areaMin;
+        alphaModifier.max = areaMax;
     }
 
     void startSegmentTwo (Message message)
