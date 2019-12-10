@@ -171,7 +171,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     Debug.Log ("Undefined phrase.");
                     break;
             }
-            text.text = "\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．\nトリガーを引いて開始します．";
+            text.text = "\nトリガーを引いて開始します．\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．";
         }
         // direction == "CENTER"
         else
@@ -180,7 +180,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
             {
                 arrows[i].SetActive (false);
             }
-            text.text = "\n中央を\n向き続けてください．\nトリガーを引いて開始します．";
+            text.text = "\nトリガーを引いて開始します．\n中央を\n向き続けてください．";
         }
 
         alphaModifier.min = areaMin;

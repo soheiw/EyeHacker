@@ -5782,6 +5782,7 @@ MonoBehaviour:
   color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
   min: 0
   max: 10
+  showAlpha: 0
   server: {fileID: 1858845389}
 --- !u!4 &901011780
 Transform:
@@ -10033,6 +10034,7 @@ MonoBehaviour:
   angularVelocitySender: {fileID: 409798741}
   gazeRaySample: {fileID: 1296485662}
   alphaModifier: {fileID: 901011779}
+  sphere100: {fileID: 74319195}
 --- !u!1001 &1517394240
 PrefabInstance:
   m_ObjectHideFlags: 0
