@@ -24,6 +24,8 @@ public class OSCAlphaModifier : MonoBehaviour
     private float outerRadius;
     private bool setBallPosleft;
 
+    [SerializeField] float showAlpha = 0.0f;
+
     [SerializeField] private uOscServer server;
 
     // Start is called before the first frame update
@@ -155,6 +157,7 @@ public class OSCAlphaModifier : MonoBehaviour
             if (selectedBall != null)
             {
                 selectedBall.GetComponent<Renderer> ().material.color = new Vector4 (color.r, color.g, color.b, val);
+                showAlpha = val;
             }
             else
             {
