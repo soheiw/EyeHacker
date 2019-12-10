@@ -5780,6 +5780,8 @@ MonoBehaviour:
   selectedBall: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
   color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
+  min: 0
+  max: 10
   server: {fileID: 1858845389}
 --- !u!4 &901011780
 Transform:
