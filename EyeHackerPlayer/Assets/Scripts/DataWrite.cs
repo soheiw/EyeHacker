@@ -15,9 +15,14 @@ public class DataWrite : MonoBehaviour
 
     private float velocity;
     private Vector3 gazePosition;
-    private Vector3 headPosition;
+    public Vector3 headPosition;
     private Vector3 relativePosition;
     private Vector3 ballPosition;
+
+    private static EyeData eyeData;
+    private static VerboseData verboseData;
+    public Vector3 eyeDir;
+
     private bool isExpNow;
 
     void Start ()
@@ -27,6 +32,7 @@ public class DataWrite : MonoBehaviour
         headPosition = new Vector3 (0.0f, 0.0f, 0.0f);
         relativePosition = new Vector3 (0.0f, 0.0f, 0.0f);
         ballPosition = new Vector3 (0.0f, 0.0f, 0.0f);
+        eyeDir = new Vector3 (0.0f, 0.0f, 0.0f);
         isExpNow = false;
     }
     void Update ()
@@ -57,6 +63,11 @@ public class DataWrite : MonoBehaviour
         isExpNow = !(sphere100.activeSelf);
         relativePosition = gazePosition - headPosition;
 
+        SRanipal_Eye.GetEyeData (ref eyeData);
+        SRanipal_Eye.GetVerboseData (out verboseData);
+
+        eyeDir = eyeData.verbose_data.combined.eye_data.gaze_direction_normalized;
+
         LogSave ("logData");
     }
 
@@ -72,7 +83,8 @@ public class DataWrite : MonoBehaviour
             gazePosition.x.ToString ("f4") + ", " + gazePosition.y.ToString ("f4") + ", " + gazePosition.z.ToString ("f4") + ", " + gazePosition.magnitude + ", " +
             headPosition.x.ToString ("f4") + ", " + headPosition.y.ToString ("f4") + ", " + headPosition.z.ToString ("f4") + ", " + headPosition.magnitude + ", " +
             relativePosition.x.ToString ("f4") + ", " + relativePosition.y.ToString ("f4") + ", " + relativePosition.z.ToString ("f4") + ", " + relativePosition.magnitude + ", " +
-            ballPosition.x.ToString ("f4") + ", " + ballPosition.y.ToString ("f4") + ", " + ballPosition.z.ToString ("f4") + ", " + ballPosition.magnitude);
+            eyeDir.x.ToString ("f4") + ", " + eyeDir.y.ToString ("f4") + ", " + eyeDir.z.ToString ("f4") + ", " + eyeDir.magnitude + ", " + ballPosition.x.ToString ("f4") + ", " + ballPosition.y.ToString ("f4") + ", " + ballPosition.z.ToString ("f4") + ", " + ballPosition.magnitude
+        );
         sw.Flush ();
         sw.Close ();
     }
