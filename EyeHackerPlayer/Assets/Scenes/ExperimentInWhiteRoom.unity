@@ -8157,6 +8157,7 @@ MonoBehaviour:
   client: {fileID: 2096305530}
   address: /server/ballinfo
   alphaModifier: {fileID: 901011779}
+  dataWrite: {fileID: 1515396697}
 --- !u!4 &1192136690
 Transform:
   m_ObjectHideFlags: 0
@@ -10035,6 +10036,8 @@ MonoBehaviour:
   gazeRaySample: {fileID: 1296485662}
   alphaModifier: {fileID: 901011779}
   sphere100: {fileID: 74319195}
+  headPosition: {x: 0, y: 0, z: 0}
+  eyeDir: {x: 0, y: 0, z: 0}
 --- !u!1001 &1517394240
 PrefabInstance:
   m_ObjectHideFlags: 0
