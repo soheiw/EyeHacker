@@ -26,25 +26,38 @@ public class OSCBallInfoSender : MonoBehaviour
     {
         // Vector3 cameraRot = 9.0f * Camera.main.transform.forward;
         // Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
+
+        Vector3 center = alphaModifier.center;
+        Vector3 ballPos = alphaModifier.selectedBall.transform.position;
         Vector3 headPos = dataWrite.headPosition;
         Vector3 eyeDir = dataWrite.eyeDir;
 
+        float angle = calculateAngle (Vector3.Distance (center, ballPos));
+
         if (alphaModifier.selectedBall != null)
         {
-            client.Send (address, 
-            alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z,alphaModifier.selectedBall.transform.position.x, alphaModifier.selectedBall.transform.position.y, alphaModifier.selectedBall.transform.position.z,
-            headPos.x, headPos.y, headPos.z,
-            eyeDir.x, eyeDir.y, eyeDir.z
+            client.Send (address,
+                center.x, center.y, center.z,
+                ballPos.x, ballPos.y, ballPos.z,
+                headPos.x, headPos.y, headPos.z,
+                eyeDir.x, eyeDir.y, eyeDir.z,
+                angle
             );
         }
         else
         {
-            client.Send (address, 
-            alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z,
-            -1, -1, -1,
-            headPos.x, headPos.y, headPos.z,
-            eyeDir.x, eyeDir.y, eyeDir.z
+            client.Send (address,
+                center.x, center.y, center.z, -1, -1, -1,
+                headPos.x, headPos.y, headPos.z,
+                eyeDir.x, eyeDir.y, eyeDir.z,
+                angle
             );
         }
+    }
+
+    float calculateAngle (float d)
+    {
+        float radius = 9.0f;
+        return Mathf.Acos (1.0f - ((d * d) / (2.0f * radius * radius))) * Mathf.Rad2Deg;
     }
 }

@@ -101,6 +101,10 @@ public class OSCAlphaModifier : MonoBehaviour
 
                     if (innerRadius == 0.0f)
                     {
+                        if (Vector3.Distance (hitColliders[i].gameObject.transform.position, center) > calculateCollisionRadius (outerRadius))
+                        {
+                            continue;
+                        }
                         selectedBall = hitColliders[i].gameObject;
                         color = selectedBall.GetComponent<Renderer> ().material.color;
                         // count++;
@@ -108,7 +112,7 @@ public class OSCAlphaModifier : MonoBehaviour
                     }
                     else
                     {
-                        if (Vector3.Distance (hitColliders[i].gameObject.transform.position, center) <= calculateCollisionRadius (innerRadius))
+                        if (Vector3.Distance (hitColliders[i].gameObject.transform.position, center) <= calculateCollisionRadius (innerRadius) || Vector3.Distance (hitColliders[i].gameObject.transform.position, center) > calculateCollisionRadius (outerRadius))
                         {
                             continue;
                         }
