@@ -28,14 +28,14 @@ public class OSCBallInfoSender : MonoBehaviour
         // Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
 
         Vector3 center = alphaModifier.center;
-        Vector3 ballPos = alphaModifier.selectedBall.transform.position;
         Vector3 headPos = dataWrite.headPosition;
         Vector3 eyeDir = dataWrite.eyeDir;
 
-        float angle = calculateAngle (Vector3.Distance (center, ballPos));
-
         if (alphaModifier.selectedBall != null)
         {
+            Vector3 ballPos = alphaModifier.selectedBall.transform.position;
+            float angle = calculateAngle (Vector3.Distance (center, ballPos));
+
             client.Send (address,
                 center.x, center.y, center.z,
                 ballPos.x, ballPos.y, ballPos.z,
@@ -47,10 +47,11 @@ public class OSCBallInfoSender : MonoBehaviour
         else
         {
             client.Send (address,
-                center.x, center.y, center.z, -1, -1, -1,
+                center.x, center.y, center.z,
+                -1.0f, -1.0f, -1.0f,
                 headPos.x, headPos.y, headPos.z,
                 eyeDir.x, eyeDir.y, eyeDir.z,
-                angle
+                -1.0f
             );
         }
     }
