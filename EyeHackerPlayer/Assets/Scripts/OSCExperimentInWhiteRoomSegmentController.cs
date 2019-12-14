@@ -70,6 +70,9 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                 case 5:
                     startSegmentFive (message);
                     break;
+                case 6:
+                    startSegmentSix (message);
+                    break;
                 default:
                     Debug.Log ("Invalid Segment Number.");
                     break;
@@ -237,5 +240,11 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         slider.SetActive (true);
         slider.GetComponent<Slider> ().value = 4;
         text.text = "YES/NOの選択の確信度を\nタッチパッドの左右で選択し\nトリガーで決定してください．";
+    }
+
+    void startSegmentSix (Message message)
+    {
+        slider.SetActive (false);
+        text.text = "一旦1分以上休憩してください．\n再開したいタイミングで\n声をかけてください．";
     }
 }
