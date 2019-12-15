@@ -244,6 +244,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
 
     void startSegmentSix (Message message)
     {
+        buttons.SetActive (false);
         slider.SetActive (false);
         text.text = "一旦1分以上休憩してください．\n再開したいタイミングで\n声をかけてください．";
     }
