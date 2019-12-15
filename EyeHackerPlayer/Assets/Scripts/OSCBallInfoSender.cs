@@ -10,8 +10,7 @@ public class OSCBallInfoSender : MonoBehaviour
     [SerializeField] private string address;
 
     [SerializeField] private OSCAlphaModifier alphaModifier;
-    private static EyeData eyeData;
-    private static VerboseData verboseData;
+    [SerializeField] private DataWrite dataWrite;
 
     // Start is called before the first frame update
     void Start ()
@@ -26,20 +25,40 @@ public class OSCBallInfoSender : MonoBehaviour
     public void SendInfo ()
     {
         // Vector3 cameraRot = 9.0f * Camera.main.transform.forward;
-        Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
+        // Vector3 cameraRot = Camera.main.transform.rotation.eulerAngles;
 
-        SRanipal_Eye.GetEyeData (ref eyeData);
-        SRanipal_Eye.GetVerboseData (out verboseData);
-
-        Vector3 eyeDir = eyeData.verbose_data.combined.eye_data.gaze_direction_normalized;
+        Vector3 center = alphaModifier.center;
+        Vector3 headPos = dataWrite.headPosition;
+        Vector3 eyeDir = dataWrite.eyeDir;
 
         if (alphaModifier.selectedBall != null)
         {
-            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, alphaModifier.selectedBall.transform.position.x, alphaModifier.selectedBall.transform.position.y, alphaModifier.selectedBall.transform.position.z, cameraRot.x, cameraRot.y, cameraRot.z, eyeDir.x, eyeDir.y, eyeDir.z);
+            Vector3 ballPos = alphaModifier.selectedBall.transform.position;
+            float angle = calculateAngle (Vector3.Distance (center, ballPos));
+
+            client.Send (address,
+                center.x, center.y, center.z,
+                ballPos.x, ballPos.y, ballPos.z,
+                headPos.x, headPos.y, headPos.z,
+                eyeDir.x, eyeDir.y, eyeDir.z,
+                angle
+            );
         }
         else
         {
-            client.Send (address, alphaModifier.center.x, alphaModifier.center.y, alphaModifier.center.z, -1, -1, -1, cameraRot.x, cameraRot.y, cameraRot.z, eyeDir.x, eyeDir.y, eyeDir.z);
+            client.Send (address,
+                center.x, center.y, center.z,
+                -1.0f, -1.0f, -1.0f,
+                headPos.x, headPos.y, headPos.z,
+                eyeDir.x, eyeDir.y, eyeDir.z,
+                -1.0f
+            );
         }
+    }
+
+    float calculateAngle (float d)
+    {
+        float radius = 9.0f;
+        return Mathf.Acos (1.0f - ((d * d) / (2.0f * radius * radius))) * Mathf.Rad2Deg;
     }
 }

@@ -24,7 +24,7 @@ public class CountDownController : MonoBehaviour
 
     IEnumerator Count ()
     {
-        for (int i = 3; i > 0; i--)
+        for (int i = 2; i > 0; i--)
         {
             this.GetComponent<Text> ().text = i.ToString ();
             yield return new WaitForSeconds (1.0f);
