@@ -1185,7 +1185,7 @@ MonoBehaviour:
     spaceCount: 2
     wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -5889,6 +5889,7 @@ MonoBehaviour:
   selectedBall: {fileID: 0}
   center: {x: 0, y: 0, z: 0}
   color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0}
+  infoSender: {fileID: 1192136689}
   min: 0
   max: 10
   showAlpha: 0
@@ -15193,7 +15194,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

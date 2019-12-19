@@ -236,7 +236,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         room.SetActive (false);
 
         alphaObject.SetActive (false);
-        infoSender.SendInfo ();
+        // infoSender.SendInfo ();
 
         canvas.SetActive (true);
         buttons.SetActive (true);
