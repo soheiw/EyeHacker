@@ -22,6 +22,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
     public OSCAlphaModifier alphaModifier;
 
     public GameObject[] arrows;
+    public GameObject dot;
 
     public CreateBallPos createBallPos;
 
@@ -90,6 +91,12 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         buttons.SetActive (false);
         text.text = "Ready: No." + message.values[1].ToString ();
 
+        for (int i = 0; i < arrows.Length; i++)
+        {
+            arrows[i].SetActive (false);
+        }
+        dot.SetActive (false);
+
         alphaObject.SetActive (false);
         alphaModifier.isSelected = false;
     }
@@ -104,6 +111,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         for (int i = 0; i < arrows.Length; i++)
         {
             arrows[i].SetActive (true);
+            dot.SetActive (true);
         }
 
         if (direction != "CENTER")
@@ -115,6 +123,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
             {
                 case "FAST":
                     sentence1 = "素早く";
+                    dot.SetActive (false);
                     break;
                 case "SLOW":
                     sentence1 = "ゆっくり";
@@ -125,6 +134,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                         {
                             arrows[i].SetActive (false);
                         }
+                        dot.SetActive (false);
                     }
                     break;
                 default:
@@ -174,7 +184,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
                     Debug.Log ("Undefined phrase.");
                     break;
             }
-            text.text = "\nトリガーを引いて開始します．\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．";
+            text.text = "トリガーを引いて開始します．\n\n+が消えたら\n" + sentence1 + sentence2 + "向いてください．";
         }
         // direction == "CENTER"
         else
@@ -183,7 +193,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
             {
                 arrows[i].SetActive (false);
             }
-            text.text = "\nトリガーを引いて開始します．\n中央を\n向き続けてください．";
+            text.text = "トリガーを引いて開始します．\n\n中央を\n向き続けてください．";
         }
 
         alphaModifier.min = areaMin;
@@ -200,6 +210,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         {
             arrows[i].SetActive (false);
         }
+        dot.SetActive (false);
         canvas.SetActive (false);
 
         startPoint.SetActive (true);
@@ -225,7 +236,7 @@ public class OSCExperimentInWhiteRoomSegmentController : MonoBehaviour
         room.SetActive (false);
 
         alphaObject.SetActive (false);
-        infoSender.SendInfo ();
+        // infoSender.SendInfo ();
 
         canvas.SetActive (true);
         buttons.SetActive (true);

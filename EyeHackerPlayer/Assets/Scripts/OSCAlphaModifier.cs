@@ -17,6 +17,8 @@ public class OSCAlphaModifier : MonoBehaviour
     public Vector3 center;
     public Color color = new Color (50.0f / 255.0f, 50.0f / 255.0f, 50.0f / 255.0f, 1.0f);
 
+    public OSCBallInfoSender infoSender;
+
     public float min = 0.0f;
     public float max = 10.0f;
 
@@ -141,6 +143,7 @@ public class OSCAlphaModifier : MonoBehaviour
                 // Debug.Log ("count: " + count + ", selected: " + selectedBall.name);
                 if (selectedBall != null)
                 {
+                    infoSender.SendInfo ();
                     isSelected = true;
                 }
                 else
