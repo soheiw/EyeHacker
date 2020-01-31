@@ -35,35 +35,42 @@
 #### EyeHackerMixer (TouchDesigner)
 
 * カメラとマイクをPCに繋いで，マイクの電源を入れる．
-  * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，編集画面で`videodevin1`オペレータを探し，`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
-  * 音がこの時点で聞こえない場合は，編集画面で`audiodevout1`オペレータを探し，`Device`を`VIVE Pro`に指定し直す．また，`realtimeaudio`オペレータを探し，`Active`をOFF/ONしてみる．
-* spoutBackgroundSubstractorForTD.batを起動し，Pythonによる背景差分法を走らせる．
+  * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，`project1/cameraImageIn/Insta360Air`オペレータの`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
+  * 音がこの時点で聞こえない場合は，`project1/audiodevout1`オペレータの`Device`を`VIVE Pro`に指定し直す．
 
 ![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
 
-* 各`FileName`フィールドでファイル名の変更．
-* 各`Begin`，`End`スライダで映像のトリミング．
-* 各`Roll`，`Pitch`，`Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
-* 各`Black`，`Gamma`フィールドで映像の明るさ調整．
-* `Threshold`スライダでThresholdの値調整．
-* `Auto/Switch`トグルを`Auto`にすると映像自動切り替え，`Manual`にすると映像手動切り替え．
-  * `Manual`のときは，`PlayingBuffer`トグルで映像を選択．
-* `Auto switch is disabled`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
-* `WaitingTime`スライダで待ち時間を調整．
-* `RewindSpeed`スライダで巻き戻りの速度を調整．
-* `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
-  * 実際の切り替え時間は，HMDの回転速度を反映した`BlendTime`の値になる．
-* `RotFactor`，`RiskRadius`スライダでWholeRiskの計算におけるパラメータを操作．
-* `MaskRadius`スライダでMaskモード時のMaskの大きさを調整．
-* `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
-* 各`Play`ボタンで録画映像の再生・停止．
-* 各`Rec`ボタンで録画開始・終了．
-* `Calibration`スイッチを押すとUnity側でPupil Labsのキャリブレーションがコントロール可能（後述）． 
-* `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
-* `All/Mask`トグルを`All`にすると映像全体を切り替え，`Mask`にすると注視領域のMask内外の映像を切り替え．
-  * `Mask`モード時は，再生中でないBufferの映像を変えることで，Mask外の映像を切り替え可能．
-* `Method`トグルでアルゴリズムを選択．
-* `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+* 映像セット
+  * `FileName`フィールドでファイル名の変更．
+  * `Rec`ボタンで録画開始・終了．
+  * `Loop`トグルでループするかを指定．
+  * `Reload`ボタンで映像をリロード．
+  * `Begin`，`End`スライダで映像のトリミング．
+  * `Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
+  * `Black`，`Gamma`フィールドで映像の明るさ調整．
+* ミキサー
+  * Areaの`Play`ボタンで今選択している映像の再生・停止．
+  * Areaのセット番号ボタンで再生する映像の選択．
+  * `Threshold`スライダでthreshold調整．
+  * `Judge`トグルでriskとthresholdのどちらが大きいときに映像を切り替えるか指定．
+  * `RotFactor`スライダでriskの計算におけるパラメータを操作．
+  * `Activate Auto Toggle`トグルをONにすると`A1Weight`を自動調整，OFFにすると`A1Weight`を手動調整．
+    * `Ratio goes to 0/1 now`トグルで`A1Weight`を0/1まで動かす．
+    * `A1Weight`スライダでArea1の比率を直接操作可能．
+  * `Activate Auto Switch`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
+  * `WaitingTime`スライダで待ち時間を調整．
+  * `RewindSpeed`スライダで巻き戻りの速度を調整．
+  * `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
+    * `BlendTimeAdjustment`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
+  * `whole`/`circle`/`rectangle`ボタンでmaskの形状を指定．
+    * モードに応じてMaskに関するパラメータが白枠の中に出てくる．適宜調整．
+  * `InnerRisk D`/`OuterRisk D`スライダでrisk計算で使う領域の直径を指定．
+  * `RecNoise`ボタンで環境音を録音開始・終了．
+  * `NoiseVal`スライダで環境音の音量調整．
+  * `Calibration`ボタンでUnity側のキャリブレーション開始（後述）． 
+  * `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
+  * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+  * `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 
 #### Remote Controller(iOS, optional)
 
@@ -73,9 +80,6 @@
 
 ![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
 
-* Calibration Sceneから起動する．
-* Pupil Serviceを立ち上げる．
-* TouchDesignerの`Calibration`スイッチを押すと，瞳孔キャリブレーション開始．
-  * 正常にキャリブレーションが終わると，自動でMain Sceneに移り映像が提示される．
-  * キャリブレーションの精度が悪いとやり直しになる．もう一度`Calibration`スイッチを押す．
-* Main Scene移行後に`Calibration`スイッチを押すと，瞳孔キャリブレーション開始前の場面に戻る．さらに`Calibration`スイッチを押すと，再度瞳孔キャリブレーション開始．
+* Main Sceneから起動する．
+* TouchDesignerの`Calibration`スイッチを押すと，視線キャリブレーション開始．
+  * キャリブレーションの精度が悪いと失敗判定が出る．この際はもう一度`Calibration`スイッチを押す．
