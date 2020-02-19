@@ -1,0 +1,13 @@
+﻿  main.cpp
+c:\users\inamilab\desktop\sranipal\include\sranipal_eyedatatype.h(142): warning C4334: '<<': 32 ビット シフトの結果が暗黙的に 64 ビットに変換されました (64 ビット シフトに意図的に変換しようとしましたか?)
+c:\users\inamilab\desktop\sranipal\include\sranipal_eyedatatype.h(142): warning C4800: 'uint64_t': ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
+c:\users\inamilab\desktop\sranipal\include\sranipal_eyedatatype.h(184): warning C4091: 'typedef ': 変数が何も宣言されていないときは、'ViveSR::anipal::Eye::CombinedEyeData' の左辺を無視します。
+  SRanipal_Sample.vcxproj -> C:\Users\inamilab\Desktop\SRanipal\x64\Debug\SRanipal_Sample.exe
+  SRanipal_Sample.vcxproj -> C:\Users\inamilab\Desktop\SRanipal\x64\Debug\SRanipal_Sample.pdb (Full PDB)
+  ..\bin\libHTC_License.dll
+  ..\bin\nanomsg.dll
+  ..\bin\SRanipal.dll
+  ..\bin\SRWorks_Log.dll
+  ..\bin\ViveSR_Client.dll
+          5 個のファイルをコピーしました。
+          1 個のファイルをコピーしました。

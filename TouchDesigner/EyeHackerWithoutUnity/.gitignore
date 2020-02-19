@@ -1,0 +1,8 @@
+/Videos/*
+!/Video/Test1.mov
+!/Video/Test2.mov
+!/Video/Test3.mov
+!/Video/Test4.mov
+!/Video/Test5.mov
+
+/Data/*
