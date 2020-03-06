@@ -83,3 +83,7 @@
 * Main Sceneから起動する．
 * TouchDesignerの`Calibration`スイッチを押すと，視線キャリブレーション開始．
   * キャリブレーションの精度が悪いと失敗判定が出る．この際はもう一度`Calibration`スイッチを押す．
+  
+### 実装の詳細
+
+[specification.md](specification/specification.md)に記載．
