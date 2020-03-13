@@ -24,8 +24,10 @@
 * risk計算の改善
   * `calculateRisk`オペレータの内部を変えることで出来そう
 * 音周りの改善
-  * まずは音周りに関連したオペレータ群をいじることになりそう
-  * ちなみにTouchDesigner 2020には`Audio File Out CHOP`が追加されたので，これも使えると良いかも(https://derivative.ca/community-post/2020-official-update)
+  * 音周りに関連したオペレータ群をいじることになりそう
+  * ちなみにTouchDesigner 2020には`Audio File Out CHOP`が[追加された](https://derivative.ca/community-post/2020-official-update)ので，これも使えると良いかも
+* 映像を切り替えた瞬間からフレーム指定して再生開始
+  * 録画・再生に関連したオペレータ群をいじることになりそう
 
 ## 参考文献
 
@@ -44,3 +46,5 @@
 * [TouchDesignerでのVR開発で頭部に追従するカーソルを実装する](https://qiita.com/radi_bow/items/02c722592b987ddc1752)
   * 頭部方向・視線位置を適切に取得するところでこのテクニックを使っている．
 * ショートカットキーリスト
+![shortcuts_01](shortcuts_01.jpg)
+![shortcuts_02](shortcuts_02.jpg)
