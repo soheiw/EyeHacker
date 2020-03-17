@@ -59,6 +59,7 @@
   * `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
     * `HeadAdjust`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
   * `RewindAdjust`トグルで巻き戻しするか否かを指定．
+    * 0/1まで完全に巻き戻った場合は，切り替え自体がキャンセルされる．
 * Decision Algorithm
   * `InnerRisk D`/`OuterRisk D`スライダでrisk計算で使う領域の直径を指定．
   * `Threshold`スライダでthreshold調整．
