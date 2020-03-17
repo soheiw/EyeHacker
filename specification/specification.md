@@ -5,8 +5,19 @@
 ![network](network.png)
 
 * カメラ入力
+  * `Insta360Air`オペレータ側がInsta360Airを使うときのオペレータ群，`THETA`オペレータ側がTHETAを使うときのオペレータ群になっている．繋いだカメラに応じて適宜バイパス・`switch1`オペレータの`Index`変更をする．
+    * Insta360Airオペレータ側では，`toEquirectangular`オペレータによる画像形式変換が入る．
+  * `transform2`オペレータで，提示映像の正面を合わせておくと後が楽．
 * 録画・再生
+  * `replicator1`オペレータで`item[1-5]`オペレータが複製されている．
+  * `item[1-5]`オペレータ中，`videoMaster`オペレータは録画を，`playerMaster`は動画再生を担う．
+    * `videoMaster`オペレータは`moviefileout1`オペレータによって録画するとともに，録画中であることを示すフラグを`playerMaster`オペレータに送る．
+    * `playerMaster`オペレータは`moviefilein1`オペレータによって動画を再生する．
+      * `videoPlayer`オペレータから送られてきたフラグを元に，録画終了の一定時間後に自動reload処理を入れる．
+      * `switch1`オペレータの`Index`を0ではなく1にすると，dual-fisheye形式動画をequirectangular形式動画に変換する処理が挟まる．dual-fisheye形式動画を録画データとして持っているときに操作する．
+  * `item0`オペレータは，`itemMaster`オペレータから録画・動画の再生機能を抜いて，リアルタイム映像を流したもの．
 * レイヤー映像
+  * 
 * 音周り
 * 視線位置取得
 * マスク画像
@@ -28,6 +39,8 @@
   * ちなみにTouchDesigner 2020には`Audio File Out CHOP`が[追加された](https://derivative.ca/community-post/2020-official-update)ので，これも使えると良いかも
 * 映像を切り替えた瞬間からフレーム指定して再生開始
   * 録画・再生に関連したオペレータ群をいじることになりそう
+* 実験の組み立て
+  * `OldProjects/ExperimentController/itoMasterThesis`内のプロジェクトが，ログの取り方等の参考になる
 
 ## 参考文献
 
