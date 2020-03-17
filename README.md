@@ -51,26 +51,30 @@
 * Blend Ratio
   * `Ratio goes to 0/1 now`トグルで`Ratio`を0/1まで自動で動かす．
   * `Ratio`スライダでアルファブレンドの比率を直接操作可能．
+  * `Method`トグルでアルファブレンドの仕方を指定．
 * Blend Shape
   * `whole`/`circle`/`rectangle`ボタンでmaskの形状を指定．
     * モードに応じてMaskに関するパラメータが白枠の中に出てくる．適宜調整．
 * Blend Time
   * `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
-    * `BlendTimeAdjustment`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
+    * `HeadAdjust`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
+  * `RewindAdjust`トグルで巻き戻しするか否かを指定．
 * Decision Algorithm
   * `InnerRisk D`/`OuterRisk D`スライダでrisk計算で使う領域の直径を指定．
   * `Threshold`スライダでthreshold調整．
   * `Judge`トグルでriskとthresholdのどちらが大きいときに映像を切り替えるか指定．
 * Decision Time
+  * `Activate Auto Switch`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
   * `WaitingTime`スライダで待ち時間を調整．
   * `RewindSpeed`スライダで巻き戻りの速度を調整．
-  * `Activate Auto Switch`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
 * Audio
-  * `RecNoise`ボタンで環境音を録音開始・終了．
   * `NoiseVal`スライダで環境音の音量調整．
+  * `RecNoise`ボタンで環境音を録音開始・終了．
+  * `Reload`ボタンで環境音をリロード．
 * Utilities
+  * `Calibration`ボタンでキャリブレーション開始．
   * `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
-  * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+  * `RayCast`トグルを`Gaze`にするとVive Pro Eyeによるデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
 
 #### GazeDirectionSender (Unity)
 
