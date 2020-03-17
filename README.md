@@ -33,8 +33,7 @@
 #### EyeHacker (TouchDesigner)
 
 * カメラとマイクをPCに繋いで，マイクの電源を入れる．
-  * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，`project1/cameraImageIn/Insta360Air`オペレータの`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
-  * 音がこの時点で聞こえない場合は，`project1/audiodevout1`オペレータの`Device`を`VIVE Pro`に指定し直す．
+  * TouchDesignerのperform画面の`Realtime`に映像が映らない/映像が変な場合は，`cameraImageIn`オペレータ内の`Video Device In`TOPの`Device`が正しいかを確認する．
 
 ![EyeHacker.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/EyeHacker.png)
 
@@ -46,29 +45,32 @@
   * `Begin`，`End`スライダで映像のトリミング．
   * `Yaw`スライダで映像の回転を調整するOSC信号をUnityに送信．
   * `Black`，`Gamma`フィールドで映像の明るさ調整．
-* ミキサー
-  * Areaの`Play`ボタンで今選択している映像の再生・停止．
-  * Areaのセット番号ボタンで再生する映像の選択．
-  * `Threshold`スライダでthreshold調整．
-  * `Judge`トグルでriskとthresholdのどちらが大きいときに映像を切り替えるか指定．
-  * `RotFactor`スライダでriskの計算におけるパラメータを操作．
-  * `Activate Auto Toggle`トグルをONにすると`A1Weight`を自動調整，OFFにすると`A1Weight`を手動調整．
-    * `Ratio goes to 0/1 now`トグルで`A1Weight`を0/1まで動かす．
-    * `A1Weight`スライダでArea1の比率を直接操作可能．
-  * `Activate Auto Switch`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
-  * `WaitingTime`スライダで待ち時間を調整．
-  * `RewindSpeed`スライダで巻き戻りの速度を調整．
-  * `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
-    * `BlendTimeAdjustment`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
+* Area[1-2]
+  * `Play`ボタンで今選択している映像の再生・停止．
+  * セット番号ボタンで再生する映像の選択．
+* Blend Ratio
+  * `Ratio goes to 0/1 now`トグルで`Ratio`を0/1まで自動で動かす．
+  * `Ratio`スライダでアルファブレンドの比率を直接操作可能．
+* Blend Shape
   * `whole`/`circle`/`rectangle`ボタンでmaskの形状を指定．
     * モードに応じてMaskに関するパラメータが白枠の中に出てくる．適宜調整．
+* Blend Time
+  * `MaxBlendTime`スライダで映像切り替えにかける時間を調整．
+    * `BlendTimeAdjustment`トグルがONのときは，実際の切り替え時間は，HMDの回転速度を反映した`Actual BlendTime`の値になる．
+* Decision Algorithm
   * `InnerRisk D`/`OuterRisk D`スライダでrisk計算で使う領域の直径を指定．
+  * `Threshold`スライダでthreshold調整．
+  * `Judge`トグルでriskとthresholdのどちらが大きいときに映像を切り替えるか指定．
+* Decision Time
+  * `WaitingTime`スライダで待ち時間を調整．
+  * `RewindSpeed`スライダで巻き戻りの速度を調整．
+  * `Activate Auto Switch`トグルを押すと`Time`のスライダが動きだし，スライダが振り切れると映像が切り替わる．
+* Audio
   * `RecNoise`ボタンで環境音を録音開始・終了．
   * `NoiseVal`スライダで環境音の音量調整．
-  * `Calibration`ボタンでUnity側のキャリブレーション開始（後述）． 
+* Utilities
   * `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
   * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
-  * `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 
 #### GazeDirectionSender (Unity)
 
