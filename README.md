@@ -15,30 +15,28 @@
 ### 動作環境
 
 * Windows10 64bit
-* Unity 2018.4.6f1
+* Unity 2019.1.14f1
 * TouchDesigner 099 Educational 2019.18360
 * HTC VIVE Pro Eye
-* Insta360 Air
+* Insta360Air または THETA Z1
 * ZOOM H1n
 
-### 使用アセット
+### Unity使用アセット
 
-* [KlakSpout v0.2.4](https://github.com/keijiro/KlakSpout)
 * [uOSC](https://github.com/hecomi/uOSC)
-* [warapuriさん作天球モデル](http://warapuri.com/post/131599525953/unity%E3%81%A8oculus%E3%81%A7360%E5%BA%A6%E3%83%91%E3%83%8E%E3%83%A9%E3%83%9E%E5%85%A8%E5%A4%A9%E5%91%A8%E5%8B%95%E7%94%BB%E3%82%92%E8%A6%8B%E3%82%8B%E6%96%B9%E6%B3%95%E7%84%A1%E6%96%99%E7%B7%A8)
 * [Eye Tracking SDK (SRanipal)](https://developer.vive.com/resources/knowledgebase/vive-sranipal-sdk/)
 
 ### 使用方法
 
-* TouchDesignerでEyeHackerMixerを，UnityでEyeHackerPlayerを起動．
+* TouchDesignerでEyeHackerを，UnityでGazeDirectionSenderを起動．
 
-#### EyeHackerMixer (TouchDesigner)
+#### EyeHacker (TouchDesigner)
 
 * カメラとマイクをPCに繋いで，マイクの電源を入れる．
   * TouchDesignerのperform画面の`Realtime`に映像が映らない場合は，`project1/cameraImageIn/Insta360Air`オペレータの`Library`を`Media Foundation`に，`Device`を`Video Control`に指定し直す．
   * 音がこの時点で聞こえない場合は，`project1/audiodevout1`オペレータの`Device`を`VIVE Pro`に指定し直す．
 
-![Server.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Server.png)
+![EyeHacker.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/EyeHacker.png)
 
 * 映像セット
   * `FileName`フィールドでファイル名の変更．
@@ -72,17 +70,11 @@
   * `RayCast`トグルを`Gaze`にするとPupilLabsのデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
   * `G-Roll`，`G-Pitch`，`G-Yaw`スライダで全ての映像の回転を同時に調整するOSC信号をUnityに送信．
 
-#### Remote Controller(iOS, optional)
+#### GazeDirectionSender (Unity)
 
-* [Chromeリモートデスクトップ](https://apps.apple.com/jp/app/chrome-%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88-%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97/id944025852)をPC/iOSの両方に入れ，同じアカウントで両方にログインする．PC画面を共有することで，iOS側からPC画面を直接操作する．
+![GazeDirectionSender.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/GazeDirectionSender.png)
 
-#### EyeHackerPlayer (Unity)
-
-![Player.png](https://github.com/inamilab/SRProject-EyeTracking/blob/develop/images/Player.png)
-
-* Main Sceneから起動する．
-* TouchDesignerの`Calibration`スイッチを押すと，視線キャリブレーション開始．
-  * キャリブレーションの精度が悪いと失敗判定が出る．この際はもう一度`Calibration`スイッチを押す．
+（適宜ビルドしてから）起動する．OSCで視線位置情報を送信し続ける．
   
 ### 実装の詳細
 
