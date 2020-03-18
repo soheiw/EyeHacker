@@ -76,6 +76,7 @@
   * `Calibration`ボタンでキャリブレーション開始．
   * `View Ray`トグルで体験者へのrayの表示/非表示を切り替え．
   * `RayCast`トグルを`Gaze`にするとVive Pro Eyeによるデータが視線位置に，`HMD`にするとHMDの向いている方向が視線位置になる．
+  * `Logging`ボタンでログ取得開始・ログをフィールドに書いたパスに保存．
 
 #### GazeDirectionSender (Unity)
 
