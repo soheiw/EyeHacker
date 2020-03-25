@@ -81,6 +81,8 @@
   * 映像の録画・再生やレイヤー映像指定のところでこのテクニックを使っている．
 * [[TouchDesigner] UnityのMonoBehaviour的なノードを見つけたという話](https://qiita.com/kodai100/items/9b1b4be6f07c2fad1657)
   * risk計算でこのテクニックを使っている．
+* [TouchDesignerで作る心理物理実験](https://qiita.com/shks/items/6ebdbbfdc64d8ae20897)
+  * TouchDesignerでの実験系はこの記事を枠組みにすると組める．
 * [TouchDesigner 複数カメラをボタンでスイッチング](https://qiita.com/atsonic/items/8aeb32c4933b9f05673b)
   * 内容自体はあまり関係ないが，ラジオボタン周りやReplicator COMPの知見が得られる．
 * [TouchDesigner 処理が重くなっている個所を見つける方法](https://qiita.com/narumin256/items/cf18280156ed12101943)
