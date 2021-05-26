@@ -51,7 +51,7 @@
 * Blend Ratio
   * `Ratio goes to 0/1 now`トグルで`Ratio`を0/1まで自動で動かす．
   * `Ratio`スライダでアルファブレンドの比率を直接操作可能．
-  * `Method`トグルでアルファブレンドの仕方を指定．
+  * `Method`トグルでアルファブレンドの仕方を指定． Switchは赤と青を入れ替える．Overは赤に青が上書きされる.
 * Blend Shape
   * `whole`/`circle`/`rectangle`ボタンでmaskの形状を指定．
     * モードに応じてMaskに関するパラメータが白枠の中に出てくる．適宜調整．
